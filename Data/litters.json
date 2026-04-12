@@ -1,0 +1,23 @@
+[
+  {
+    "id": "litter-001",
+    "title": "Example Litter",
+    "sire": "Simon",
+    "dame": "Alice",
+    "birth_date": "2026-04-12",
+    "status": "Available",
+    "description": "Example litter description.",
+    "kittens": [
+      {
+        "id": "kitten-001",
+        "name": "Example Kitten",
+        "sex": "Female",
+        "color": "Silver",
+        "status": "Available",
+        "price": 2500,
+        "image": "/images/kittens/example.jpg",
+        "notes": "Example notes."
+      }
+    ]
+  }
+]
