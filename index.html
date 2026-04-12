@@ -110,12 +110,24 @@
 	z-index: 2;
 	pointer-events: none;
 
-	background:
-	/* LEFT fade (stronger, longer) */
-	linear-gradient(to right, var(--bg) 0%, rgba(245,241,231,0) 45%),
+	/* dynamic fade distances using image bias */
+	--left-fade: calc(55% * var(--imagebias));   /* stronger + longer */
+	--top-fade: calc(12% * var(--imagebias));    /* shorter */
 
-	/* TOP fade (shorter, lighter) */
-	linear-gradient(to bottom, var(--bg) 0%, rgba(245,241,231,0) 20%);
+	background:
+	/* LEFT fade (extends further now) */
+	linear-gradient(
+		to right,
+		var(--bg) 0%,
+		rgba(245,241,231,0) var(--left-fade)
+	),
+
+	/* TOP fade (reduced distance) */
+	linear-gradient(
+		to bottom,
+		var(--bg) 0%,
+		rgba(245,241,231,0) var(--top-fade)
+	);
 }
 
 			.hero-image-wrap {
