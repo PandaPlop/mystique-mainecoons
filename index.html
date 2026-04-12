@@ -42,7 +42,7 @@
 			body {
 			margin: 0;
 			padding: 0;
-			background: #eae4d7;
+			background: var(--panel);
 			overflow-x: hidden;
 			font-family: var(--sans);
 			color: var(--text);
@@ -65,7 +65,7 @@
 			.viewport {
 			width: 100%;
 			min-height: 100vh;
-			background: #eae4d7;
+			background: var(--panel);
 			}
 
 			.page {
@@ -80,7 +80,6 @@
 			.topbar {
 			height: calc(min(60px, calc(60 / var(--design-width) * 100vw)) * var(--bias));
 			background: var(--panel);
-			border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 			display: flex;
 			align-items: center;
 			padding: 0 min(64px, calc(64 / var(--design-width) * 100vw));
@@ -99,36 +98,32 @@
 			.hero {
 			position: relative;
 			height: calc(min(690px, calc(690 / var(--design-width) * 100vw)) * var(--imagebias));
-			background: #f3eee2;
+			background: var(--panel);
 			overflow: visible;
-			border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 			}
-          .hero::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	z-index: 2;
-	pointer-events: none;
 
-	/* dynamic fade distances using image bias */
-	--left-fade: calc(55% * var(--imagebias));   /* stronger + longer */
-	--top-fade: calc(12% * var(--imagebias));    /* shorter */
+			.hero::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: 2;
+			pointer-events: none;
 
-	background:
-	/* LEFT fade (extends further now) */
-	linear-gradient(
-		to right,
-		var(--bg) 0%,
-		rgba(245,241,231,0) var(--left-fade)
-	),
+			--left-fade: calc(55% * var(--imagebias));
+			--top-fade: calc(12% * var(--imagebias));
 
-	/* TOP fade (reduced distance) */
-	linear-gradient(
-		to bottom,
-		var(--bg) 0%,
-		rgba(245,241,231,0) var(--top-fade)
-	);
-}
+			background:
+			linear-gradient(
+				to right,
+				var(--bg) 0%,
+				rgba(245,241,231,0) var(--left-fade)
+			),
+			linear-gradient(
+				to bottom,
+				var(--bg) 0%,
+				rgba(245,241,231,0) var(--top-fade)
+			);
+			}
 
 			.hero-image-wrap {
 			position: absolute;
@@ -304,62 +299,34 @@
 
 				<section class="hero">
 					<div class="hero-image-wrap">
-						<div
-							data-editable="source"
-							data-path="/index.html"
-							data-key="hero-image"
-						>
+						<div data-editable="source" data-path="/index.html" data-key="hero-image">
 							<p><img src="/uploads/untitled316-20260411235806.png" /></p>
 						</div>
 					</div>
 
 					<div class="hero-content">
-						<h1
-							class="hero-title"
-							data-editable="source"
-							data-path="/index.html"
-							data-key="hero-title"
-						>
+						<h1 class="hero-title" data-editable="source" data-path="/index.html" data-key="hero-title">
 							Mystique<br />Mainecoons
 						</h1>
 
-						<p
-							class="hero-quote"
-							data-editable="source"
-							data-path="/index.html"
-							data-key="hero-quote"
-						>
+						<p class="hero-quote" data-editable="source" data-path="/index.html" data-key="hero-quote">
 							"A goal without a plan is just a dream."
 						</p>
 
-						<a
-							href="#"
-							class="hero-button"
-							data-editable="source"
-							data-path="/index.html"
-							data-key="hero-button"
-						>
+						<a href="#" class="hero-button" data-editable="source" data-path="/index.html" data-key="hero-button">
 							Available kittens
 						</a>
 					</div>
 
 					<div class="tica-badge">
-						<div
-							data-editable="source"
-							data-path="/index.html"
-							data-key="tica-logo"
-						>
+						<div data-editable="source" data-path="/index.html" data-key="tica-logo">
 							<img src="/uploads/untitled316-20260412000356.png" />
 						</div>
 					</div>
 				</section>
 
 				<section class="trust-strip">
-					<p
-						data-editable="source"
-						data-path="/index.html"
-						data-key="trust-strip-text"
-					>
+					<p data-editable="source" data-path="/index.html" data-key="trust-strip-text">
 						TICA registered and health tested, we represent the safe and trusted side of mainecoon breeding.
 						For us they aren't a business they are our family.
 					</p>
@@ -368,20 +335,11 @@
 				<section class="about">
 					<div class="about-grid">
 						<div class="about-copy">
-							<h2
-								class="about-title"
-								data-editable="source"
-								data-path="/index.html"
-								data-key="about-title"
-							>
+							<h2 class="about-title" data-editable="source" data-path="/index.html" data-key="about-title">
 								About Us
 							</h2>
 
-							<p
-								data-editable="source"
-								data-path="/index.html"
-								data-key="about-paragraph"
-							>
+							<p data-editable="source" data-path="/index.html" data-key="about-paragraph">
 								We didn’t plan on starting a cattery. We started as two people who fell completely in love with
 								Maine Coons, and that love kept growing. The line ‘A goal without a plan is just a dream’ stuck
 								with us, and it pushed us to turn our dream into something real. Now we spend our days raising
@@ -390,11 +348,7 @@
 						</div>
 
 						<div class="about-photo-wrap">
-							<div
-								data-editable="source"
-								data-path="/index.html"
-								data-key="about-image"
-							>
+							<div data-editable="source" data-path="/index.html" data-key="about-image">
 								<img src="/uploads/untitled316-20260412000131.png" />
 							</div>
 						</div>
@@ -402,11 +356,7 @@
 				</section>
 
 				<section class="bottom-image">
-					<div
-						data-editable="source"
-						data-path="/index.html"
-						data-key="bottom-image"
-					>
+					<div data-editable="source" data-path="/index.html" data-key="bottom-image">
 						<img alt="Lower cat image" src="https://placehold.co/1600x900/e2d7c2/3a291d?text=Lower+Cat+Image" />
 					</div>
 				</section>
