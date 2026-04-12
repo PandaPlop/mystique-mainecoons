@@ -1,0 +1,10 @@
+[
+  {
+    "id": "news-001",
+    "title": "Example News Post",
+    "date": "2026-04-12",
+    "category": "General Update",
+    "image": "/images/news/example.jpg",
+    "body": "Example news content."
+  }
+]
