@@ -34,9 +34,12 @@
 			--sans: Arial, Helvetica, sans-serif;
 			}
 
-			* { box-sizing: border-box; }
+			* {
+			box-sizing: border-box;
+			}
 
-			html, body {
+			html,
+			body {
 			margin: 0;
 			padding: 0;
 			background: var(--panel);
@@ -45,11 +48,19 @@
 			color: var(--text);
 			}
 
-			body { min-height: 100vh; }
+			body {
+			min-height: 100vh;
+			}
 
-			a { text-decoration: none; color: inherit; }
+			a {
+			text-decoration: none;
+			color: inherit;
+			}
 
-			img { display: block; max-width: 100%; }
+			img {
+			display: block;
+			max-width: 100%;
+			}
 
 			.viewport {
 			width: 100%;
@@ -72,6 +83,8 @@
 			left: 0;
 			width: 100%;
 			height: 0;
+			padding: 0;
+			margin: 0;
 			background: transparent;
 			z-index: 5;
 			pointer-events: none;
@@ -82,18 +95,75 @@
 			top: calc(min(32px, calc(32 / var(--design-width) * 100vw)) * var(--bias));
 			left: min(64px, calc(64 / var(--design-width) * 100vw));
 			display: flex;
+			align-items: center;
 			gap: min(54px, calc(54 / var(--design-width) * 100vw));
 			font-size: calc(min(23px, calc(23 / var(--design-width) * 100vw)) * var(--bias));
 			font-weight: 600;
+			color: #231813;
+			white-space: nowrap;
 			pointer-events: auto;
 			}
 
-			.nav a { padding-bottom: 6px; }
+			.nav a {
+			position: relative;
+			display: inline-block;
+			padding-bottom: calc(min(6px, calc(6 / var(--design-width) * 100vw)) * var(--bias));
+			transition: color 0.2s ease;
+			}
+
+			.nav a:hover {
+			color: var(--accent);
+			}
+
+			.nav a.current-page {
+			color: var(--accent);
+			}
+
+			.nav a.current-page::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: calc(min(3px, calc(3 / var(--design-width) * 100vw)) * var(--bias));
+			background: var(--accent);
+			border-radius: 999px;
+			}
 
 			.hero {
 			position: relative;
 			height: calc(min(690px, calc(690 / var(--design-width) * 100vw)) * var(--imagebias));
+			background: var(--panel);
 			overflow: visible;
+			}
+
+			.hero::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: 2;
+			pointer-events: none;
+
+			--left-fade: calc(55% * var(--imagebias));
+			--top-fade: calc(12% * var(--imagebias));
+
+			background:
+			linear-gradient(
+				to right,
+				var(--bg) 0%,
+				rgba(248,236,229,0) var(--left-fade)
+			),
+			linear-gradient(
+				to bottom,
+				var(--bg) 0%,
+				rgba(248,236,229,0) var(--top-fade)
+			);
+			}
+
+			.hero-image-wrap {
+			position: absolute;
+			inset: 0;
+			z-index: 1;
 			}
 
 			.hero-image-wrap img {
@@ -102,55 +172,160 @@
 			right: 0;
 			height: 100%;
 			width: auto;
+			max-width: none;
 			}
 
 			.hero-content {
 			position: relative;
 			z-index: 3;
-			padding: 80px;
+			width: min(540px, calc(540 / var(--design-width) * 100vw));
+			padding:
+			calc(min(88px, calc(88 / var(--design-width) * 100vw)) * var(--imagebias))
+			0
+			0
+			min(80px, calc(80 / var(--design-width) * 100vw));
 			}
 
 			.hero-title {
-			font-size: calc(min(90px, calc(90 / var(--design-width) * 100vw)) * var(--imagebias));
-			font-family: var(--serif);
 			margin: 0;
+			font-family: var(--serif);
+			font-size: calc(min(90px, calc(90 / var(--design-width) * 100vw)) * var(--imagebias));
+			line-height: 1.05;
+			letter-spacing: 0em;
+			font-weight: 700;
+			color: #251813;
+			}
+
+			.hero-quote {
+			margin: calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--imagebias)) 0 0;
+			font-size: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--imagebias));
+			line-height: 1.28;
+			font-weight: 700;
+			color: #2f211a;
+			max-width: min(400px, calc(400 / var(--design-width) * 100vw));
 			}
 
 			.hero-button {
-			display: inline-block;
-			margin-top: 30px;
-			padding: 15px 30px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			margin-top: calc(min(54px, calc(54 / var(--design-width) * 100vw)) * var(--bias));
+			height: calc(min(72px, calc(72 / var(--design-width) * 100vw)) * var(--bias));
+			padding: 0 min(42px, calc(42 / var(--design-width) * 100vw));
+			border-radius: 999px;
 			background: var(--accent);
 			color: white;
-			border-radius: 999px;
+			font-size: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias));
+			font-weight: 700;
+			box-shadow: 0 min(12px, calc(12 / var(--design-width) * 100vw)) min(22px, calc(22 / var(--design-width) * 100vw)) rgba(109, 31, 33, 0.2);
+			}
+
+			.hero-button:hover {
+			background: var(--accent-dark);
 			}
 
 			.tica-badge {
 			position: absolute;
-			right: 40px;
-			bottom: -20px;
-			width: 170px;
+			right: min(45px, calc(45 / var(--design-width) * 100vw));
+			bottom: calc(min(-20px, calc(-20 / var(--design-width) * 100vw)) * var(--imagebias));
+			width: calc(min(170px, calc(170 / var(--design-width) * 100vw)) * 1);
+			opacity: 1;
 			z-index: 3;
 			cursor: pointer;
 			}
 
 			.tica-badge img {
 			width: 100%;
+			height: auto;
+			display: block;
+			}
+
+			.trust-strip {
+			background: #f5efe3;
+			border-top: 1px solid rgba(0, 0, 0, 0.03);
+			border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+			padding:
+			calc(min(34px, calc(34 / var(--design-width) * 100vw)) * var(--bias))
+			min(80px, calc(80 / var(--design-width) * 100vw))
+			calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--bias));
+			}
+
+			.trust-strip p {
+			margin: 0;
+			font-size: calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--textbias));
+			line-height: 1.42;
+			font-weight: 600;
+			max-width: min(1180px, calc(1180 / var(--design-width) * 100vw));
+			color: #241813;
 			}
 
 			.about {
-			padding: 40px;
+			background: var(--bg-soft);
+			padding:
+			calc(min(42px, calc(42 / var(--design-width) * 100vw)) * var(--bias))
+			min(80px, calc(80 / var(--design-width) * 100vw))
+			calc(min(50px, calc(50 / var(--design-width) * 100vw)) * var(--bias));
+			}
+
+			.about-grid {
+			display: grid;
+			grid-template-columns: 1.03fr min(520px, calc(520 / var(--design-width) * 100vw));
+			gap: min(44px, calc(44 / var(--design-width) * 100vw));
+			align-items: start;
+			}
+
+			.about-title {
+			margin: 0 0 calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--textbias));
+			font-family: var(--serif);
+			font-size: calc(min(60px, calc(60 / var(--design-width) * 100vw)) * var(--textbias));
+			line-height: 0.92;
+			letter-spacing: -0.05em;
+			font-weight: 700;
+			color: #251813;
+			}
+
+			.about-copy p {
+			margin: 0;
+			font-size: calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--textbias));
+			line-height: 1.5;
+			font-weight: 600;
+			color: #271b15;
+			max-width: min(640px, calc(640 / var(--design-width) * 100vw));
+			}
+
+			.about-photo-wrap {
+			border-radius: min(28px, calc(28 / var(--design-width) * 100vw));
+			overflow: hidden;
+			}
+
+			.about-photo-wrap img {
+			width: 100%;
+			height: calc(min(720px, calc(720 / var(--design-width) * 100vw)) * 1);
+			object-fit: cover;
+			display: block;
+			}
+
+			.bottom-image {
+			position: relative;
+			height: calc(min(360px, calc(360 / var(--design-width) * 100vw)) * var(--bias));
+			overflow: hidden;
+			}
+
+			.bottom-image img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+			display: block;
 			}
 		</style>
 	</head>
-
 	<body>
 		<div class="viewport">
-			<main class="page">
-
-				<header class="topbar">
+			<main class="page" id="page">
+				<header class="topbar" data-cloudcannon-ignore>
 					<nav class="nav">
-						<a href="/" class="current-page">Home</a>
+						<a href="/" class="current-page" aria-current="page">Home</a>
 						<a href="/Available-Kittens">Available Kittens</a>
 						<a href="/Queens">Queens</a>
 						<a href="/Kings">Kings</a>
@@ -160,49 +335,90 @@
 
 				<section class="hero">
 					<div class="hero-image-wrap">
-						<img src="/uploads/untitled316-20260411235806.png" />
+						<div data-editable="source" data-path="/index.html" data-key="hero-image">
+							<p><img src="/uploads/untitled316-20260411235806.png" /></p>
+						</div>
 					</div>
 
 					<div class="hero-content">
-						<h1 class="hero-title">Mystique Mainecoons</h1>
-						<a href="/Available-Kittens" class="hero-button">Available kittens</a>
+						<h1 class="hero-title" data-editable="source" data-path="/index.html" data-key="hero-title">
+							Mystique<br />Mainecoons
+						</h1>
+
+						<p class="hero-quote" data-editable="source" data-path="/index.html" data-key="hero-quote">
+							"A goal without a plan is just a dream."
+						</p>
+
+						<a href="/Available-Kittens" class="hero-button" data-editable="source" data-path="/index.html" data-key="hero-button">
+							Available kittens
+						</a>
 					</div>
 
 					<div class="tica-badge">
-						<img src="/uploads/untitled316-20260412000356.png" />
+						<div data-editable="source" data-path="/index.html" data-key="tica-logo">
+							<img src="/uploads/untitled316-20260412000356.png" />
+						</div>
 					</div>
 				</section>
 
-				<section class="about">
-					<h2>About Us</h2>
-					<p>
-						We didn’t plan on starting a cattery. We started as two people who fell completely in love with
-						Maine Coons.
+				<section class="trust-strip">
+					<p data-editable="source" data-path="/index.html" data-key="trust-strip-text">
+						TICA registered and health tested, we represent the safe and trusted side of mainecoon breeding.
+						For us they aren't a business they are our family.
 					</p>
 				</section>
 
+				<section class="about">
+					<div class="about-grid">
+						<div class="about-copy">
+							<h2 class="about-title" data-editable="source" data-path="/index.html" data-key="about-title">
+								About Us
+							</h2>
+
+							<p data-editable="source" data-path="/index.html" data-key="about-paragraph">
+								We didn’t plan on starting a cattery. We started as two people who fell completely in love with
+								Maine Coons, and that love kept growing. The line ‘A goal without a plan is just a dream’ stuck
+								with us, and it pushed us to turn our dream into something real. Now we spend our days raising
+								cats that bring us the same warmth, joy, and sense of purpose that brought us here in the first place.
+							</p>
+						</div>
+
+						<div class="about-photo-wrap">
+							<div data-editable="source" data-path="/index.html" data-key="about-image">
+								<img src="/uploads/untitled316-20260412000131.png" />
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="bottom-image">
+					<div data-editable="source" data-path="/index.html" data-key="bottom-image">
+						<img alt="Lower cat image" src="https://placehold.co/1600x900/e2d7c2/3a291d?text=Lower+Cat+Image" />
+					</div>
+				</section>
 			</main>
 		</div>
 
 		<script>
-			let ticaClickCount = 0;
-			let ticaClickTimer = null;
+			let ticaTapCount = 0;
+			let ticaTapTimer = null;
 
 			const ticaBadge = document.querySelector('.tica-badge');
 
-			ticaBadge.addEventListener('click', () => {
-				ticaClickCount++;
+			if (ticaBadge) {
+				ticaBadge.addEventListener('click', function () {
+					ticaTapCount++;
 
-				clearTimeout(ticaClickTimer);
-				ticaClickTimer = setTimeout(() => {
-					ticaClickCount = 0;
-				}, 1500);
+					clearTimeout(ticaTapTimer);
+					ticaTapTimer = setTimeout(function () {
+						ticaTapCount = 0;
+					}, 1500);
 
-				if (ticaClickCount >= 5) {
-					window.location.href = "/Admin";
-				}
-			});
+					if (ticaTapCount >= 5) {
+						window.location.href = "/Admin";
+					}
+				});
+			}
 		</script>
-
 	</body>
 </html>
