@@ -45,6 +45,36 @@ collections_config:
           locale:
           empty_type:
         cascade: true
+      $.litters[*].dame:
+        type: select
+        options:
+          allow_create:
+          allow_empty: true
+          values:
+          value_key: data.queens[*].name
+          preview:
+          picker_preview:
+          view:
+          picker_view:
+          required:
+          required_message:
+          min_length:
+          min_length_message:
+          max_length:
+          max_length_message:
+          pattern:
+          pattern_message:
+          min_graphemes:
+          min_graphemes_message:
+          max_graphemes:
+          max_graphemes_message:
+          min_words:
+          min_words_message:
+          max_words:
+          max_words_message:
+          locale:
+          empty_type:
+        cascade: true
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
