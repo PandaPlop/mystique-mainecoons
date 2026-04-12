@@ -1,1 +1,1 @@
-/Home.html
+/Admin/*
