@@ -5,6 +5,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Mystique Mainecoons</title>
 
+		<script>
+			if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
+				window.location.replace("/Home");
+			}
+		</script>
+
 		<style>
 			:root {
 			--design-width: 1200;
@@ -21,14 +27,14 @@
 			--textbias: calc(1.1 - (0.4 * var(--t)));
 			--imagebias: calc(1.2 - (0.3 * var(--t)));
 
-			--bg: rgb(248, 236, 229); 
-            --bg-soft: rgb(240, 229, 220);
-            --panel: rgb(248, 236, 229);
-            --text: rgb(39, 23, 18);
-            --text-soft: rgb(66, 49, 41);
-            --accent: rgb(109, 31, 33);
-            --accent-dark: rgb(86, 22, 23);
-            --line: rgb(21, 211, 194);
+			--bg: rgb(248, 236, 229);
+			--bg-soft: rgb(240, 229, 220);
+			--panel: rgb(248, 236, 229);
+			--text: rgb(39, 23, 18);
+			--text-soft: rgb(66, 49, 41);
+			--accent: rgb(109, 31, 33);
+			--accent-dark: rgb(86, 22, 23);
+			--line: rgb(221, 211, 194);
 			--shadow: 0 min(10px, calc(10 / var(--design-width) * 100vw)) min(30px, calc(30 / var(--design-width) * 100vw)) rgba(36, 23, 18, 0.08);
 			--serif: Georgia, "Times New Roman", serif;
 			--sans: Arial, Helvetica, sans-serif;
@@ -102,6 +108,39 @@
 			color: #231813;
 			white-space: nowrap;
 			pointer-events: auto;
+			}
+
+			.nav a {
+			position: relative;
+			color: #231813;
+			padding-bottom: calc(min(6px, calc(6 / var(--design-width) * 100vw)) * var(--bias));
+			transition: color 0.2s ease;
+			}
+
+			.nav a::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: calc(min(3px, calc(3 / var(--design-width) * 100vw)) * var(--bias));
+			background: var(--accent);
+			transform: scaleX(0);
+			transform-origin: left center;
+			transition: transform 0.2s ease;
+			border-radius: 999px;
+			}
+
+			.nav a:hover {
+			color: var(--accent);
+			}
+
+			.nav a.active {
+			color: var(--accent);
+			}
+
+			.nav a.active::after {
+			transform: scaleX(1);
 			}
 
 			.hero {
@@ -298,44 +337,44 @@
 			<main class="page" id="page">
 				<header class="topbar" data-cloudcannon-ignore>
 					<nav class="nav">
-						<a href="#">Home</a>
-						<a href="#">Available Kittens</a>
-						<a href="#">Queens</a>
-						<a href="#">Kings</a>
-						<a href="#">Past Litters</a>
+						<a href="/Home" class="active">Home</a>
+						<a href="/Available-Kittens">Available Kittens</a>
+						<a href="/Queens">Queens</a>
+						<a href="/Kings">Kings</a>
+						<a href="/Past-Litters">Past Litters</a>
 					</nav>
 				</header>
 
 				<section class="hero">
 					<div class="hero-image-wrap">
-						<div data-editable="source" data-path="/index.html" data-key="hero-image">
+						<div data-editable="source" data-path="/Home/index.html" data-key="hero-image">
 							<p><img src="/uploads/untitled316-20260411235806.png" /></p>
 						</div>
 					</div>
 
 					<div class="hero-content">
-						<h1 class="hero-title" data-editable="source" data-path="/index.html" data-key="hero-title">
+						<h1 class="hero-title" data-editable="source" data-path="/Home/index.html" data-key="hero-title">
 							Mystique<br />Mainecoons
 						</h1>
 
-						<p class="hero-quote" data-editable="source" data-path="/index.html" data-key="hero-quote">
+						<p class="hero-quote" data-editable="source" data-path="/Home/index.html" data-key="hero-quote">
 							"A goal without a plan is just a dream."
 						</p>
 
-						<a href="#" class="hero-button" data-editable="source" data-path="/index.html" data-key="hero-button">
+						<a href="/Available-Kittens" class="hero-button" data-editable="source" data-path="/Home/index.html" data-key="hero-button">
 							Available kittens
 						</a>
 					</div>
 
 					<div class="tica-badge">
-						<div data-editable="source" data-path="/index.html" data-key="tica-logo">
+						<div data-editable="source" data-path="/Home/index.html" data-key="tica-logo">
 							<img src="/uploads/untitled316-20260412000356.png" />
 						</div>
 					</div>
 				</section>
 
 				<section class="trust-strip">
-					<p data-editable="source" data-path="/index.html" data-key="trust-strip-text">
+					<p data-editable="source" data-path="/Home/index.html" data-key="trust-strip-text">
 						TICA registered and health tested, we represent the safe and trusted side of mainecoon breeding.
 						For us they aren't a business they are our family.
 					</p>
@@ -344,11 +383,11 @@
 				<section class="about">
 					<div class="about-grid">
 						<div class="about-copy">
-							<h2 class="about-title" data-editable="source" data-path="/index.html" data-key="about-title">
+							<h2 class="about-title" data-editable="source" data-path="/Home/index.html" data-key="about-title">
 								About Us
 							</h2>
 
-							<p data-editable="source" data-path="/index.html" data-key="about-paragraph">
+							<p data-editable="source" data-path="/Home/index.html" data-key="about-paragraph">
 								We didn’t plan on starting a cattery. We started as two people who fell completely in love with
 								Maine Coons, and that love kept growing. The line ‘A goal without a plan is just a dream’ stuck
 								with us, and it pushed us to turn our dream into something real. Now we spend our days raising
@@ -357,7 +396,7 @@
 						</div>
 
 						<div class="about-photo-wrap">
-							<div data-editable="source" data-path="/index.html" data-key="about-image">
+							<div data-editable="source" data-path="/Home/index.html" data-key="about-image">
 								<img src="/uploads/untitled316-20260412000131.png" />
 							</div>
 						</div>
@@ -365,7 +404,7 @@
 				</section>
 
 				<section class="bottom-image">
-					<div data-editable="source" data-path="/index.html" data-key="bottom-image">
+					<div data-editable="source" data-path="/Home/index.html" data-key="bottom-image">
 						<img alt="Lower cat image" src="https://placehold.co/1600x900/e2d7c2/3a291d?text=Lower+Cat+Image" />
 					</div>
 				</section>
