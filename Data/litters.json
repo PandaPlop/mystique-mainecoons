@@ -13,7 +13,7 @@
           "id": "kitten-001",
           "name": "Example Kitten",
           "sex": "Female",
-          "color": "Silver",
+          "color": "#c0c0c0",
           "status": "Available",
           "price": 2500,
           "image": "/images/kittens/example.jpg",

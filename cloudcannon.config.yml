@@ -45,7 +45,7 @@ collections_config:
         cascade: true
 
       $.litters[*].description:
-        type: multiline
+        type: textarea
         label: Description
         cascade: true
 
@@ -104,7 +104,7 @@ collections_config:
         cascade: true
 
       $.litters[*].kittens[*].notes:
-        type: multiline
+        type: textarea
         label: Notes
         cascade: true
 
@@ -137,7 +137,7 @@ collections_config:
         cascade: true
 
       $.news[*].body:
-        type: multiline
+        type: textarea
         label: Body
         cascade: true
 
