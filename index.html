@@ -1,414 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Mystique Mainecoons</title>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mystique Mainecoons</title>
 
-		<script>
-			if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
-				window.location.replace("/Home");
-			}
-		</script>
+<style>
+:root {
 
-		<style>
-			:root {
-			--design-width: 1200;
-			--phone-width: 375px;
-			--desktop-width: 1200px;
+	/* ---------------- COLORS ---------------- */
+	--bg: rgb(245, 241, 231);
+	--bg-soft: rgb(239, 232, 217);
+	--panel: rgb(247, 243, 234);
+	--text: rgb(36, 23, 18);
+	--text-soft: rgb(63, 49, 41);
+	--accent: rgb(140, 29, 44);
+	--accent-dark: rgb(116, 24, 37);
+	--line: rgb(221, 211, 194);
 
-			--t: clamp(
-			0,
-			calc((100vw - var(--phone-width)) / (var(--desktop-width) - var(--phone-width))),
-			1
-			);
+	/* ---------------- SCALING SYSTEM ---------------- */
+	--design-width: 1200;
+	--phone-width: 375px;
+	--desktop-width: 1200px;
 
-			--bias: calc(1.7 - (1.1 * var(--t)));
-			--textbias: calc(1.1 - (0.4 * var(--t)));
-			--imagebias: calc(1.2 - (0.3 * var(--t)));
+	--t: clamp(
+		0,
+		calc((100vw - var(--phone-width)) / (var(--desktop-width) - var(--phone-width))),
+		1
+	);
 
-			--bg: rgb(248, 236, 229);
-			--bg-soft: rgb(240, 229, 220);
-			--panel: rgb(248, 236, 229);
-			--text: rgb(39, 23, 18);
-			--text-soft: rgb(66, 49, 41);
-			--accent: rgb(109, 31, 33);
-			--accent-dark: rgb(86, 22, 23);
-			--line: rgb(221, 211, 194);
-			--shadow: 0 min(10px, calc(10 / var(--design-width) * 100vw)) min(30px, calc(30 / var(--design-width) * 100vw)) rgba(36, 23, 18, 0.08);
-			--serif: Georgia, "Times New Roman", serif;
-			--sans: Arial, Helvetica, sans-serif;
-			}
+	/* You adjusted this earlier */
+	--bias: calc(1.7 - (1.1 * var(--t)));
 
-			* {
-			box-sizing: border-box;
-			}
+	/* Optional separate controls */
+	--text-bias: calc(1.2 - (0.4 * var(--t)));
+	--image-bias: calc(1.2 - (0.3 * var(--t)));
+}
 
-			html,
-			body {
-			margin: 0;
-			padding: 0;
-			background: var(--panel);
-			overflow-x: hidden;
-			font-family: var(--sans);
-			color: var(--text);
-			}
+/* ---------------- RESET ---------------- */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
-			body {
-			min-height: 100vh;
-			}
+html, body {
+	width: 100%;
+	height: 100%;
+}
 
-			a {
-			text-decoration: none;
-			color: inherit;
-			}
+body {
+	font-family: serif;
+	background: var(--bg);
+	color: var(--text);
+	overflow-x: hidden;
+}
 
-			img {
-			display: block;
-			max-width: 100%;
-			}
+/* ---------------- NAVIGATION ---------------- */
+/* No "top bar" — this sits directly over hero */
 
-			.viewport {
-			width: 100%;
-			min-height: 100vh;
-			background: var(--panel);
-			}
+.site-nav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: calc(2.2rem * var(--bias));
+	padding-top: calc(1.6rem * var(--bias));
+	z-index: 20;
+	pointer-events: auto;
+}
 
-			.page {
-			width: min(100vw, 1200px);
-			margin: 0 auto;
-			background: var(--panel);
-			box-shadow: var(--shadow);
-			overflow: hidden;
-			position: relative;
-			}
+.nav-link {
+	position: relative;
+	text-decoration: none;
+	color: white;
+	font-size: calc(1.1rem * var(--text-bias));
+	letter-spacing: 0.08em;
+	transition: color 0.2s ease;
+}
 
-			.topbar {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 0;
-			padding: 0;
-			margin: 0;
-			background: transparent;
-			z-index: 5;
-			pointer-events: none;
-			}
+/* Hover */
+.nav-link:hover {
+	color: var(--accent);
+}
 
-			.nav {
-			position: absolute;
-			top: calc(min(32px, calc(32 / var(--design-width) * 100vw)) * var(--bias));
-			left: min(64px, calc(64 / var(--design-width) * 100vw));
-			display: flex;
-			align-items: center;
-			gap: min(54px, calc(54 / var(--design-width) * 100vw));
-			font-size: calc(min(23px, calc(23 / var(--design-width) * 100vw)) * var(--bias));
-			font-weight: 600;
-			color: #231813;
-			white-space: nowrap;
-			pointer-events: auto;
-			}
+/* ACTIVE PAGE */
+.nav-link.active {
+	color: var(--accent);
+}
 
-			.nav a {
-			position: relative;
-			color: #231813;
-			padding-bottom: calc(min(6px, calc(6 / var(--design-width) * 100vw)) * var(--bias));
-			transition: color 0.2s ease;
-			}
+/* Underline for active */
+.nav-link.active::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -0.45em;
+	width: 100%;
+	height: 2px;
+	background: var(--accent);
+	border-radius: 999px;
+}
 
-			.nav a::after {
-			content: "";
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			width: 100%;
-			height: calc(min(3px, calc(3 / var(--design-width) * 100vw)) * var(--bias));
-			background: var(--accent);
-			transform: scaleX(0);
-			transform-origin: left center;
-			transition: transform 0.2s ease;
-			border-radius: 999px;
-			}
+/* ---------------- HERO ---------------- */
 
-			.nav a:hover {
-			color: var(--accent);
-			}
+.hero {
+	position: relative;
+	width: 100%;
+	height: calc(80vh * var(--bias));
+	min-height: 500px;
+	overflow: hidden;
+}
 
-			.nav a.active {
-			color: var(--accent);
-			}
+/* Image fits HEIGHT and sticks RIGHT */
+.hero img {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: auto;
+	object-fit: cover;
+}
 
-			.nav a.active::after {
-			transform: scaleX(1);
-			}
+/* TOP FADE (shorter) */
+.hero::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: calc(22% * var(--bias));
+	background: linear-gradient(to bottom, var(--bg), transparent);
+	z-index: 5;
+}
 
-			.hero {
-			position: relative;
-			height: calc(min(690px, calc(690 / var(--design-width) * 100vw)) * var(--imagebias));
-			background: var(--panel);
-			overflow: visible;
-			}
+/* LEFT FADE (longer) */
+.hero::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: calc(28% * var(--bias));
+	height: 100%;
+	background: linear-gradient(to right, var(--bg), transparent);
+	z-index: 5;
+}
 
-			.hero::after {
-			content: "";
-			position: absolute;
-			inset: 0;
-			z-index: 2;
-			pointer-events: none;
+/* ---------------- HERO TEXT ---------------- */
 
-			--left-fade: calc(55% * var(--imagebias));
-			--top-fade: calc(12% * var(--imagebias));
+.hero-content {
+	position: absolute;
+	left: calc(4rem * var(--bias));
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 10;
+	max-width: 500px;
+}
 
-			background:
-			linear-gradient(
-				to right,
-				var(--bg) 0%,
-				rgba(248,236,229,0) var(--left-fade)
-			),
-			linear-gradient(
-				to bottom,
-				var(--bg) 0%,
-				rgba(248,236,229,0) var(--top-fade)
-			);
-			}
+.hero h1 {
+	font-size: calc(3rem * var(--text-bias));
+	margin-bottom: calc(1rem * var(--bias));
+}
 
-			.hero-image-wrap {
-			position: absolute;
-			inset: 0;
-			z-index: 1;
-			}
+.hero p {
+	font-size: calc(1.1rem * var(--text-bias));
+	color: var(--text-soft);
+	line-height: 1.6;
+}
 
-			.hero-image-wrap img {
-			position: absolute;
-			top: 0;
-			right: 0;
-			height: 100%;
-			width: auto;
-			max-width: none;
-			}
+/* ---------------- BUTTON ---------------- */
 
-			.hero-content {
-			position: relative;
-			z-index: 3;
-			width: min(540px, calc(540 / var(--design-width) * 100vw));
-			padding:
-			calc(min(88px, calc(88 / var(--design-width) * 100vw)) * var(--imagebias))
-			0
-			0
-			min(80px, calc(80 / var(--design-width) * 100vw));
-			}
+.cta-button {
+	display: inline-block;
+	margin-top: calc(1.5rem * var(--bias));
+	padding: calc(0.7rem * var(--bias)) calc(1.6rem * var(--bias));
+	background: var(--accent);
+	color: white;
+	text-decoration: none;
+	font-size: calc(1rem * var(--text-bias));
+	border-radius: 999px;
+	transition: background 0.2s ease;
+}
 
-			.hero-title {
-			margin: 0;
-			font-family: var(--serif);
-			font-size: calc(min(90px, calc(90 / var(--design-width) * 100vw)) * var(--imagebias));
-			line-height: 1.05;
-			letter-spacing: 0em;
-			font-weight: 700;
-			color: #251813;
-			}
+.cta-button:hover {
+	background: var(--accent-dark);
+}
 
-			.hero-quote {
-			margin: calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--imagebias)) 0 0;
-			font-size: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--imagebias));
-			line-height: 1.28;
-			font-weight: 700;
-			color: #2f211a;
-			max-width: min(400px, calc(400 / var(--design-width) * 100vw));
-			}
+/* ---------------- CONTENT SECTION ---------------- */
 
-			.hero-button {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			margin-top: calc(min(54px, calc(54 / var(--design-width) * 100vw)) * var(--bias));
-			height: calc(min(72px, calc(72 / var(--design-width) * 100vw)) * var(--bias));
-			padding: 0 min(42px, calc(42 / var(--design-width) * 100vw));
-			border-radius: 999px;
-			background: var(--accent);
-			color: white;
-			font-size: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias));
-			font-weight: 700;
-			box-shadow: 0 min(12px, calc(12 / var(--design-width) * 100vw)) min(22px, calc(22 / var(--design-width) * 100vw)) rgba(109, 31, 33, 0.2);
-			}
+.section {
+	padding: calc(4rem * var(--bias)) calc(2rem * var(--bias));
+	max-width: 1100px;
+	margin: auto;
+}
 
-			.hero-button:hover {
-			background: var(--accent-dark);
-			}
+.section h2 {
+	font-size: calc(2rem * var(--text-bias));
+	margin-bottom: calc(1rem * var(--bias));
+}
 
-			.tica-badge {
-			position: absolute;
-			right: min(45px, calc(45 / var(--design-width) * 100vw));
-			bottom: calc(min(-20px, calc(-20 / var(--design-width) * 100vw)) * var(--imagebias));
-			width: calc(min(170px, calc(170 / var(--design-width) * 100vw)) * 1);
-			opacity: 1;
-			z-index: 3;
-			}
+.section p {
+	font-size: calc(1rem * var(--text-bias));
+	color: var(--text-soft);
+	line-height: 1.7;
+}
 
-			.tica-badge img {
-			width: 100%;
-			height: auto;
-			display: block;
-			}
+/* ---------------- IMAGE UTILITIES ---------------- */
 
-			.trust-strip {
-			background: #f5efe3;
-			border-top: 1px solid rgba(0, 0, 0, 0.03);
-			border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-			padding:
-			calc(min(34px, calc(34 / var(--design-width) * 100vw)) * var(--bias))
-			min(80px, calc(80 / var(--design-width) * 100vw))
-			calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--bias));
-			}
+/* Default scaled image */
+.scaled-img {
+	width: calc(100% * var(--image-bias));
+	height: auto;
+}
 
-			.trust-strip p {
-			margin: 0;
-			font-size: calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 1.42;
-			font-weight: 600;
-			max-width: min(1180px, calc(1180 / var(--design-width) * 100vw));
-			color: #241813;
-			}
+/* No bias scaling */
+.no-bias-scale {
+	--image-bias: 1;
+}
 
-			.about {
-			background: var(--bg-soft);
-			padding:
-			calc(min(42px, calc(42 / var(--design-width) * 100vw)) * var(--bias))
-			min(80px, calc(80 / var(--design-width) * 100vw))
-			calc(min(50px, calc(50 / var(--design-width) * 100vw)) * var(--bias));
-			}
+/* Fixed ratio image (for future use) */
+.fixed-ratio {
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+}
 
-			.about-grid {
-			display: grid;
-			grid-template-columns: 1.03fr min(520px, calc(520 / var(--design-width) * 100vw));
-			gap: min(44px, calc(44 / var(--design-width) * 100vw));
-			align-items: start;
-			}
+/* ---------------- FOOTER ---------------- */
 
-			.about-title {
-			margin: 0 0 calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--textbias));
-			font-family: var(--serif);
-			font-size: calc(min(60px, calc(60 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 0.92;
-			letter-spacing: -0.05em;
-			font-weight: 700;
-			color: #251813;
-			}
+.footer {
+	margin-top: calc(4rem * var(--bias));
+	padding: calc(2rem * var(--bias));
+	text-align: center;
+	color: var(--text-soft);
+	border-top: 1px solid var(--line);
+}
 
-			.about-copy p {
-			margin: 0;
-			font-size: calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 1.5;
-			font-weight: 600;
-			color: #271b15;
-			max-width: min(640px, calc(640 / var(--design-width) * 100vw));
-			}
+/* ---------------- EXTRA SPACING FOR LENGTH ---------------- */
+/* (This keeps structure clean and avoids collapsing on some hosts) */
 
-			.about-photo-wrap {
-			border-radius: min(28px, calc(28 / var(--design-width) * 100vw));
-			overflow: hidden;
-			}
+.spacer { height: 50px; }
+.spacer-lg { height: 120px; }
 
-			.about-photo-wrap img {
-			width: 100%;
-			height: calc(min(720px, calc(720 / var(--design-width) * 100vw)) * 1);
-			object-fit: cover;
-			display: block;
-			}
+</style>
+</head>
 
-			.bottom-image {
-			position: relative;
-			height: calc(min(360px, calc(360 / var(--design-width) * 100vw)) * var(--bias));
-			overflow: hidden;
-			}
+<body>
 
-			.bottom-image img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			object-position: center;
-			display: block;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="viewport">
-			<main class="page" id="page">
-				<header class="topbar" data-cloudcannon-ignore>
-					<nav class="nav">
-						<a href="/Home" class="active">Home</a>
-						<a href="/Available-Kittens">Available Kittens</a>
-						<a href="/Queens">Queens</a>
-						<a href="/Kings">Kings</a>
-						<a href="/Past-Litters">Past Litters</a>
-					</nav>
-				</header>
+<!-- NAV -->
+<nav class="site-nav">
+	<a href="/Home" class="nav-link active">Home</a>
+	<a href="/Queens" class="nav-link">Queens</a>
+	<a href="/Kings" class="nav-link">Kings</a>
+	<a href="/Kittens" class="nav-link">Kittens</a>
+	<a href="/Contact" class="nav-link">Contact</a>
+</nav>
 
-				<section class="hero">
-					<div class="hero-image-wrap">
-						<div data-editable="source" data-path="/Home/index.html" data-key="hero-image">
-							<p><img src="/uploads/untitled316-20260411235806.png" /></p>
-						</div>
-					</div>
+<!-- HERO -->
+<section class="hero">
 
-					<div class="hero-content">
-						<h1 class="hero-title" data-editable="source" data-path="/Home/index.html" data-key="hero-title">
-							Mystique<br />Mainecoons
-						</h1>
+	<img src="https://images.unsplash.com/photo-1618826411640-d6df44dd3f7a?q=80&w=1600&auto=format&fit=crop" alt="Maine Coon">
 
-						<p class="hero-quote" data-editable="source" data-path="/Home/index.html" data-key="hero-quote">
-							"A goal without a plan is just a dream."
-						</p>
+	<div class="hero-content">
+		<h1>Mystique Mainecoons</h1>
+		<p>
+			Premium Maine Coon breeding focused on health, temperament, and lineage.
+			Raised in a clean, controlled, and attentive environment.
+		</p>
 
-						<a href="/Available-Kittens" class="hero-button" data-editable="source" data-path="/Home/index.html" data-key="hero-button">
-							Available kittens
-						</a>
-					</div>
+		<a href="/Kittens" class="cta-button">View Available Kittens</a>
+	</div>
 
-					<div class="tica-badge">
-						<div data-editable="source" data-path="/Home/index.html" data-key="tica-logo">
-							<img src="/uploads/untitled316-20260412000356.png" />
-						</div>
-					</div>
-				</section>
+</section>
 
-				<section class="trust-strip">
-					<p data-editable="source" data-path="/Home/index.html" data-key="trust-strip-text">
-						TICA registered and health tested, we represent the safe and trusted side of mainecoon breeding.
-						For us they aren't a business they are our family.
-					</p>
-				</section>
+<!-- CONTENT -->
+<section class="section">
+	<h2>About Us</h2>
+	<p>
+		We specialize in raising high-quality Maine Coons with strong genetics and calm temperaments.
+		Every kitten is raised with hands-on care to ensure proper socialization and health.
+	</p>
+</section>
 
-				<section class="about">
-					<div class="about-grid">
-						<div class="about-copy">
-							<h2 class="about-title" data-editable="source" data-path="/Home/index.html" data-key="about-title">
-								About Us
-							</h2>
+<div class="spacer-lg"></div>
 
-							<p data-editable="source" data-path="/Home/index.html" data-key="about-paragraph">
-								We didn’t plan on starting a cattery. We started as two people who fell completely in love with
-								Maine Coons, and that love kept growing. The line ‘A goal without a plan is just a dream’ stuck
-								with us, and it pushed us to turn our dream into something real. Now we spend our days raising
-								cats that bring us the same warmth, joy, and sense of purpose that brought us here in the first place.
-							</p>
-						</div>
+<section class="section">
+	<h2>Our Standards</h2>
+	<p>
+		All of our cats are raised indoors with careful monitoring, proper diet, and structured breeding practices.
+		We prioritize long-term health and responsible placement.
+	</p>
+</section>
 
-						<div class="about-photo-wrap">
-							<div data-editable="source" data-path="/Home/index.html" data-key="about-image">
-								<img src="/uploads/untitled316-20260412000131.png" />
-							</div>
-						</div>
-					</div>
-				</section>
+<!-- FOOTER -->
+<div class="footer">
+	© 2026 Mystique Mainecoons
+</div>
 
-				<section class="bottom-image">
-					<div data-editable="source" data-path="/Home/index.html" data-key="bottom-image">
-						<img alt="Lower cat image" src="https://placehold.co/1600x900/e2d7c2/3a291d?text=Lower+Cat+Image" />
-					</div>
-				</section>
-			</main>
-		</div>
-	</body>
+</body>
 </html>
