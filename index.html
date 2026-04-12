@@ -16,9 +16,9 @@
 			calc((100vw - var(--phone-width)) / (var(--desktop-width) - var(--phone-width))),
 			1
 			);
-
-			--bias: calc(1.7 - (1.1 * var(--t)));
-			--reversebias: calc((0.6 + (1.1 * var(--t))) * (2 - var(--t)));
+              
+            --bias: calc(1.7 - (1.1 * var(--t)));
+            --reversebias: calc(2.3 - var(--bias));
 			--textbias: calc(1.1 - (0.4 * var(--t)));
 			--imagebias: calc(1.1 - (0.2 * var(--t)));
 
@@ -227,7 +227,7 @@
 
 			.tica-badge {
 			position: absolute;
-            right: calc(min(10px, calc(10 / var(--design-width) * 100vw)) * var(--reversebias));
+            right: calc(min(20px, calc(20 / var(--design-width) * 100vw)) * var(--reversebias));
 			bottom: calc(min(-20px, calc(-20 / var(--design-width) * 100vw)) * var(--imagebias));
 			width: calc(min(160px, calc(160 / var(--design-width) * 100vw)) * 1);
 			opacity: 1;
