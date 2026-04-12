@@ -14,6 +14,7 @@ collections_config:
     path: Data
     icon: data_usage
     disable_url: false
+    _inputs:
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false

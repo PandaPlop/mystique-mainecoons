@@ -23,18 +23,18 @@ _inputs:
   sire:
     label: Sire
     type: select
-    options:
-      values: data.kings[*].name
-      allow_create: false
-      allow_empty: false
+   options:
+  values: data.kings[*].name
+  allow_create: false
+  allow_empty: false
 
   dame:
     label: Dame
     type: select
-    options:
-      values: data.queens[*].name
-      allow_create: false
-      allow_empty: false
+options:
+  values: data.queens[*].name
+  allow_create: false
+  allow_empty: false
 
   birth_date:
     label: Birth Date
