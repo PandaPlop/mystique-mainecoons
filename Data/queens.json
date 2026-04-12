@@ -1,0 +1,11 @@
+[
+  {
+    "id": "queen-001",
+    "name": "Alice",
+    "color": "Light grey with white blotches",
+    "status": "Active Queen",
+    "birthday": "2023-05-12",
+    "image": "/images/queens/alice.jpg",
+    "description": "Example queen description."
+  }
+]
