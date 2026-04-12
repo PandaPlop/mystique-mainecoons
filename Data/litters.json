@@ -3,7 +3,7 @@
     {
       "id": "litter-001",
       "title": "Example Litter",
-      "sire": "S",
+      "sire": "Simon",
       "dame": "Alice",
       "birth_date": "2026-04-12T05:00:00.000Z",
       "status": "Available",
