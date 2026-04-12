@@ -104,6 +104,12 @@
 			border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 			}
 
+			.hero-image-wrap {
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+			}
+
 			.hero-image {
 			position: absolute;
 			inset: 0;
@@ -274,15 +280,20 @@
 				</header>
 
 				<section class="hero">
-					<img
-						class="hero-image"
-						src="https://placehold.co/1600x1000/e2d7c2/3a291d?text=Hero+Cat+Image"
-						alt="Hero cat image"
-						data-editable="image"
-						data-prop="src"
-					/>
+					<div
+						class="hero-image-wrap"
+						data-editable="source"
+						data-path="/index.html"
+						data-key="hero-image"
+					>
+						<img
+							class="hero-image"
+							src="https://placehold.co/1600x1000/e2d7c2/3a291d?text=Hero+Cat+Image"
+							alt="Hero cat image"
+						/>
+					</div>
 
-					<div class="hero-content" data-cloudcannon-ignore>
+					<div class="hero-content">
 						<h1
 							class="hero-title"
 							data-editable="source"
@@ -324,7 +335,7 @@
 					</div>
 				</section>
 
-				<section class="trust-strip" data-cloudcannon-ignore>
+				<section class="trust-strip">
 					<p
 						data-editable="source"
 						data-path="/index.html"
@@ -337,7 +348,7 @@
 
 				<section class="about">
 					<div class="about-grid">
-						<div class="about-copy" data-cloudcannon-ignore>
+						<div class="about-copy">
 							<h2
 								class="about-title"
 								data-editable="source"
@@ -359,24 +370,30 @@
 							</p>
 						</div>
 
-						<div class="about-photo">
+						<div
+							class="about-photo"
+							data-editable="source"
+							data-path="/index.html"
+							data-key="about-image"
+						>
 							<img
 								class="image-scale no-bias-scale"
 								src="https://placehold.co/900x1200/e7d8c4/3a2a1e?text=Couple+With+Cats"
 								alt="Placeholder image for about section"
-								data-editable="image"
-								data-prop="src"
 							/>
 						</div>
 					</div>
 				</section>
 
-				<section class="bottom-image">
+				<section
+					class="bottom-image"
+					data-editable="source"
+					data-path="/index.html"
+					data-key="bottom-image"
+				>
 					<img
 						src="https://placehold.co/1600x900/e2d7c2/3a291d?text=Lower+Cat+Image"
 						alt="Lower cat image"
-						data-editable="image"
-						data-prop="src"
 					/>
 				</section>
 			</main>
