@@ -15,6 +15,36 @@ collections_config:
     icon: data_usage
     disable_url: false
     _inputs:
+      $.litters[*].sire:
+        type: select
+        options:
+          allow_create: false
+          allow_empty: false
+          values:
+          value_key: data.kings[*].name
+          preview:
+          picker_preview:
+          view:
+          picker_view:
+          required:
+          required_message:
+          min_length:
+          min_length_message:
+          max_length:
+          max_length_message:
+          pattern:
+          pattern_message:
+          min_graphemes:
+          min_graphemes_message:
+          max_graphemes:
+          max_graphemes_message:
+          min_words:
+          min_words_message:
+          max_words:
+          max_words_message:
+          locale:
+          empty_type:
+        cascade: true
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
