@@ -104,12 +104,14 @@
 				background: #f3eee2;
 				overflow: hidden;
 				border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+				isolation: isolate;
 			}
 
 			.hero-image {
 				position: absolute;
 				inset: 0;
-				z-index: 1;
+				z-index: 0;
+				pointer-events: none;
 			}
 
 			.hero-image img {
@@ -138,6 +140,9 @@
 			.hero-content {
 				position: relative;
 				z-index: 2;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
 				width: min(540px, calc(540 / var(--design-width) * 100vw));
 				padding:
 					calc(min(88px, calc(88 / var(--design-width) * 100vw)) * var(--imagebias))
@@ -147,6 +152,8 @@
 			}
 
 			.hero-title {
+				position: relative;
+				z-index: 3;
 				margin: 0;
 				font-family: var(--serif);
 				font-size: calc(min(100px, calc(100 / var(--design-width) * 100vw)) * var(--imagebias));
@@ -157,6 +164,8 @@
 			}
 
 			.hero-quote {
+				position: relative;
+				z-index: 3;
 				margin: calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--imagebias)) 0 0;
 				font-size: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--imagebias));
 				line-height: 1.28;
@@ -166,6 +175,8 @@
 			}
 
 			.hero-button {
+				position: relative;
+				z-index: 3;
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
