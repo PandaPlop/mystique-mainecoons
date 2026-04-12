@@ -231,6 +231,7 @@
 			width: calc(min(170px, calc(170 / var(--design-width) * 100vw)) * 1);
 			opacity: 1;
 			z-index: 3;
+			cursor: pointer;
 			}
 
 			.tica-badge img {
@@ -397,5 +398,27 @@
 				</section>
 			</main>
 		</div>
+
+		<script>
+			let ticaTapCount = 0;
+			let ticaTapTimer = null;
+
+			const ticaBadge = document.querySelector('.tica-badge');
+
+			if (ticaBadge) {
+				ticaBadge.addEventListener('click', function () {
+					ticaTapCount++;
+
+					clearTimeout(ticaTapTimer);
+					ticaTapTimer = setTimeout(function () {
+						ticaTapCount = 0;
+					}, 1500);
+
+					if (ticaTapCount >= 5) {
+						window.location.href = "/Admin";
+					}
+				});
+			}
+		</script>
 	</body>
 </html>
