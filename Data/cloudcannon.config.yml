@@ -1,0 +1,32 @@
+collection_groups:
+  - heading: Site Content
+    collections:
+      - litters
+      - queens
+      - kings
+      - news
+
+collections_config:
+  litters:
+    path: data/litters.json
+    name: Litters
+    _enabled_editors:
+      - data
+
+  queens:
+    path: data/queens.json
+    name: Queens
+    _enabled_editors:
+      - data
+
+  kings:
+    path: data/kings.json
+    name: Kings
+    _enabled_editors:
+      - data
+
+  news:
+    path: data/news.json
+    name: News
+    _enabled_editors:
+      - data

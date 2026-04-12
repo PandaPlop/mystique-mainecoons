@@ -1,0 +1,11 @@
+[
+  {
+    "id": "king-001",
+    "name": "Simon",
+    "color": "Blonde ginger",
+    "status": "Active King",
+    "birthday": "2022-11-03",
+    "image": "/images/kings/simon.jpg",
+    "description": "Example king description."
+  }
+]
