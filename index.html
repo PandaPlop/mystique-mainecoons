@@ -188,7 +188,7 @@
 			}
 
 			.hero-title {
-			margin: calc(var(--reversebias) * 20px);
+              margin: calc(min(40px, calc(40 / var(--design-width) * 100vw)) * var(--reversebias)) 0 0 0;
 			font-family: var(--serif);
 			font-size: calc(min(90px, calc(90 / var(--design-width) * 100vw)) * var(--imagebias));
 			line-height: 1.05;
