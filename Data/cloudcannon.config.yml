@@ -6,7 +6,6 @@ data_config:
     _inputs:
       id:
         label: Litter ID
-
       title:
         label: Litter Title
 
@@ -14,7 +13,7 @@ data_config:
         label: Sire
         type: select
         options:
-          values: data.kings
+          values: data.kings[*]
           value_key: name
           allow_empty: true
           preview:
@@ -26,7 +25,7 @@ data_config:
         label: Dame
         type: select
         options:
-          values: data.queens
+          values: data.queens[*]
           value_key: name
           allow_empty: true
           preview:
@@ -65,13 +64,10 @@ data_config:
     _inputs:
       id:
         label: Queen ID
-
       name:
         label: Name
-
       color:
         label: Color
-
       status:
         label: Status
         type: select
@@ -80,14 +76,11 @@ data_config:
             - Active Queen
             - Retired
             - Future Queen
-
       birthday:
         label: Birthday
         type: date
-
       image:
         label: Image
-
       description:
         label: Description
         type: multiline
@@ -99,13 +92,10 @@ data_config:
     _inputs:
       id:
         label: King ID
-
       name:
         label: Name
-
       color:
         label: Color
-
       status:
         label: Status
         type: select
@@ -114,14 +104,11 @@ data_config:
             - Active King
             - Retired
             - Future King
-
       birthday:
         label: Birthday
         type: date
-
       image:
         label: Image
-
       description:
         label: Description
         type: multiline
@@ -133,14 +120,11 @@ data_config:
     _inputs:
       id:
         label: News ID
-
       title:
         label: Title
-
       date:
         label: Date
         type: date
-
       category:
         label: Category
         type: select
@@ -150,10 +134,8 @@ data_config:
             - Birth Announcement
             - Birthday
             - General Update
-
       image:
         label: Image
-
       body:
         label: Body
         type: multiline
@@ -164,11 +146,11 @@ _structures:
       - label: Kitten
         icon: pets
         value:
-          id:
-          name:
-          sex:
-          color:
-          status: Available
-          price:
-          image:
-          notes:
+          id: ""
+          name: ""
+          sex: ""
+          color: ""
+          status: "Available"
+          price: ""
+          image: ""
+          notes: ""
