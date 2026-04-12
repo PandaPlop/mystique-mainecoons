@@ -3,18 +3,137 @@ data_config:
     path: data/litters.json
     _enabled_editors:
       - data
+    _inputs:
+      id:
+        label: Litter ID
+        comment: Internal ID for this litter.
+      title:
+        label: Litter Title
+      sire:
+        label: Sire
+        type: select
+        options:
+          values: []
+      dame:
+        label: Dame
+        type: select
+        options:
+          values: []
+      birth_date:
+        label: Birth Date
+        type: date
+      status:
+        label: Litter Status
+        type: select
+        options:
+          values:
+            - Available
+            - Upcoming
+            - Reserved
+            - Sold Out
+      description:
+        label: Description
+        type: multiline
+      kittens:
+        label: Kittens
+        type: array
+        options:
+          structures: _structures.litter_kitten
 
   queens:
     path: data/queens.json
     _enabled_editors:
       - data
+    _inputs:
+      id:
+        label: Queen ID
+      name:
+        label: Name
+      color:
+        label: Color
+      status:
+        label: Status
+        type: select
+        options:
+          values:
+            - Active Queen
+            - Retired
+            - Future Queen
+      birthday:
+        label: Birthday
+        type: date
+      image:
+        label: Image
+      description:
+        label: Description
+        type: multiline
 
   kings:
     path: data/kings.json
     _enabled_editors:
       - data
+    _inputs:
+      id:
+        label: King ID
+      name:
+        label: Name
+      color:
+        label: Color
+      status:
+        label: Status
+        type: select
+        options:
+          values:
+            - Active King
+            - Retired
+            - Future King
+      birthday:
+        label: Birthday
+        type: date
+      image:
+        label: Image
+      description:
+        label: Description
+        type: multiline
 
   news:
     path: data/news.json
     _enabled_editors:
       - data
+    _inputs:
+      id:
+        label: News ID
+      title:
+        label: Title
+      date:
+        label: Date
+        type: date
+      category:
+        label: Category
+        type: select
+        options:
+          values:
+            - Pregnancy Update
+            - Birth Announcement
+            - Birthday
+            - General Update
+      image:
+        label: Image
+      body:
+        label: Body
+        type: multiline
+
+_structures:
+  litter_kitten:
+    values:
+      - label: Kitten
+        icon: pets
+        value:
+          id:
+          name:
+          sex:
+          color:
+          status: Available
+          price:
+          image:
+          notes:
