@@ -19,29 +19,22 @@ data_config:
     _enabled_editors:
       - data
 
-_select_data:
-  sire_options:
-    values: data.kings[*]
-    value_key: name
-
-  dame_options:
-    values: data.queens[*]
-    value_key: name
-
 _inputs:
   sire:
     label: Sire
     type: select
     options:
-      values: _select_data.sire_options
-      allow_empty: true
+      values: data.kings[*].name
+      allow_create: false
+      allow_empty: false
 
   dame:
     label: Dame
     type: select
     options:
-      values: _select_data.dame_options
-      allow_empty: true
+      values: data.queens[*].name
+      allow_create: false
+      allow_empty: false
 
   birth_date:
     label: Birth Date
@@ -67,7 +60,10 @@ _inputs:
     label: Kittens
     type: array
     options:
-      structures: litter_kitten
+      structures: kitten
+
+  name:
+    label: Name
 
   sex:
     label: Sex
@@ -77,6 +73,12 @@ _inputs:
         - Male
         - Female
 
+  color:
+    label: Color
+
+  price:
+    label: Price
+
   image:
     label: Image
     type: image
@@ -84,6 +86,10 @@ _inputs:
   notes:
     label: Notes
     type: multiline
+
+  birthday:
+    label: Birthday
+    type: date
 
   date:
     label: Date
@@ -103,12 +109,8 @@ _inputs:
     label: Body
     type: multiline
 
-  birthday:
-    label: Birthday
-    type: date
-
 _structures:
-  litter_kitten:
+  kitten:
     values:
       - label: Kitten
         icon: pets
