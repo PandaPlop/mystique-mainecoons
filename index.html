@@ -21,14 +21,14 @@
 			--textbias: calc(1.1 - (0.4 * var(--t)));
 			--imagebias: calc(1.2 - (0.3 * var(--t)));
 
-			--bg: #f5f1e7;
-			--bg-soft: #efe8d9;
-			--panel: #f7f3ea;
-			--text: #241712;
-			--text-soft: #3f3129;
-			--accent: #8c1d2c;
-			--accent-dark: #741825;
-			--line: #ddd3c2;
+			--bg: rgb(248, 236, 229); 
+            --bg-soft: rgb(239, 232, 217);
+            --panel: rgb(247, 243, 234);
+            --text: rgb(36, 23, 18);
+            --text-soft: rgb(63, 49, 41);
+            --accent: rgb(140, 29, 44);
+            --accent-dark: rgb(116, 24, 37);
+            --line: rgb(221, 211, 194);
 			--shadow: 0 min(10px, calc(10 / var(--design-width) * 100vw)) min(30px, calc(30 / var(--design-width) * 100vw)) rgba(36, 23, 18, 0.08);
 			--serif: Georgia, "Times New Roman", serif;
 			--sans: Arial, Helvetica, sans-serif;
@@ -125,12 +125,12 @@
 			linear-gradient(
 				to right,
 				var(--bg) 0%,
-				rgba(248,237,229,0) var(--left-fade)
+				rgba(248,236,229,0) var(--left-fade)
 			),
 			linear-gradient(
 				to bottom,
 				var(--bg) 0%,
-				rgba(248,237,229,0) var(--top-fade)
+				rgba(248,236,229,0) var(--top-fade)
 			);
 			}
 
@@ -203,7 +203,7 @@
 			right: min(45px, calc(45 / var(--design-width) * 100vw));
 			bottom: calc(min(-20px, calc(-20 / var(--design-width) * 100vw)) * var(--imagebias));
 			width: calc(min(170px, calc(170 / var(--design-width) * 100vw)) * 1);
-			opacity: 0.74;
+			opacity: 1;
 			z-index: 3;
 			}
 
