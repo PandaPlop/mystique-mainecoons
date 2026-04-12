@@ -6,22 +6,38 @@ data_config:
     _inputs:
       id:
         label: Litter ID
-        comment: Internal ID for this litter.
+
       title:
         label: Litter Title
+
       sire:
         label: Sire
         type: select
         options:
-          values: []
+          values: data.kings
+          value_key: name
+          allow_empty: true
+          preview:
+            text:
+              - key: name
+              - key: color
+
       dame:
         label: Dame
         type: select
         options:
-          values: []
+          values: data.queens
+          value_key: name
+          allow_empty: true
+          preview:
+            text:
+              - key: name
+              - key: color
+
       birth_date:
         label: Birth Date
         type: date
+
       status:
         label: Litter Status
         type: select
@@ -31,9 +47,11 @@ data_config:
             - Upcoming
             - Reserved
             - Sold Out
+
       description:
         label: Description
         type: multiline
+
       kittens:
         label: Kittens
         type: array
@@ -47,10 +65,13 @@ data_config:
     _inputs:
       id:
         label: Queen ID
+
       name:
         label: Name
+
       color:
         label: Color
+
       status:
         label: Status
         type: select
@@ -59,11 +80,14 @@ data_config:
             - Active Queen
             - Retired
             - Future Queen
+
       birthday:
         label: Birthday
         type: date
+
       image:
         label: Image
+
       description:
         label: Description
         type: multiline
@@ -75,10 +99,13 @@ data_config:
     _inputs:
       id:
         label: King ID
+
       name:
         label: Name
+
       color:
         label: Color
+
       status:
         label: Status
         type: select
@@ -87,11 +114,14 @@ data_config:
             - Active King
             - Retired
             - Future King
+
       birthday:
         label: Birthday
         type: date
+
       image:
         label: Image
+
       description:
         label: Description
         type: multiline
@@ -103,11 +133,14 @@ data_config:
     _inputs:
       id:
         label: News ID
+
       title:
         label: Title
+
       date:
         label: Date
         type: date
+
       category:
         label: Category
         type: select
@@ -117,8 +150,10 @@ data_config:
             - Birth Announcement
             - Birthday
             - General Update
+
       image:
         label: Image
+
       body:
         label: Body
         type: multiline
