@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -7,264 +7,293 @@
 
 		<style>
 			:root {
-			--design-width: 1200;
-			--phone-width: 375px;
-			--desktop-width: 1200px;
+				--design-width: 1200;
+				--phone-width: 375px;
+				--desktop-width: 1200px;
 
-			--t: clamp(
-			0,
-			calc((100vw - var(--phone-width)) / (var(--desktop-width) - var(--phone-width))),
-			1
-			);
+				--t: clamp(
+					0,
+					calc((100vw - var(--phone-width)) / (var(--desktop-width) - var(--phone-width))),
+					1
+				);
 
-			--bias: calc(1.7 - (1.1 * var(--t)));
-			--textbias: calc(1.2 - (0.3 * var(--t)));
-			--imagebias: calc(1.15 - (0.55 * var(--t)));
+				--bias: calc(1.7 - (1.1 * var(--t)));
+				--textbias: calc(1.2 - (0.3 * var(--t)));
+				--imagebias: calc(1.15 - (0.55 * var(--t)));
 
-			--bg: #f5f1e7;
-			--bg-soft: #efe8d9;
-			--panel: #f7f3ea;
-			--text: #241712;
-			--text-soft: #3f3129;
-			--accent: #8c1d2c;
-			--accent-dark: #741825;
-			--line: #ddd3c2;
-			--shadow: 0 min(10px, calc(10 / var(--design-width) * 100vw)) min(30px, calc(30 / var(--design-width) * 100vw)) rgba(36, 23, 18, 0.08);
-			--serif: Georgia, "Times New Roman", serif;
-			--sans: Arial, Helvetica, sans-serif;
+				--bg: #f5f1e7;
+				--bg-soft: #efe8d9;
+				--panel: #f7f3ea;
+				--text: #241712;
+				--text-soft: #3f3129;
+				--accent: #8c1d2c;
+				--accent-dark: #741825;
+				--line: #ddd3c2;
+				--shadow: 0 min(10px, calc(10 / var(--design-width) * 100vw))
+					min(30px, calc(30 / var(--design-width) * 100vw))
+					rgba(36, 23, 18, 0.08);
+				--serif: Georgia, "Times New Roman", serif;
+				--sans: Arial, Helvetica, sans-serif;
 			}
 
 			* {
-			box-sizing: border-box;
+				box-sizing: border-box;
 			}
 
 			html,
 			body {
-			margin: 0;
-			padding: 0;
-			background: #eae4d7;
-			overflow-x: hidden;
-			font-family: var(--sans);
-			color: var(--text);
+				margin: 0;
+				padding: 0;
+				background: #eae4d7;
+				overflow-x: hidden;
+				font-family: var(--sans);
+				color: var(--text);
 			}
 
 			body {
-			min-height: 100vh;
+				min-height: 100vh;
 			}
 
 			a {
-			text-decoration: none;
-			color: inherit;
+				text-decoration: none;
+				color: inherit;
 			}
 
 			img {
-			display: block;
-			max-width: 100%;
+				display: block;
+				max-width: 100%;
 			}
 
 			.viewport {
-			width: 100%;
-			min-height: 100vh;
-			background: #eae4d7;
+				width: 100%;
+				min-height: 100vh;
+				background: #eae4d7;
 			}
 
 			.page {
-			width: min(100vw, 1200px);
-			margin: 0 auto;
-			background: var(--panel);
-			box-shadow: var(--shadow);
-			overflow: hidden;
-			position: relative;
+				width: min(100vw, 1200px);
+				margin: 0 auto;
+				background: var(--panel);
+				box-shadow: var(--shadow);
+				overflow: hidden;
+				position: relative;
 			}
 
 			.topbar {
-			height: calc(min(60px, calc(60 / var(--design-width) * 100vw)) * var(--bias));
-			background: var(--panel);
-			border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-			display: flex;
-			align-items: center;
-			padding: 0 min(64px, calc(64 / var(--design-width) * 100vw));
+				height: calc(min(60px, calc(60 / var(--design-width) * 100vw)) * var(--bias));
+				background: var(--panel);
+				border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+				display: flex;
+				align-items: center;
+				padding: 0 min(64px, calc(64 / var(--design-width) * 100vw));
 			}
 
 			.nav {
-			display: flex;
-			align-items: center;
-			gap: min(54px, calc(54 / var(--design-width) * 100vw));
-			font-size: calc(min(23px, calc(23 / var(--design-width) * 100vw)) * var(--bias));
-			font-weight: 600;
-			color: #231813;
-			white-space: nowrap;
+				display: flex;
+				align-items: center;
+				gap: min(54px, calc(54 / var(--design-width) * 100vw));
+				font-size: calc(min(23px, calc(23 / var(--design-width) * 100vw)) * var(--bias));
+				font-weight: 600;
+				color: #231813;
+				white-space: nowrap;
 			}
 
 			.hero {
-			position: relative;
-			height: calc(min(690px, calc(690 / var(--design-width) * 100vw)) * var(--imagebias));
-			background: #f3eee2;
-			overflow: hidden;
-			border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+				position: relative;
+				height: calc(min(690px, calc(690 / var(--design-width) * 100vw)) * var(--imagebias));
+				background: #f3eee2;
+				overflow: hidden;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+			}
+
+			.hero-image-wrap {
+				position: absolute;
+				inset: 0;
+				z-index: 0;
+			}
+
+			.hero-image-wrap::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background:
+					linear-gradient(
+						90deg,
+						rgba(245, 241, 231, 0.97) 0%,
+						rgba(245, 241, 231, 0.93) 24%,
+						rgba(245, 241, 231, 0.82) 34%,
+						rgba(245, 241, 231, 0.44) 47%,
+						rgba(245, 241, 231, 0.14) 60%,
+						rgba(245, 241, 231, 0) 75%
+					);
+				pointer-events: none;
 			}
 
 			.hero-image {
-			position: absolute;
-			inset: 0;
-			background-image:
-			linear-gradient(
-			90deg,
-			rgba(245, 241, 231, 0.97) 0%,
-			rgba(245, 241, 231, 0.93) 24%,
-			rgba(245, 241, 231, 0.82) 34%,
-			rgba(245, 241, 231, 0.44) 47%,
-			rgba(245, 241, 231, 0.14) 60%,
-			rgba(245, 241, 231, 0.00) 75%
-			),
-			url("https://placehold.co/1600x1000/e2d7c2/3a291d?text=Hero+Cat+Image");
-			background-size: cover;
-			background-position: right center;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: right center;
 			}
 
 			.hero-content {
-			position: relative;
-			z-index: 2;
-			width: min(540px, calc(540 / var(--design-width) * 100vw));
-			padding:
-			calc(min(88px, calc(88 / var(--design-width) * 100vw)) * var(--imagebias))
-			0
-			0
-			min(80px, calc(80 / var(--design-width) * 100vw));
+				position: relative;
+				z-index: 2;
+				width: min(540px, calc(540 / var(--design-width) * 100vw));
+				padding:
+					calc(min(88px, calc(88 / var(--design-width) * 100vw)) * var(--imagebias))
+					0
+					0
+					min(80px, calc(80 / var(--design-width) * 100vw));
 			}
 
 			.hero-title {
-			margin: 0;
-			font-family: var(--serif);
-			font-size: calc(min(100px, calc(100 / var(--design-width) * 100vw)) * var(--imagebias));
-			line-height: 01.05;
-			letter-spacing: 0.0em;
-			font-weight: 700;
-			color: #251813;
+				margin: 0;
+				font-family: var(--serif);
+				font-size: calc(min(100px, calc(100 / var(--design-width) * 100vw)) * var(--imagebias));
+				line-height: 1.05;
+				letter-spacing: 0;
+				font-weight: 700;
+				color: #251813;
 			}
 
 			.hero-quote {
-			margin: calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--imagebias)) 0 0;
-			font-size: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--imagebias));
-			line-height: 1.28;
-			font-weight: 700;
-			color: #2f211a;
-			max-width: min(400px, calc(400 / var(--design-width) * 100vw));
+				margin: calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--imagebias)) 0 0;
+				font-size: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--imagebias));
+				line-height: 1.28;
+				font-weight: 700;
+				color: #2f211a;
+				max-width: min(400px, calc(400 / var(--design-width) * 100vw));
 			}
 
 			.hero-button {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			margin-top: calc(min(54px, calc(54 / var(--design-width) * 100vw)) * var(--bias));
-			height: calc(min(72px, calc(72 / var(--design-width) * 100vw)) * var(--bias));
-			padding: 0 min(42px, calc(42 / var(--design-width) * 100vw));
-			border-radius: 999px;
-			background: var(--accent);
-			color: white;
-			font-size: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias));
-			font-weight: 700;
-			box-shadow: 0 min(12px, calc(12 / var(--design-width) * 100vw)) min(22px, calc(22 / var(--design-width) * 100vw)) rgba(109, 33, 33, 0.2);
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				margin-top: calc(min(54px, calc(54 / var(--design-width) * 100vw)) * var(--bias));
+				height: calc(min(72px, calc(72 / var(--design-width) * 100vw)) * var(--bias));
+				padding: 0 min(42px, calc(42 / var(--design-width) * 100vw));
+				border-radius: 999px;
+				background: var(--accent);
+				color: white;
+				font-size: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias));
+				font-weight: 700;
+				box-shadow: 0 min(12px, calc(12 / var(--design-width) * 100vw))
+					min(22px, calc(22 / var(--design-width) * 100vw))
+					rgba(109, 33, 33, 0.2);
 			}
 
 			.hero-button:hover {
-			background: var(--accent-dark);
+				background: var(--accent-dark);
 			}
 
 			.tica-badge {
-			position: absolute;
-			right: min(58px, calc(58 / var(--design-width) * 100vw));
-			bottom: calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--bias));
-			width: min(132px, calc(132 / var(--design-width) * 100vw));
-			opacity: 0.74;
-			z-index: 3;
+				position: absolute;
+				right: min(58px, calc(58 / var(--design-width) * 100vw));
+				bottom: calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--bias));
+				width: min(132px, calc(132 / var(--design-width) * 100vw));
+				opacity: 0.74;
+				z-index: 3;
 			}
 
 			.tica-badge svg {
-			width: 100%;
-			height: auto;
-			display: block;
+				width: 100%;
+				height: auto;
+				display: block;
 			}
 
 			.trust-strip {
-			background: #f5efe3;
-			border-top: 1px solid rgba(0, 0, 0, 0.03);
-			border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-			padding:
-			calc(min(34px, calc(34 / var(--design-width) * 100vw)) * var(--bias))
-			min(80px, calc(80 / var(--design-width) * 100vw))
-			calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--bias));
+				background: #f5efe3;
+				border-top: 1px solid rgba(0, 0, 0, 0.03);
+				border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+				padding:
+					calc(min(34px, calc(34 / var(--design-width) * 100vw)) * var(--bias))
+					min(80px, calc(80 / var(--design-width) * 100vw))
+					calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--bias));
 			}
 
 			.trust-strip p {
-			margin: 0;
-			font-size: calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 1.42;
-			font-weight: 600;
-			max-width: min(1180px, calc(1180 / var(--design-width) * 100vw));
-			color: #241813;
+				margin: 0;
+				font-size: calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--textbias));
+				line-height: 1.42;
+				font-weight: 600;
+				max-width: min(1180px, calc(1180 / var(--design-width) * 100vw));
+				color: #241813;
 			}
 
 			.about {
-			background: var(--bg-soft);
-			padding:
-			calc(min(42px, calc(42 / var(--design-width) * 100vw)) * var(--bias))
-			min(80px, calc(80 / var(--design-width) * 100vw))
-			calc(min(50px, calc(50 / var(--design-width) * 100vw)) * var(--bias));
+				background: var(--bg-soft);
+				padding:
+					calc(min(42px, calc(42 / var(--design-width) * 100vw)) * var(--bias))
+					min(80px, calc(80 / var(--design-width) * 100vw))
+					calc(min(50px, calc(50 / var(--design-width) * 100vw)) * var(--bias));
 			}
 
 			.about-grid {
-			display: grid;
-			grid-template-columns: 1.03fr min(520px, calc(520 / var(--design-width) * 100vw));
-			gap: min(44px, calc(44 / var(--design-width) * 100vw));
-			align-items: start;
+				display: grid;
+				grid-template-columns: 1.03fr min(520px, calc(520 / var(--design-width) * 100vw));
+				gap: min(44px, calc(44 / var(--design-width) * 100vw));
+				align-items: start;
 			}
 
 			.about-title {
-			margin: 0 0 calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--textbias));
-			font-family: var(--serif);
-			font-size: calc(min(60px, calc(60 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 0.92;
-			letter-spacing: -0.05em;
-			font-weight: 700;
-			color: #251813;
+				margin: 0 0 calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--textbias));
+				font-family: var(--serif);
+				font-size: calc(min(60px, calc(60 / var(--design-width) * 100vw)) * var(--textbias));
+				line-height: 0.92;
+				letter-spacing: -0.05em;
+				font-weight: 700;
+				color: #251813;
 			}
 
 			.about-copy p {
-			margin: 0;
-			font-size: calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 1.5;
-			font-weight: 600;
-			color: #271b15;
-			max-width: min(640px, calc(640 / var(--design-width) * 100vw));
+				margin: 0;
+				font-size: calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--textbias));
+				line-height: 1.5;
+				font-weight: 600;
+				color: #271b15;
+				max-width: min(640px, calc(640 / var(--design-width) * 100vw));
 			}
 
 			.image-scale {
-			width: 100%;
-			height: calc(min(720px, calc(720 / var(--design-width) * 100vw)) * var(--image-bias, var(--bias)));
-			object-fit: cover;
+				width: 100%;
+				height: calc(min(720px, calc(720 / var(--design-width) * 100vw)) * var(--image-bias, var(--bias)));
+				object-fit: cover;
 			}
 
 			.no-bias-scale {
-			--image-bias: 1;
+				--image-bias: 1;
 			}
 
 			.about-photo {
-			border-radius: min(28px, calc(28 / var(--design-width) * 100vw));
-			overflow: hidden;
+				border-radius: min(28px, calc(28 / var(--design-width) * 100vw));
+				overflow: hidden;
 			}
 
 			.bottom-image {
-			height: calc(min(360px, calc(360 / var(--design-width) * 100vw)) * var(--bias));
-			background-image:
-			linear-gradient(
-			180deg,
-			rgba(245, 241, 231, 0.05),
-			rgba(245, 241, 231, 0.05)
-			),
-			url("https://placehold.co/1600x900/e2d7c2/3a291d?text=Lower+Cat+Image");
-			background-size: cover;
-			background-position: center;
+				position: relative;
+				height: calc(min(360px, calc(360 / var(--design-width) * 100vw)) * var(--bias));
+				overflow: hidden;
+			}
+
+			.bottom-image::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background:
+					linear-gradient(
+						180deg,
+						rgba(245, 241, 231, 0.05),
+						rgba(245, 241, 231, 0.05)
+					);
+				pointer-events: none;
+			}
+
+			.bottom-image img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
 			}
 		</style>
 	</head>
@@ -273,39 +302,109 @@
 			<main class="page" id="page">
 				<header class="topbar">
 					<nav class="nav">
-						<a href="#">Home</a>
-						<a href="#">Available Kittens</a>
-						<a href="#">Queens</a>
-						<a href="#">Kings</a>
-						<a href="#">Past Litters</a>
+						<a
+							href="#"
+							data-editable="source"
+							data-path="/index.html"
+							data-key="nav-home"
+						>Home</a>
+						<a
+							href="#"
+							data-editable="source"
+							data-path="/index.html"
+							data-key="nav-kittens"
+						>Available Kittens</a>
+						<a
+							href="#"
+							data-editable="source"
+							data-path="/index.html"
+							data-key="nav-queens"
+						>Queens</a>
+						<a
+							href="#"
+							data-editable="source"
+							data-path="/index.html"
+							data-key="nav-kings"
+						>Kings</a>
+						<a
+							href="#"
+							data-editable="source"
+							data-path="/index.html"
+							data-key="nav-past-litters"
+						>Past Litters</a>
 					</nav>
 				</header>
 
 				<section class="hero">
-					<div class="hero-image"></div>
+					<div
+						class="hero-image-wrap"
+						data-editable="source"
+						data-path="/index.html"
+						data-key="hero-image"
+					>
+						<img
+							class="hero-image"
+							src="https://placehold.co/1600x1000/e2d7c2/3a291d?text=Hero+Cat+Image"
+							alt="Hero cat image"
+						/>
+					</div>
 
 					<div class="hero-content">
-						<h1 class="hero-title">
+						<h1
+							class="hero-title"
+							data-editable="source"
+							data-path="/index.html"
+							data-key="hero-title"
+						>
 							Mystique<br />Mainecoons
 						</h1>
-						<p class="hero-quote">"A goal without a plan is just a dream."</p>
-						<a href="#" class="hero-button">Available kittens</a>
+
+						<p
+							class="hero-quote"
+							data-editable="source"
+							data-path="/index.html"
+							data-key="hero-quote"
+						>
+							"A goal without a plan is just a dream."
+						</p>
+
+						<a
+							href="#"
+							class="hero-button"
+							data-editable="source"
+							data-path="/index.html"
+							data-key="hero-button"
+						>
+							Available kittens
+						</a>
 					</div>
 
 					<div class="tica-badge" aria-hidden="true">
 						<svg viewBox="0 0 100 100" fill="none">
-							<circle cx="50" cy="50" r="46" stroke="#8B2B35" stroke-width="2.5"/>
-							<ellipse cx="50" cy="50" rx="33" ry="18" stroke="#8B2B35" stroke-width="2"/>
-							<path d="M28 62H72" stroke="#8B2B35" stroke-width="2"/>
-							<path d="M23 50H77" stroke="#8B2B35" stroke-width="2"/>
-							<path d="M35 39C38 28 46 22 53 22C61 22 66 28 68 35" stroke="#8B2B35" stroke-width="2"/>
-							<text x="50" y="58" text-anchor="middle" fill="#8B2B35" font-size="18" font-weight="700" font-family="Arial">TICA</text>
+							<circle cx="50" cy="50" r="46" stroke="#8B2B35" stroke-width="2.5"></circle>
+							<ellipse cx="50" cy="50" rx="33" ry="18" stroke="#8B2B35" stroke-width="2"></ellipse>
+							<path d="M28 62H72" stroke="#8B2B35" stroke-width="2"></path>
+							<path d="M23 50H77" stroke="#8B2B35" stroke-width="2"></path>
+							<path d="M35 39C38 28 46 22 53 22C61 22 66 28 68 35" stroke="#8B2B35" stroke-width="2"></path>
+							<text
+								x="50"
+								y="58"
+								text-anchor="middle"
+								fill="#8B2B35"
+								font-size="18"
+								font-weight="700"
+								font-family="Arial"
+							>TICA</text>
 						</svg>
 					</div>
 				</section>
 
 				<section class="trust-strip">
-					<p>
+					<p
+						data-editable="source"
+						data-path="/index.html"
+						data-key="trust-strip"
+					>
 						TICA registered and health tested, we represent the safe and trusted side of mainecoon breeding.
 						For us they aren't a business they are our family.
 					</p>
@@ -314,8 +413,20 @@
 				<section class="about">
 					<div class="about-grid">
 						<div class="about-copy">
-							<h2 class="about-title">About Us</h2>
-							<p>
+							<h2
+								class="about-title"
+								data-editable="source"
+								data-path="/index.html"
+								data-key="about-title"
+							>
+								About Us
+							</h2>
+
+							<p
+								data-editable="source"
+								data-path="/index.html"
+								data-key="about-copy"
+							>
 								We didn’t plan on starting a cattery. We started as two people who fell completely in love with
 								Maine Coons, and that love kept growing. The line ‘A goal without a plan is just a dream’ stuck
 								with us, and it pushed us to turn our dream into something real. Now we spend our days raising
@@ -323,17 +434,32 @@
 							</p>
 						</div>
 
-						<div class="about-photo">
+						<div
+							class="about-photo"
+							data-editable="source"
+							data-path="/index.html"
+							data-key="about-image"
+						>
 							<img
 								class="image-scale no-bias-scale"
 								src="https://placehold.co/900x1200/e7d8c4/3a2a1e?text=Couple+With+Cats"
-								alt="Placeholder image for about section"
+								alt="Couple with cats"
 							/>
 						</div>
 					</div>
 				</section>
 
-				<section class="bottom-image"></section>
+				<section
+					class="bottom-image"
+					data-editable="source"
+					data-path="/index.html"
+					data-key="bottom-image"
+				>
+					<img
+						src="https://placehold.co/1600x900/e2d7c2/3a291d?text=Lower+Cat+Image"
+						alt="Lower cat image"
+					/>
+				</section>
 			</main>
 		</div>
 	</body>
