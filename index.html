@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title data-editable="text">Mystique Mainecoons</title>
+		<title>Mystique Mainecoons</title>
 
 		<style>
 			:root {
@@ -269,80 +269,87 @@
 		</style>
 	</head>
 	<body>
-	<div class="viewport">
-		<main class="page" id="page">
-			<header class="topbar">
-				<nav class="nav">
-					<a href="#" data-editable="text">Home</a>
-					<a href="#" data-editable="text">Available Kittens</a>
-					<a href="#" data-editable="text">Queens</a>
-					<a href="#" data-editable="text">Kings</a>
-					<a href="#" data-editable="text">Past Litters</a>
-				</nav>
-			</header>
+		<div class="viewport">
+			<main class="page" id="page">
+				<header class="topbar" data-cloudcannon-ignore>
+					<nav class="nav">
+						<a href="#">Home</a>
+						<a href="#">Available Kittens</a>
+						<a href="#">Queens</a>
+						<a href="#">Kings</a>
+						<a href="#">Past Litters</a>
+					</nav>
+				</header>
 
-			<section class="hero">
-				<div class="hero-image" data-editable="background-image"></div>
+				<section class="hero">
+					<div class="hero-image" data-cloudcannon-ignore></div>
 
-				<div class="hero-content">
-					<h1 class="hero-title" data-editable="text">
-						Mystique<br />Mainecoons
-					</h1>
+					<div
+						class="hero-content"
+						data-editable="source"
+						data-path="/index.html"
+						data-key="hero-content"
+					>
+						<h1 class="hero-title">
+							Mystique<br />Mainecoons
+						</h1>
+						<p class="hero-quote">"A goal without a plan is just a dream."</p>
+						<a href="#" class="hero-button">Available kittens</a>
+					</div>
 
-					<p class="hero-quote" data-editable="text">
-						"A goal without a plan is just a dream."
+					<div class="tica-badge" aria-hidden="true" data-cloudcannon-ignore>
+						<svg viewBox="0 0 100 100" fill="none">
+							<circle cx="50" cy="50" r="46" stroke="#8B2B35" stroke-width="2.5"/>
+							<ellipse cx="50" cy="50" rx="33" ry="18" stroke="#8B2B35" stroke-width="2"/>
+							<path d="M28 62H72" stroke="#8B2B35" stroke-width="2"/>
+							<path d="M23 50H77" stroke="#8B2B35" stroke-width="2"/>
+							<path d="M35 39C38 28 46 22 53 22C61 22 66 28 68 35" stroke="#8B2B35" stroke-width="2"/>
+							<text x="50" y="58" text-anchor="middle" fill="#8B2B35" font-size="18" font-weight="700" font-family="Arial">TICA</text>
+						</svg>
+					</div>
+				</section>
+
+				<section
+					class="trust-strip"
+					data-editable="source"
+					data-path="/index.html"
+					data-key="trust-strip"
+				>
+					<p>
+						TICA registered and health tested, we represent the safe and trusted side of mainecoon breeding.
+						For us they aren't a business they are our family.
 					</p>
+				</section>
 
-					<a href="#" class="hero-button" data-editable="text">
-						Available kittens
-					</a>
-				</div>
+				<section class="about">
+					<div class="about-grid">
+						<div
+							class="about-copy"
+							data-editable="source"
+							data-path="/index.html"
+							data-key="about-copy"
+						>
+							<h2 class="about-title">About Us</h2>
+							<p>
+								We didn’t plan on starting a cattery. We started as two people who fell completely in love with
+								Maine Coons, and that love kept growing. The line ‘A goal without a plan is just a dream’ stuck
+								with us, and it pushed us to turn our dream into something real. Now we spend our days raising
+								cats that bring us the same warmth, joy, and sense of purpose that brought us here in the first place.
+							</p>
+						</div>
 
-				<div class="tica-badge" aria-hidden="true">
-					<svg viewBox="0 0 100 100" fill="none">
-						<circle cx="50" cy="50" r="46" stroke="#8B2B35" stroke-width="2.5"/>
-						<ellipse cx="50" cy="50" rx="33" ry="18" stroke="#8B2B35" stroke-width="2"/>
-						<path d="M28 62H72" stroke="#8B2B35" stroke-width="2"/>
-						<path d="M23 50H77" stroke="#8B2B35" stroke-width="2"/>
-						<path d="M35 39C38 28 46 22 53 22C61 22 66 28 68 35" stroke="#8B2B35" stroke-width="2"/>
-						<text x="50" y="58" text-anchor="middle" fill="#8B2B35" font-size="18" font-weight="700" font-family="Arial">TICA</text>
-					</svg>
-				</div>
-			</section>
-
-			<section class="trust-strip">
-				<p data-editable="text">
-					TICA registered and health tested, we represent the safe and trusted side of mainecoon breeding.
-					For us they aren't a business they are our family.
-				</p>
-			</section>
-
-			<section class="about">
-				<div class="about-grid">
-					<div class="about-copy">
-						<h2 class="about-title" data-editable="text">About Us</h2>
-
-						<p data-editable="text">
-							We didn’t plan on starting a cattery. We started as two people who fell completely in love with
-							Maine Coons, and that love kept growing. The line ‘A goal without a plan is just a dream’ stuck
-							with us, and it pushed us to turn our dream into something real. Now we spend our days raising
-							cats that bring us the same warmth, joy, and sense of purpose that brought us here in the first place.
-						</p>
+						<div class="about-photo" data-cloudcannon-ignore>
+							<img
+								class="image-scale no-bias-scale"
+								src="https://placehold.co/900x1200/e7d8c4/3a2a1e?text=Couple+With+Cats"
+								alt="Placeholder image for about section"
+							/>
+						</div>
 					</div>
+				</section>
 
-					<div class="about-photo">
-						<img
-							class="image-scale no-bias-scale"
-							src="https://placehold.co/900x1200/e7d8c4/3a2a1e?text=Couple+With+Cats"
-							alt="About image"
-							data-editable="image"
-						/>
-					</div>
-				</div>
-			</section>
-
-			<section class="bottom-image" data-editable="background-image"></section>
-		</main>
-	</div>
-</body>
+				<section class="bottom-image" data-cloudcannon-ignore></section>
+			</main>
+		</div>
+	</body>
 </html>
