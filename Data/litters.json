@@ -33,9 +33,9 @@
         {
           "id": "",
           "name": "",
-          "sex": "",
-          "color": "",
-          "status": "",
+          "sex": null,
+          "color": null,
+          "status": null,
           "price": 0,
           "image": "",
           "notes": null

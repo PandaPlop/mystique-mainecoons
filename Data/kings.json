@@ -2,7 +2,7 @@
   {
     "id": "king-001",
     "name": "Simon",
-    "color": "Blonde ginger",
+    "color": "wedf",
     "status": "Active King",
     "birthday": "2022-11-03",
     "image": "/images/kings/simon.jpg",
@@ -11,7 +11,16 @@
   {
     "id": "",
     "name": "Ulfric",
-    "color": null,
+    "color": "Text Color",
+    "status": "",
+    "birthday": "",
+    "image": "",
+    "description": ""
+  },
+  {
+    "id": "",
+    "name": "",
+    "color": "Text Color",
     "status": "",
     "birthday": "",
     "image": "",
