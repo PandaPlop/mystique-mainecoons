@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +80,6 @@
 			min-height: 100vh;
 		}
 
-		/* HEADER NAV */
 		.topbar {
 			position: absolute;
 			top: 0;
@@ -126,7 +127,6 @@
 			border-radius: 999px;
 		}
 
-		/* HEADER IMAGE */
 		.header-image {
 			position: relative;
 			height: calc(min(500px, calc(500 / var(--design-width) * 100vw)) * var(--imagebias));
@@ -158,7 +158,6 @@
 				linear-gradient(to bottom, var(--bg) 0%, rgba(248,236,229,0) var(--top-fade));
 		}
 
-		/* TITLE OVER IMAGE */
 		.header-content {
 			position: absolute;
 			z-index: 3;
@@ -192,7 +191,6 @@
 			color: var(--text-soft);
 		}
 
-		/* ADMIN SUB NAV */
 		.admin-subnav-wrap {
 			padding:
 				calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias))
@@ -242,7 +240,6 @@
 			border-color: var(--accent);
 		}
 
-		/* BLANK CONTENT AREA */
 		.section {
 			padding:
 				calc(min(80px, calc(80 / var(--design-width) * 100vw)) * var(--bias))
@@ -250,8 +247,188 @@
 			min-height: calc(min(500px, calc(500 / var(--design-width) * 100vw)) * var(--bias));
 		}
 
+		.editor-intro {
+			margin: 0 0 calc(min(34px, calc(34 / var(--design-width) * 100vw)) * var(--bias));
+		}
+
+		.editor-title {
+			margin: 0 0 calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias));
+			font-family: var(--serif);
+			font-size: calc(min(48px, calc(48 / var(--design-width) * 100vw)) * var(--bias));
+			line-height: 1.08;
+			color: var(--text);
+		}
+
+		.editor-copy {
+			margin: 0;
+			max-width: min(760px, calc(760 / var(--design-width) * 100vw));
+			font-size: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--textbias));
+			line-height: 1.7;
+			color: var(--text-soft);
+		}
+
+		.litters-editor {
+			display: flex;
+			flex-direction: column;
+			gap: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias));
+		}
+
+		.litter-card {
+			border: 1px solid var(--line);
+			background: rgb(252, 246, 241);
+			border-radius: calc(min(24px, calc(24 / var(--design-width) * 100vw)) * var(--bias));
+			padding: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias));
+			box-shadow: 0 min(8px, calc(8 / var(--design-width) * 100vw))
+				min(18px, calc(18 / var(--design-width) * 100vw))
+				rgba(36, 23, 18, 0.05);
+		}
+
+		.litter-head {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: flex-start;
+			gap: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
+			margin-bottom: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
+			padding-bottom: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
+			border-bottom: 1px solid var(--line);
+		}
+
+		.litter-title {
+			margin: 0;
+			font-family: var(--serif);
+			font-size: calc(min(34px, calc(34 / var(--design-width) * 100vw)) * var(--bias));
+			line-height: 1.1;
+			color: var(--text);
+		}
+
+		.litter-meta {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
+			width: 100%;
+			margin-bottom: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
+		}
+
+		.meta-box {
+			background: var(--bg-soft);
+			border: 1px solid var(--line);
+			border-radius: calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--bias));
+			padding:
+				calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias))
+				calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
+		}
+
+		.meta-label {
+			display: block;
+			margin-bottom: calc(min(6px, calc(6 / var(--design-width) * 100vw)) * var(--bias));
+			font-size: calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--textbias));
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: var(--text-soft);
+		}
+
+		.meta-value {
+			display: block;
+			font-size: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--textbias));
+			line-height: 1.4;
+			color: var(--text);
+		}
+
+		.litter-description {
+			margin: 0 0 calc(min(24px, calc(24 / var(--design-width) * 100vw)) * var(--bias));
+			font-size: calc(min(17px, calc(17 / var(--design-width) * 100vw)) * var(--textbias));
+			line-height: 1.7;
+			color: var(--text-soft);
+		}
+
+		.litter-id {
+			display: inline-flex;
+			align-items: center;
+			padding:
+				calc(min(8px, calc(8 / var(--design-width) * 100vw)) * var(--bias))
+				calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias));
+			border-radius: 999px;
+			background: rgb(239, 225, 217);
+			border: 1px solid rgb(215, 193, 181);
+			font-size: calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--textbias));
+			color: var(--text-soft);
+		}
+
+		.kittens-heading {
+			margin: 0 0 calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
+			font-family: var(--serif);
+			font-size: calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--bias));
+			color: var(--text);
+		}
+
+		.kittens-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
+		}
+
+		.kitten-card {
+			border: 1px solid var(--line);
+			background: rgb(255, 250, 246);
+			border-radius: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
+			overflow: hidden;
+		}
+
+		.kitten-image-wrap {
+			aspect-ratio: 4 / 3;
+			background: rgb(233, 220, 210);
+			overflow: hidden;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.kitten-image {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.kitten-body {
+			padding: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
+		}
+
+		.kitten-name {
+			margin: 0 0 calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias));
+			font-family: var(--serif);
+			font-size: calc(min(25px, calc(25 / var(--design-width) * 100vw)) * var(--bias));
+			line-height: 1.1;
+			color: var(--text);
+		}
+
+		.kitten-meta {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias));
+			margin-bottom: calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
+		}
+
+		.kitten-notes {
+			margin: 0;
+			font-size: calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--textbias));
+			line-height: 1.6;
+			color: var(--text-soft);
+		}
+
 		.footer-space {
 			height: calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--bias));
+		}
+
+		@media (max-width: 900px) {
+			.litter-meta,
+			.kitten-meta,
+			.kittens-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.header-content {
+				width: min(78vw, 580px);
+			}
 		}
 	</style>
 </head>
@@ -294,6 +471,181 @@
 			</section>
 
 			<section class="section">
+				<div class="editor-intro">
+					<h2 class="editor-title">Edit Litters</h2>
+					<p class="editor-copy">
+						This section is wired directly to <strong>Data/litters.json</strong>. In CloudCannon, click into any highlighted field to edit the litter or kitten data inline.
+					</p>
+				</div>
+
+				<div
+					class="litters-editor"
+					data-editable="array"
+					data-prop="@data[litters].litters"
+					data-direction="column"
+				>
+					{% for litter in site.data.litters.litters %}
+						<article class="litter-card" data-editable="array-item">
+							<div class="litter-head">
+								<div>
+									<h3
+										class="litter-title"
+										data-editable="text"
+										data-prop="@data[litters].litters.{{ forloop.index0 }}.title"
+										data-type="span"
+									>{{ litter.title }}</h3>
+
+									<div
+										class="litter-id"
+										data-editable="text"
+										data-prop="@data[litters].litters.{{ forloop.index0 }}.id"
+										data-type="span"
+									>{{ litter.id }}</div>
+								</div>
+							</div>
+
+							<div class="litter-meta">
+								<div class="meta-box">
+									<span class="meta-label">Sire</span>
+									<span
+										class="meta-value"
+										data-editable="text"
+										data-prop="@data[litters].litters.{{ forloop.index0 }}.sire"
+										data-type="span"
+									>{{ litter.sire }}</span>
+								</div>
+
+								<div class="meta-box">
+									<span class="meta-label">Dame</span>
+									<span
+										class="meta-value"
+										data-editable="text"
+										data-prop="@data[litters].litters.{{ forloop.index0 }}.dame"
+										data-type="span"
+									>{{ litter.dame }}</span>
+								</div>
+
+								<div class="meta-box">
+									<span class="meta-label">Birth Date</span>
+									<span
+										class="meta-value"
+										data-editable="text"
+										data-prop="@data[litters].litters.{{ forloop.index0 }}.birth_date"
+										data-type="span"
+									>{{ litter.birth_date }}</span>
+								</div>
+
+								<div class="meta-box">
+									<span class="meta-label">Status</span>
+									<span
+										class="meta-value"
+										data-editable="text"
+										data-prop="@data[litters].litters.{{ forloop.index0 }}.status"
+										data-type="span"
+									>{{ litter.status }}</span>
+								</div>
+							</div>
+
+							<p
+								class="litter-description"
+								data-editable="text"
+								data-prop="@data[litters].litters.{{ forloop.index0 }}.description"
+								data-type="text"
+							>{{ litter.description }}</p>
+
+							<h4 class="kittens-heading">Kittens</h4>
+
+							<div
+								class="kittens-grid"
+								data-editable="array"
+								data-prop="@data[litters].litters.{{ forloop.index0 }}.kittens"
+								data-direction="row"
+							>
+								{% for kitten in litter.kittens %}
+									<article class="kitten-card" data-editable="array-item">
+										<div class="kitten-image-wrap">
+											<img
+												class="kitten-image"
+												data-editable="image"
+												data-prop-src="@data[litters].litters.{{ forloop.parentloop.index0 }}.kittens.{{ forloop.index0 }}.image"
+												src="{{ kitten.image | default: 'https://placehold.co/800x600/e6d8cb/3a291d?text=Kitten+Photo' }}"
+												alt="{{ kitten.name | default: 'Kitten image' }}"
+											/>
+										</div>
+
+										<div class="kitten-body">
+											<h5
+												class="kitten-name"
+												data-editable="text"
+												data-prop="@data[litters].litters.{{ forloop.parentloop.index0 }}.kittens.{{ forloop.index0 }}.name"
+												data-type="span"
+											>{{ kitten.name }}</h5>
+
+											<div class="kitten-meta">
+												<div class="meta-box">
+													<span class="meta-label">ID</span>
+													<span
+														class="meta-value"
+														data-editable="text"
+														data-prop="@data[litters].litters.{{ forloop.parentloop.index0 }}.kittens.{{ forloop.index0 }}.id"
+														data-type="span"
+													>{{ kitten.id }}</span>
+												</div>
+
+												<div class="meta-box">
+													<span class="meta-label">Sex</span>
+													<span
+														class="meta-value"
+														data-editable="text"
+														data-prop="@data[litters].litters.{{ forloop.parentloop.index0 }}.kittens.{{ forloop.index0 }}.sex"
+														data-type="span"
+													>{{ kitten.sex }}</span>
+												</div>
+
+												<div class="meta-box">
+													<span class="meta-label">Color</span>
+													<span
+														class="meta-value"
+														data-editable="text"
+														data-prop="@data[litters].litters.{{ forloop.parentloop.index0 }}.kittens.{{ forloop.index0 }}.color"
+														data-type="span"
+													>{{ kitten.color }}</span>
+												</div>
+
+												<div class="meta-box">
+													<span class="meta-label">Status</span>
+													<span
+														class="meta-value"
+														data-editable="text"
+														data-prop="@data[litters].litters.{{ forloop.parentloop.index0 }}.kittens.{{ forloop.index0 }}.status"
+														data-type="span"
+													>{{ kitten.status }}</span>
+												</div>
+
+												<div class="meta-box">
+													<span class="meta-label">Price</span>
+													<span
+														class="meta-value"
+														data-editable="text"
+														data-prop="@data[litters].litters.{{ forloop.parentloop.index0 }}.kittens.{{ forloop.index0 }}.price"
+														data-type="span"
+													>${{ kitten.price }}</span>
+												</div>
+											</div>
+
+											<p
+												class="kitten-notes"
+												data-editable="text"
+												data-prop="@data[litters].litters.{{ forloop.parentloop.index0 }}.kittens.{{ forloop.index0 }}.notes"
+												data-type="text"
+											>{{ kitten.notes }}</p>
+										</div>
+									</article>
+								{% endfor %}
+							</div>
+						</article>
+					{% endfor %}
+				</div>
 			</section>
 
 			<div class="footer-space"></div>
