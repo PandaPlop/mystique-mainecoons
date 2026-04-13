@@ -56,7 +56,7 @@ collections_config:
         options:
           allow_create: false
           allow_empty: false
-          values: kings[*].name
+          values: $.kings[*].name
         cascade: true
 
       $.litters[*].dame:
@@ -65,7 +65,7 @@ collections_config:
         options:
           allow_create: false
           allow_empty: false
-          values: queens[*].name
+          values: $.queens[*].name
         cascade: true
 
       $.litters[*].birth_date:
