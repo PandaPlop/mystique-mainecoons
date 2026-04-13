@@ -2,7 +2,7 @@
   {
     "id": "king-001",
     "name": "Simon",
-    "color": "wedf",
+    "color": "#000000",
     "status": "Active King",
     "birthday": "2022-11-03",
     "image": "/images/kings/simon.jpg",
@@ -11,7 +11,7 @@
   {
     "id": "",
     "name": "Ulfric",
-    "color": "Text Color",
+    "color": "#000000",
     "status": "",
     "birthday": "",
     "image": "",
@@ -20,7 +20,16 @@
   {
     "id": "",
     "name": "",
-    "color": "Text Color",
+    "color": "#000000",
+    "status": "",
+    "birthday": "",
+    "image": "",
+    "description": ""
+  },
+  {
+    "id": "",
+    "name": "",
+    "color": null,
     "status": "",
     "birthday": "",
     "image": "",
