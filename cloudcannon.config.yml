@@ -1,7 +1,6 @@
 paths:
   uploads: uploads
   static: ''
-
 collections_config:
   pages:
     path: ''
@@ -11,77 +10,54 @@ collections_config:
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
-
   data:
     path: Data
     icon: data_usage
     disable_url: false
-    disable_add: false
-    disable_add_folder: false
-    disable_file_actions: false
-
     _inputs:
-      $.litters[*].sire:
-        type: select
-        label: Sire
-        options:
-          allow_create: false
-          allow_empty: false
-          values: data.kings[*].name
-        cascade: true
-
       $.litters[*].dame:
         type: select
-        label: Dame
         options:
           allow_create: false
           allow_empty: false
           values: data.queens[*].name
+        label: Dame
         cascade: true
-
       $.litters[*].birth_date:
         type: date
         label: Birth Date
         cascade: true
-
       $.litters[*].description:
         type: textarea
         label: Description
         cascade: true
-
       $.litters[*].kittens:
         type: array
-        label: Kittens
         options:
           structures: kitten
+        label: Kittens
         cascade: true
-
       $.litters[*].kittens[*].id:
         label: Kitten ID
         cascade: true
-
       $.litters[*].kittens[*].name:
         label: Name
         cascade: true
-
       $.litters[*].kittens[*].sex:
         type: select
-        label: Sex
         options:
           allow_create: false
           allow_empty: false
           values:
             - Male
             - Female
+        label: Sex
         cascade: true
-
       $.litters[*].kittens[*].color:
         label: Color
         cascade: true
-
       $.litters[*].kittens[*].status:
         type: select
-        label: Availability
         options:
           allow_create: false
           allow_empty: false
@@ -92,40 +68,33 @@ collections_config:
             - Under Review
             - Sold
             - Retained
+        label: Availability
         cascade: true
-
       $.litters[*].kittens[*].price:
         label: Price
         cascade: true
-
       $.litters[*].kittens[*].image:
         type: image
         label: Image
         cascade: true
-
       $.litters[*].kittens[*].notes:
         type: textarea
         label: Notes
         cascade: true
-
       $.queens[*].birthday:
         type: date
         label: Birthday
         cascade: true
-
       $.kings[*].birthday:
         type: date
         label: Birthday
         cascade: true
-
       $.news[*].date:
         type: date
         label: Date
         cascade: true
-
       $.news[*].category:
         type: select
-        label: Category
         options:
           allow_create: false
           allow_empty: false
@@ -134,30 +103,61 @@ collections_config:
             - Birth Announcement
             - Birthday
             - General Update
+        label: Category
         cascade: true
-
       $.news[*].body:
         type: textarea
         label: Body
         cascade: true
-
+      $.litters[*].sire:
+        type: select
+        options:
+          allow_create:
+          allow_empty: true
+          values:
+          value_key:
+          preview:
+          picker_preview:
+          view:
+          picker_view:
+          required:
+          required_message:
+          min_length:
+          min_length_message:
+          max_length:
+          max_length_message:
+          pattern:
+          pattern_message:
+          min_graphemes:
+          min_graphemes_message:
+          max_graphemes:
+          max_graphemes_message:
+          min_words:
+          min_words_message:
+          max_words:
+          max_words_message:
+          locale:
+          empty_type:
+        cascade: true
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
 _structures:
   kitten:
+    style: select
     values:
-      - label: Kitten
-        icon: pets
+      - icon: pets
+        label: Kitten
         value:
-          id: ""
-          name: ""
-          sex: "Male"
-          color: ""
-          status: "Available"
-          price: ""
-          image: ""
-          notes: ""
-
+          id: ''
+          name: ''
+          sex: Male
+          color: ''
+          status: Available
+          price: ''
+          image: ''
+          notes: ''
 timezone: America/Chicago
-
 markdown:
   engine: commonmark
   options:
