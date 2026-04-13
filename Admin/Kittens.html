@@ -1,78 +1,60 @@
-<section class="section" data-cms-editor="data.litters">
+<div data-cms-bind="Data/litters.json">
 
-	<div data-cms-bind="litters">
+	<div data-cms-repeat="litters">
 
-		<div data-cms-repeat="litters">
+		<div class="litter-card">
 
-			<!-- LITTER -->
-			<div class="litter-card">
+			<input class="input" type="text" data-cms-field="id" placeholder="Litter ID" />
 
-				<!-- DELETE LITTER -->
-				<button data-cms-remove>Delete Litter</button>
+			<input class="input" type="text" data-cms-field="title" placeholder="Title" />
 
-				<h2>Litter</h2>
+			<input class="input" type="text" data-cms-field="sire" placeholder="Sire" />
 
-				<input type="text" placeholder="Litter ID" data-cms-field="id" />
-				<input type="text" placeholder="Title" data-cms-field="title" />
-				<input type="text" placeholder="Sire" data-cms-field="sire" />
-				<input type="text" placeholder="Dame" data-cms-field="dame" />
+			<input class="input" type="text" data-cms-field="dame" placeholder="Dame" />
 
-				<input type="text" placeholder="Birth Date" data-cms-field="birth_date" />
+			<input class="input" type="text" data-cms-field="birth_date" placeholder="Birth Date" />
 
-				<select data-cms-field="status">
-					<option>Available</option>
-					<option>Reserved</option>
-					<option>On Hold</option>
-					<option>Under Review</option>
-					<option>Sold</option>
-					<option>Retained</option>
-				</select>
+			<select class="select" data-cms-field="status">
+				<option>Available</option>
+				<option>Reserved</option>
+				<option>On Hold</option>
+				<option>Under Review</option>
+				<option>Sold</option>
+				<option>Retained</option>
+			</select>
 
-				<textarea placeholder="Description" data-cms-field="description"></textarea>
+			<textarea class="textarea" data-cms-field="description"></textarea>
 
-				<!-- KITTENS -->
-				<div data-cms-bind="kittens">
+			<!-- KITTENS -->
+			<div data-cms-repeat="kittens">
 
-					<h3>Kittens</h3>
+				<div class="kitten-card">
 
-					<div data-cms-repeat="kittens">
+					<input class="input" type="text" data-cms-field="id" placeholder="Kitten ID" />
 
-						<div class="kitten-card">
+					<input class="input" type="text" data-cms-field="name" placeholder="Name" />
 
-							<!-- DELETE KITTEN -->
-							<button data-cms-remove>Delete Kitten</button>
+					<select class="select" data-cms-field="sex">
+						<option>Male</option>
+						<option>Female</option>
+					</select>
 
-							<input type="text" placeholder="Kitten ID" data-cms-field="id" />
-							<input type="text" placeholder="Name" data-cms-field="name" />
+					<input class="input" type="text" data-cms-field="color" placeholder="Color" />
 
-							<select data-cms-field="sex">
-								<option>Male</option>
-								<option>Female</option>
-							</select>
+					<select class="select" data-cms-field="status">
+						<option>Available</option>
+						<option>Reserved</option>
+						<option>On Hold</option>
+						<option>Under Review</option>
+						<option>Sold</option>
+						<option>Retained</option>
+					</select>
 
-							<input type="text" placeholder="Color" data-cms-field="color" />
+					<input class="input" type="number" data-cms-field="price" />
 
-							<select data-cms-field="status">
-								<option>Available</option>
-								<option>Reserved</option>
-								<option>On Hold</option>
-								<option>Under Review</option>
-								<option>Sold</option>
-								<option>Retained</option>
-							</select>
+					<input class="input" type="text" data-cms-field="image" />
 
-							<input type="number" placeholder="Price" data-cms-field="price" />
-
-							<input type="text" placeholder="Image Path" data-cms-field="image" />
-
-							<textarea placeholder="Notes" data-cms-field="notes"></textarea>
-
-						</div>
-
-					</div>
-
-					<!-- ADD KITTEN -->
-					<button data-cms-add="kittens">Add Kitten</button>
+					<textarea class="textarea" data-cms-field="notes"></textarea>
 
 				</div>
 
@@ -80,9 +62,6 @@
 
 		</div>
 
-		<!-- ADD LITTER -->
-		<button data-cms-add="litters">Add Litter</button>
-
 	</div>
 
-</section>
+</div>
