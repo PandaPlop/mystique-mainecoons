@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Admin | Mystique Mainecoons</title>
+	<title>Page Title</title>
 
 	<style>
 		:root {
@@ -38,12 +38,9 @@
 			--sans: Arial, Helvetica, sans-serif;
 		}
 
-		* {
-			box-sizing: border-box;
-		}
+		* { box-sizing: border-box; }
 
-		html,
-		body {
+		html, body {
 			margin: 0;
 			padding: 0;
 			background: var(--panel);
@@ -52,15 +49,9 @@
 			color: var(--text);
 		}
 
-		a {
-			text-decoration: none;
-			color: inherit;
-		}
+		a { text-decoration: none; color: inherit; }
 
-		img {
-			display: block;
-			max-width: 100%;
-		}
+		img { display: block; max-width: 100%; }
 
 		.viewport {
 			width: 100%;
@@ -78,7 +69,7 @@
 			min-height: 100vh;
 		}
 
-		/* MAIN NAV */
+		/* NAV */
 		.topbar {
 			position: absolute;
 			top: 0;
@@ -98,8 +89,6 @@
 			font-size: calc(min(23px, calc(23 / var(--design-width) * 100vw)) * var(--bias));
 			font-weight: 600;
 			pointer-events: auto;
-			flex-wrap: wrap;
-			max-width: calc(100% - min(128px, calc(128 / var(--design-width) * 100vw)));
 		}
 
 		.nav a {
@@ -107,13 +96,9 @@
 			padding-bottom: calc(min(6px, calc(6 / var(--design-width) * 100vw)) * var(--bias));
 		}
 
-		.nav a:hover {
-			color: var(--accent);
-		}
+		.nav a:hover { color: var(--accent); }
 
-		.nav a.current-page {
-			color: var(--accent);
-		}
+		.nav a.current-page { color: var(--accent); }
 
 		.nav a.current-page::after {
 			content: "";
@@ -149,8 +134,10 @@
 			inset: 0;
 			z-index: 2;
 			pointer-events: none;
+
 			--left-fade: calc(55% * var(--imagebias));
 			--top-fade: calc(12% * var(--imagebias));
+
 			background:
 				linear-gradient(to right, var(--bg) 0%, rgba(248,236,229,0) var(--left-fade)),
 				linear-gradient(to bottom, var(--bg) 0%, rgba(248,236,229,0) var(--top-fade));
@@ -162,7 +149,7 @@
 			z-index: 3;
 			top: 0;
 			left: 0;
-			width: min(580px, calc(580 / var(--design-width) * 100vw));
+			width: min(540px, calc(540 / var(--design-width) * 100vw));
 			padding:
 				calc(min(88px, calc(88 / var(--design-width) * 100vw)) * var(--imagebias))
 				0
@@ -179,234 +166,11 @@
 			color: rgb(37, 24, 19);
 		}
 
-		.header-subtitle {
-			margin:
-				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias))
-				0
-				0;
-			max-width: min(420px, calc(420 / var(--design-width) * 100vw));
-			font-size: calc(min(19px, calc(19 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 1.6;
-			color: var(--text-soft);
-		}
-
-		/* ADMIN SUB NAV */
-		.admin-subnav-wrap {
-			padding:
-				calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias))
-				min(80px, calc(80 / var(--design-width) * 100vw))
-				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
-			background: var(--panel);
-			border-bottom: 1px solid var(--line);
-		}
-
-		.admin-subnav-label {
-			margin: 0 0 calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
-			font-size: calc(min(13px, calc(13 / var(--design-width) * 100vw)) * var(--textbias));
-			font-weight: 700;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-			color: var(--text-soft);
-		}
-
-		.admin-subnav {
-			display: flex;
-			flex-wrap: wrap;
-			gap: calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.admin-subnav-link {
-			padding:
-				calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias))
-				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
-			border: 1px solid var(--line);
-			border-radius: 999px;
-			background: var(--bg-soft);
-			font-size: calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--textbias));
-			font-weight: 600;
-			color: var(--text-soft);
-			transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-		}
-
-		.admin-subnav-link:hover {
-			background: rgb(236, 221, 212);
-			color: var(--accent);
-			border-color: rgb(195, 164, 150);
-		}
-
-		.admin-subnav-link.current-admin-page {
-			background: var(--accent);
-			color: rgb(255, 245, 240);
-			border-color: var(--accent);
-		}
-
 		/* CONTENT */
 		.section {
 			padding:
 				calc(min(80px, calc(80 / var(--design-width) * 100vw)) * var(--bias))
 				min(80px, calc(80 / var(--design-width) * 100vw));
-		}
-
-		.admin-intro {
-			margin: 0 0 calc(min(42px, calc(42 / var(--design-width) * 100vw)) * var(--bias));
-			max-width: min(780px, calc(780 / var(--design-width) * 100vw));
-		}
-
-		.admin-eyebrow {
-			margin: 0 0 calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
-			font-size: calc(min(13px, calc(13 / var(--design-width) * 100vw)) * var(--textbias));
-			font-weight: 700;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-			color: var(--accent);
-		}
-
-		.admin-heading {
-			margin: 0;
-			font-family: var(--serif);
-			font-size: calc(min(52px, calc(52 / var(--design-width) * 100vw)) * var(--bias));
-			line-height: 1.08;
-			font-weight: 700;
-			color: var(--text);
-		}
-
-		.admin-copy {
-			margin:
-				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias))
-				0
-				0;
-			font-size: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 1.7;
-			color: var(--text-soft);
-		}
-
-		.admin-grid {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.admin-card {
-			background: rgb(252, 245, 240);
-			border: 1px solid var(--line);
-			border-radius: calc(min(24px, calc(24 / var(--design-width) * 100vw)) * var(--bias));
-			padding:
-				calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias))
-				calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias))
-				calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--bias));
-			box-shadow: 0 min(6px, calc(6 / var(--design-width) * 100vw))
-				min(18px, calc(18 / var(--design-width) * 100vw))
-				rgba(36, 23, 18, 0.05);
-		}
-
-		.admin-card-kicker {
-			margin: 0 0 calc(min(10px, calc(10 / var(--design-width) * 100vw)) * var(--bias));
-			font-size: calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--textbias));
-			font-weight: 700;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-			color: var(--accent);
-		}
-
-		.admin-card-title {
-			margin: 0;
-			font-family: var(--serif);
-			font-size: calc(min(34px, calc(34 / var(--design-width) * 100vw)) * var(--bias));
-			line-height: 1.15;
-			font-weight: 700;
-			color: var(--text);
-		}
-
-		.admin-card-text {
-			margin:
-				calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias))
-				0
-				0;
-			font-size: calc(min(17px, calc(17 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 1.7;
-			color: var(--text-soft);
-		}
-
-		.admin-card-actions {
-			display: flex;
-			flex-wrap: wrap;
-			gap: calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias));
-			margin-top: calc(min(22px, calc(22 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.admin-button {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			padding:
-				calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias))
-				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
-			border-radius: 999px;
-			font-size: calc(min(15px, calc(15 / var(--design-width) * 100vw)) * var(--textbias));
-			font-weight: 700;
-			border: 1px solid var(--line);
-			background: white;
-			color: var(--text);
-			transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-		}
-
-		.admin-button:hover {
-			background: rgb(245, 235, 228);
-			border-color: rgb(198, 168, 156);
-			color: var(--accent);
-		}
-
-		.admin-button.primary {
-			background: var(--accent);
-			border-color: var(--accent);
-			color: rgb(255, 246, 241);
-		}
-
-		.admin-button.primary:hover {
-			background: var(--accent-dark);
-			border-color: var(--accent-dark);
-			color: rgb(255, 246, 241);
-		}
-
-		.admin-note {
-			margin-top: calc(min(44px, calc(44 / var(--design-width) * 100vw)) * var(--bias));
-			padding:
-				calc(min(24px, calc(24 / var(--design-width) * 100vw)) * var(--bias))
-				calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--bias));
-			border: 1px solid var(--line);
-			border-radius: calc(min(22px, calc(22 / var(--design-width) * 100vw)) * var(--bias));
-			background: rgb(245, 237, 231);
-		}
-
-		.admin-note-title {
-			margin: 0;
-			font-size: calc(min(20px, calc(20 / var(--design-width) * 100vw)) * var(--textbias));
-			font-weight: 700;
-			color: var(--text);
-		}
-
-		.admin-note-text {
-			margin:
-				calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias))
-				0
-				0;
-			font-size: calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 1.7;
-			color: var(--text-soft);
-		}
-
-		.footer-space {
-			height: calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		@media (max-width: 900px) {
-			.admin-grid {
-				grid-template-columns: 1fr;
-			}
-
-			.header-content {
-				width: min(520px, calc(520 / var(--design-width) * 100vw));
-			}
 		}
 	</style>
 </head>
@@ -417,105 +181,28 @@
 
 			<header class="topbar">
 				<nav class="nav">
-					<a href="/">Home</a>
+					<a href="/" class="current-page">Home</a>
 					<a href="/Available-Kittens">Available Kittens</a>
 					<a href="/Queens">Queens</a>
 					<a href="/Kings">Kings</a>
 					<a href="/News">News</a>
-					<a href="/Admin" class="current-page">Admin</a>
+					<a href="/Admin">Admin</a>
 				</nav>
 			</header>
 
 			<section class="header-image">
-				<img src="https://placehold.co/1600x900/e2d7c2/3a291d?text=Admin+Header+Image" alt="Admin Header Image" />
+				<img src="https://placehold.co/1600x900/e2d7c2/3a291d?text=Header+Image" />
 
 				<div class="header-content">
-					<h1 class="header-title">Admin<br>Panel</h1>
-					<p class="header-subtitle">
-						Manage litters, queens, kings, and news through separate editing pages built from one shared layout.
-					</p>
+					<h1 class="header-title">
+						Page<br>Title
+					</h1>
 				</div>
-			</section>
-
-			<section class="admin-subnav-wrap">
-				<p class="admin-subnav-label">Admin Sections</p>
-				<nav class="admin-subnav">
-					<a href="/Admin" class="admin-subnav-link current-admin-page">Overview</a>
-					<a href="/Admin/Litters" class="admin-subnav-link">Litters</a>
-					<a href="/Admin/Queens" class="admin-subnav-link">Queens</a>
-					<a href="/Admin/Kings" class="admin-subnav-link">Kings</a>
-					<a href="/Admin/News" class="admin-subnav-link">News</a>
-				</nav>
 			</section>
 
 			<section class="section">
-				<div class="admin-intro">
-					<p class="admin-eyebrow">Administrative Workspace</p>
-					<h2 class="admin-heading">Choose a section to edit your site data.</h2>
-					<p class="admin-copy">
-						This overview page acts as the shared entry point for your admin area. Each section below should lead to a separate page where you can view the current records and edit the matching data type without crowding everything onto one screen.
-					</p>
-				</div>
-
-				<div class="admin-grid">
-					<article class="admin-card">
-						<p class="admin-card-kicker">Data Section</p>
-						<h3 class="admin-card-title">Litters</h3>
-						<p class="admin-card-text">
-							Edit litter titles, parents, birth dates, descriptions, and each kitten inside the litter.
-						</p>
-						<div class="admin-card-actions">
-							<a href="/Admin/Litters" class="admin-button primary">Open Litters</a>
-							<a href="/Available-Kittens" class="admin-button">View Public Page</a>
-						</div>
-					</article>
-
-					<article class="admin-card">
-						<p class="admin-card-kicker">Data Section</p>
-						<h3 class="admin-card-title">Queens</h3>
-						<p class="admin-card-text">
-							Edit queen profiles, colors, status, birthdays, images, and descriptive content.
-						</p>
-						<div class="admin-card-actions">
-							<a href="/Admin/Queens" class="admin-button primary">Open Queens</a>
-							<a href="/Queens" class="admin-button">View Public Page</a>
-						</div>
-					</article>
-
-					<article class="admin-card">
-						<p class="admin-card-kicker">Data Section</p>
-						<h3 class="admin-card-title">Kings</h3>
-						<p class="admin-card-text">
-							Edit king profiles, colors, status, birthdays, images, and descriptive content.
-						</p>
-						<div class="admin-card-actions">
-							<a href="/Admin/Kings" class="admin-button primary">Open Kings</a>
-							<a href="/Kings" class="admin-button">View Public Page</a>
-						</div>
-					</article>
-
-					<article class="admin-card">
-						<p class="admin-card-kicker">Data Section</p>
-						<h3 class="admin-card-title">News</h3>
-						<p class="admin-card-text">
-							Edit announcement titles, dates, categories, images, and update body text for the site news page.
-						</p>
-						<div class="admin-card-actions">
-							<a href="/Admin/News" class="admin-button primary">Open News</a>
-							<a href="/News" class="admin-button">View Public Page</a>
-						</div>
-					</article>
-				</div>
-
-				<div class="admin-note">
-					<h3 class="admin-note-title">How to use this layout</h3>
-					<p class="admin-note-text">
-						Use this page as the shared admin shell. Then copy the same top section and secondary admin navigation into each section page. On each one, switch the active admin pill to match the current page, then replace the overview cards with the actual editable records for that collection.
-					</p>
-				</div>
+				Content goes here
 			</section>
-
-			<div class="footer-space"></div>
 
 		</main>
 	</div>
