@@ -110,15 +110,15 @@ collections_config:
         label: Body
         cascade: true
       $.litters[*].sire:
-        type: select
+        type: multiselect
         options:
           allow_create:
-          allow_empty: true
+          allow_empty: false
           values:
-          value_key: kings[*].name
+          value_key: $.kings[*].name
           preview:
           picker_preview:
-          view:
+          view: text
           picker_view:
           required:
           required_message:
