@@ -519,11 +519,11 @@
 					<p class="editor-eyebrow">Litter and Kitten Editor</p>
 					<h2 class="editor-heading">Edit current litters and their kittens.</h2>
 					<p class="editor-copy">
-						Each litter section contains the litter details first, then the kitten records nested under it. This matches the way your litters file is stored.
+						Each litter section contains the litter details first, then the kitten records nested under it.
 					</p>
 				</div>
 
-				<div class="litters-stack">
+				<div class="litters-stack" id="littersStack">
 
 					<article class="litter-card">
 						<div class="litter-topbar">
@@ -531,39 +531,39 @@
 
 							<div class="action-row">
 								<button type="button" class="button soft">Duplicate Litter</button>
-								<button type="button" class="button">Delete Litter</button>
+								<button type="button" class="button js-delete-litter">Delete Litter</button>
 							</div>
 						</div>
 
 						<div class="form-grid">
 							<div class="field">
-								<label class="label" for="litter-1-id">Litter ID</label>
-								<input class="input" id="litter-1-id" name="litters[0][id]" type="text" value="litter-001" />
+								<label class="label">Litter ID</label>
+								<input class="input" type="text" value="litter-001" />
 							</div>
 
 							<div class="field">
-								<label class="label" for="litter-1-title">Title</label>
-								<input class="input" id="litter-1-title" name="litters[0][title]" type="text" value="Example Litter" />
+								<label class="label">Title</label>
+								<input class="input" type="text" value="Example Litter" />
 							</div>
 
 							<div class="field">
-								<label class="label" for="litter-1-sire">Sire</label>
-								<input class="input" id="litter-1-sire" name="litters[0][sire]" type="text" value="Simon" />
+								<label class="label">Sire</label>
+								<input class="input" type="text" value="Simon" />
 							</div>
 
 							<div class="field">
-								<label class="label" for="litter-1-dame">Dame</label>
-								<input class="input" id="litter-1-dame" name="litters[0][dame]" type="text" value="Alice" />
+								<label class="label">Dame</label>
+								<input class="input" type="text" value="Alice" />
 							</div>
 
 							<div class="field">
-								<label class="label" for="litter-1-birth-date">Birth Date</label>
-								<input class="input" id="litter-1-birth-date" name="litters[0][birth_date]" type="text" value="2026-04-12T05:00:00.000Z" />
+								<label class="label">Birth Date</label>
+								<input class="input" type="text" value="2026-04-12T05:00:00.000Z" />
 							</div>
 
 							<div class="field">
-								<label class="label" for="litter-1-status">Litter Status</label>
-								<select class="select" id="litter-1-status" name="litters[0][status]">
+								<label class="label">Litter Status</label>
+								<select class="select">
 									<option selected>Available</option>
 									<option>Reserved</option>
 									<option>On Hold</option>
@@ -574,8 +574,8 @@
 							</div>
 
 							<div class="field full">
-								<label class="label" for="litter-1-description">Description</label>
-								<textarea class="textarea" id="litter-1-description" name="litters[0][description]">Example litter description.</textarea>
+								<label class="label">Description</label>
+								<textarea class="textarea">Example litter description.</textarea>
 							</div>
 						</div>
 
@@ -584,7 +584,7 @@
 								<h3 class="kittens-title">Kittens in this litter</h3>
 
 								<div class="action-row">
-									<button type="button" class="button primary">Add Kitten</button>
+									<button type="button" class="button primary js-add-kitten">Add Kitten</button>
 								</div>
 							</div>
 
@@ -596,37 +596,37 @@
 
 										<div class="action-row">
 											<button type="button" class="button soft">Duplicate Kitten</button>
-											<button type="button" class="button">Delete Kitten</button>
+											<button type="button" class="button js-delete-kitten">Delete Kitten</button>
 										</div>
 									</div>
 
 									<div class="form-grid">
 										<div class="field">
-											<label class="label" for="kitten-1-id">Kitten ID</label>
-											<input class="input" id="kitten-1-id" name="litters[0][kittens][0][id]" type="text" value="kitten-001" />
+											<label class="label">Kitten ID</label>
+											<input class="input" type="text" value="kitten-001" />
 										</div>
 
 										<div class="field">
-											<label class="label" for="kitten-1-name">Name</label>
-											<input class="input" id="kitten-1-name" name="litters[0][kittens][0][name]" type="text" value="Example Kitten" />
+											<label class="label">Name</label>
+											<input class="input" type="text" value="Example Kitten" />
 										</div>
 
 										<div class="field">
-											<label class="label" for="kitten-1-sex">Sex</label>
-											<select class="select" id="kitten-1-sex" name="litters[0][kittens][0][sex]">
+											<label class="label">Sex</label>
+											<select class="select">
 												<option>Male</option>
 												<option selected>Female</option>
 											</select>
 										</div>
 
 										<div class="field">
-											<label class="label" for="kitten-1-color">Color</label>
-											<input class="input" id="kitten-1-color" name="litters[0][kittens][0][color]" type="text" value="example color" />
+											<label class="label">Color</label>
+											<input class="input" type="text" value="example color" />
 										</div>
 
 										<div class="field">
-											<label class="label" for="kitten-1-status">Availability</label>
-											<select class="select" id="kitten-1-status" name="litters[0][kittens][0][status]">
+											<label class="label">Availability</label>
+											<select class="select">
 												<option selected>Available</option>
 												<option>Reserved</option>
 												<option>On Hold</option>
@@ -637,153 +637,18 @@
 										</div>
 
 										<div class="field">
-											<label class="label" for="kitten-1-price">Price</label>
-											<input class="input" id="kitten-1-price" name="litters[0][kittens][0][price]" type="number" value="2500" />
+											<label class="label">Price</label>
+											<input class="input" type="number" value="2500" />
 										</div>
 
 										<div class="field full">
-											<label class="label" for="kitten-1-image">Image Path</label>
-											<input class="input" id="kitten-1-image" name="litters[0][kittens][0][image]" type="text" value="/images/kittens/example.jpg" />
+											<label class="label">Image Path</label>
+											<input class="input" type="text" value="/images/kittens/example.jpg" />
 										</div>
 
 										<div class="field full">
-											<label class="label" for="kitten-1-notes">Notes</label>
-											<textarea class="textarea" id="kitten-1-notes" name="litters[0][kittens][0][notes]"></textarea>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</article>
-
-					<article class="litter-card">
-						<div class="litter-topbar">
-							<div class="litter-badge">New / Blank Litter</div>
-
-							<div class="action-row">
-								<button type="button" class="button soft">Duplicate Litter</button>
-								<button type="button" class="button">Delete Litter</button>
-							</div>
-						</div>
-
-						<div class="form-grid">
-							<div class="field">
-								<label class="label" for="litter-2-id">Litter ID</label>
-								<input class="input" id="litter-2-id" name="litters[1][id]" type="text" value="" />
-							</div>
-
-							<div class="field">
-								<label class="label" for="litter-2-title">Title</label>
-								<input class="input" id="litter-2-title" name="litters[1][title]" type="text" value="" />
-							</div>
-
-							<div class="field">
-								<label class="label" for="litter-2-sire">Sire</label>
-								<input class="input" id="litter-2-sire" name="litters[1][sire]" type="text" value="" />
-							</div>
-
-							<div class="field">
-								<label class="label" for="litter-2-dame">Dame</label>
-								<input class="input" id="litter-2-dame" name="litters[1][dame]" type="text" value="" />
-							</div>
-
-							<div class="field">
-								<label class="label" for="litter-2-birth-date">Birth Date</label>
-								<input class="input" id="litter-2-birth-date" name="litters[1][birth_date]" type="text" value="" />
-							</div>
-
-							<div class="field">
-								<label class="label" for="litter-2-status">Litter Status</label>
-								<select class="select" id="litter-2-status" name="litters[1][status]">
-									<option value="" selected>Select status</option>
-									<option>Available</option>
-									<option>Reserved</option>
-									<option>On Hold</option>
-									<option>Under Review</option>
-									<option>Sold</option>
-									<option>Retained</option>
-								</select>
-							</div>
-
-							<div class="field full">
-								<label class="label" for="litter-2-description">Description</label>
-								<textarea class="textarea" id="litter-2-description" name="litters[1][description]"></textarea>
-							</div>
-						</div>
-
-						<div class="kittens-wrap">
-							<div class="kittens-header">
-								<h3 class="kittens-title">Kittens in this litter</h3>
-
-								<div class="action-row">
-									<button type="button" class="button primary">Add Kitten</button>
-								</div>
-							</div>
-
-							<div class="kittens-list">
-
-								<div class="kitten-card">
-									<div class="kitten-title-row">
-										<h4 class="kitten-title">Blank Kitten</h4>
-
-										<div class="action-row">
-											<button type="button" class="button soft">Duplicate Kitten</button>
-											<button type="button" class="button">Delete Kitten</button>
-										</div>
-									</div>
-
-									<div class="form-grid">
-										<div class="field">
-											<label class="label" for="kitten-2-id">Kitten ID</label>
-											<input class="input" id="kitten-2-id" name="litters[1][kittens][0][id]" type="text" value="" />
-										</div>
-
-										<div class="field">
-											<label class="label" for="kitten-2-name">Name</label>
-											<input class="input" id="kitten-2-name" name="litters[1][kittens][0][name]" type="text" value="" />
-										</div>
-
-										<div class="field">
-											<label class="label" for="kitten-2-sex">Sex</label>
-											<select class="select" id="kitten-2-sex" name="litters[1][kittens][0][sex]">
-												<option value="" selected>Select sex</option>
-												<option>Male</option>
-												<option>Female</option>
-											</select>
-										</div>
-
-										<div class="field">
-											<label class="label" for="kitten-2-color">Color</label>
-											<input class="input" id="kitten-2-color" name="litters[1][kittens][0][color]" type="text" value="" />
-										</div>
-
-										<div class="field">
-											<label class="label" for="kitten-2-status">Availability</label>
-											<select class="select" id="kitten-2-status" name="litters[1][kittens][0][status]">
-												<option value="" selected>Select status</option>
-												<option>Available</option>
-												<option>Reserved</option>
-												<option>On Hold</option>
-												<option>Under Review</option>
-												<option>Sold</option>
-												<option>Retained</option>
-											</select>
-										</div>
-
-										<div class="field">
-											<label class="label" for="kitten-2-price">Price</label>
-											<input class="input" id="kitten-2-price" name="litters[1][kittens][0][price]" type="number" value="0" />
-										</div>
-
-										<div class="field full">
-											<label class="label" for="kitten-2-image">Image Path</label>
-											<input class="input" id="kitten-2-image" name="litters[1][kittens][0][image]" type="text" value="" />
-										</div>
-
-										<div class="field full">
-											<label class="label" for="kitten-2-notes">Notes</label>
-											<textarea class="textarea" id="kitten-2-notes" name="litters[1][kittens][0][notes]"></textarea>
+											<label class="label">Notes</label>
+											<textarea class="textarea"></textarea>
 										</div>
 									</div>
 								</div>
@@ -795,7 +660,7 @@
 				</div>
 
 				<div class="bottom-actions">
-					<button type="button" class="button primary">Add New Litter</button>
+					<button type="button" class="button primary" id="addLitterBtn">Add New Litter</button>
 					<button type="button" class="button soft">Save Changes</button>
 				</div>
 			</section>
@@ -803,5 +668,210 @@
 			<div class="footer-space"></div>
 		</main>
 	</div>
+
+	<template id="kittenTemplate">
+		<div class="kitten-card">
+			<div class="kitten-title-row">
+				<h4 class="kitten-title">Kitten</h4>
+
+				<div class="action-row">
+					<button type="button" class="button soft">Duplicate Kitten</button>
+					<button type="button" class="button js-delete-kitten">Delete Kitten</button>
+				</div>
+			</div>
+
+			<div class="form-grid">
+				<div class="field">
+					<label class="label">Kitten ID</label>
+					<input class="input" type="text" value="" />
+				</div>
+
+				<div class="field">
+					<label class="label">Name</label>
+					<input class="input" type="text" value="" />
+				</div>
+
+				<div class="field">
+					<label class="label">Sex</label>
+					<select class="select">
+						<option value="" selected>Select sex</option>
+						<option>Male</option>
+						<option>Female</option>
+					</select>
+				</div>
+
+				<div class="field">
+					<label class="label">Color</label>
+					<input class="input" type="text" value="" />
+				</div>
+
+				<div class="field">
+					<label class="label">Availability</label>
+					<select class="select">
+						<option value="" selected>Select status</option>
+						<option>Available</option>
+						<option>Reserved</option>
+						<option>On Hold</option>
+						<option>Under Review</option>
+						<option>Sold</option>
+						<option>Retained</option>
+					</select>
+				</div>
+
+				<div class="field">
+					<label class="label">Price</label>
+					<input class="input" type="number" value="0" />
+				</div>
+
+				<div class="field full">
+					<label class="label">Image Path</label>
+					<input class="input" type="text" value="" />
+				</div>
+
+				<div class="field full">
+					<label class="label">Notes</label>
+					<textarea class="textarea"></textarea>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<template id="litterTemplate">
+		<article class="litter-card">
+			<div class="litter-topbar">
+				<div class="litter-badge">Litter</div>
+
+				<div class="action-row">
+					<button type="button" class="button soft">Duplicate Litter</button>
+					<button type="button" class="button js-delete-litter">Delete Litter</button>
+				</div>
+			</div>
+
+			<div class="form-grid">
+				<div class="field">
+					<label class="label">Litter ID</label>
+					<input class="input" type="text" value="" />
+				</div>
+
+				<div class="field">
+					<label class="label">Title</label>
+					<input class="input" type="text" value="" />
+				</div>
+
+				<div class="field">
+					<label class="label">Sire</label>
+					<input class="input" type="text" value="" />
+				</div>
+
+				<div class="field">
+					<label class="label">Dame</label>
+					<input class="input" type="text" value="" />
+				</div>
+
+				<div class="field">
+					<label class="label">Birth Date</label>
+					<input class="input" type="text" value="" />
+				</div>
+
+				<div class="field">
+					<label class="label">Litter Status</label>
+					<select class="select">
+						<option value="" selected>Select status</option>
+						<option>Available</option>
+						<option>Reserved</option>
+						<option>On Hold</option>
+						<option>Under Review</option>
+						<option>Sold</option>
+						<option>Retained</option>
+					</select>
+				</div>
+
+				<div class="field full">
+					<label class="label">Description</label>
+					<textarea class="textarea"></textarea>
+				</div>
+			</div>
+
+			<div class="kittens-wrap">
+				<div class="kittens-header">
+					<h3 class="kittens-title">Kittens in this litter</h3>
+
+					<div class="action-row">
+						<button type="button" class="button primary js-add-kitten">Add Kitten</button>
+					</div>
+				</div>
+
+				<div class="kittens-list"></div>
+			</div>
+		</article>
+	</template>
+
+	<script>
+		function updateLitterLabels() {
+			const litters = document.querySelectorAll(".litter-card");
+			litters.forEach((litter, index) => {
+				const badge = litter.querySelector(".litter-badge");
+				if (badge) {
+					badge.textContent = `Litter ${index + 1}`;
+				}
+				updateKittenLabels(litter);
+			});
+		}
+
+		function updateKittenLabels(litterCard) {
+			const kittens = litterCard.querySelectorAll(".kitten-card");
+			kittens.forEach((kitten, index) => {
+				const title = kitten.querySelector(".kitten-title");
+				if (title) {
+					title.textContent = `Kitten ${index + 1}`;
+				}
+			});
+		}
+
+		document.addEventListener("click", function (event) {
+			if (event.target.classList.contains("js-delete-kitten")) {
+				const kittenCard = event.target.closest(".kitten-card");
+				if (!kittenCard) return;
+
+				const litterCard = event.target.closest(".litter-card");
+				kittenCard.remove();
+
+				if (litterCard) {
+					updateKittenLabels(litterCard);
+				}
+			}
+
+			if (event.target.classList.contains("js-delete-litter")) {
+				const litterCard = event.target.closest(".litter-card");
+				if (!litterCard) return;
+
+				litterCard.remove();
+				updateLitterLabels();
+			}
+
+			if (event.target.classList.contains("js-add-kitten")) {
+				const litterCard = event.target.closest(".litter-card");
+				if (!litterCard) return;
+
+				const kittensList = litterCard.querySelector(".kittens-list");
+				const template = document.getElementById("kittenTemplate");
+				const kittenNode = template.content.firstElementChild.cloneNode(true);
+
+				kittensList.appendChild(kittenNode);
+				updateKittenLabels(litterCard);
+			}
+		});
+
+		document.getElementById("addLitterBtn").addEventListener("click", function () {
+			const littersStack = document.getElementById("littersStack");
+			const template = document.getElementById("litterTemplate");
+			const litterNode = template.content.firstElementChild.cloneNode(true);
+
+			littersStack.appendChild(litterNode);
+			updateLitterLabels();
+		});
+
+		updateLitterLabels();
+	</script>
 </body>
 </html>
