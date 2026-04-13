@@ -20,6 +20,27 @@
           "notes": null
         }
       ]
+    },
+    {
+      "id": "",
+      "title": "",
+      "sire": null,
+      "dame": null,
+      "birth_date": "",
+      "status": "",
+      "description": "",
+      "kittens": [
+        {
+          "id": "",
+          "name": "",
+          "sex": "",
+          "color": "",
+          "status": "",
+          "price": 0,
+          "image": "",
+          "notes": null
+        }
+      ]
     }
   ]
 }
