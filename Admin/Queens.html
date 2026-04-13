@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Admin Kittens | Mystique Mainecoons</title>
+	<title>Admin | Queens | Mystique Mainecoons</title>
 
 	<style>
 		:root {
@@ -78,6 +78,54 @@
 			min-height: 100vh;
 		}
 
+		/* HEADER NAV */
+		.topbar {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 0;
+			z-index: 10;
+			pointer-events: none;
+		}
+
+		.nav {
+			position: absolute;
+			top: calc(min(32px, calc(32 / var(--design-width) * 100vw)) * var(--bias));
+			left: min(64px, calc(64 / var(--design-width) * 100vw));
+			display: flex;
+			gap: min(54px, calc(54 / var(--design-width) * 100vw));
+			font-size: calc(min(23px, calc(23 / var(--design-width) * 100vw)) * var(--bias));
+			font-weight: 600;
+			pointer-events: auto;
+			flex-wrap: wrap;
+			max-width: calc(100% - min(128px, calc(128 / var(--design-width) * 100vw)));
+		}
+
+		.nav a {
+			position: relative;
+			padding-bottom: calc(min(6px, calc(6 / var(--design-width) * 100vw)) * var(--bias));
+		}
+
+		.nav a:hover {
+			color: var(--accent);
+		}
+
+		.nav a.current-page {
+			color: var(--accent);
+		}
+
+		.nav a.current-page::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: calc(min(3px, calc(3 / var(--design-width) * 100vw)) * var(--bias));
+			background: var(--accent);
+			border-radius: 999px;
+		}
+
 		/* HEADER IMAGE */
 		.header-image {
 			position: relative;
@@ -138,7 +186,7 @@
 				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias))
 				0
 				0;
-			max-width: min(430px, calc(430 / var(--design-width) * 100vw));
+			max-width: min(440px, calc(440 / var(--design-width) * 100vw));
 			font-size: calc(min(19px, calc(19 / var(--design-width) * 100vw)) * var(--textbias));
 			line-height: 1.6;
 			color: var(--text-soft);
@@ -201,6 +249,10 @@
 				min(80px, calc(80 / var(--design-width) * 100vw));
 			min-height: calc(min(500px, calc(500 / var(--design-width) * 100vw)) * var(--bias));
 		}
+
+		.footer-space {
+			height: calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--bias));
+		}
 	</style>
 </head>
 
@@ -208,13 +260,24 @@
 	<div class="viewport">
 		<main class="page">
 
+			<header class="topbar">
+				<nav class="nav">
+					<a href="/">Home</a>
+					<a href="/Available-Kittens">Available Kittens</a>
+					<a href="/Queens">Queens</a>
+					<a href="/Kings">Kings</a>
+					<a href="/News">News</a>
+					<a href="/Admin" class="current-page">Admin</a>
+				</nav>
+			</header>
+
 			<section class="header-image">
-				<img src="https://placehold.co/1600x900/e2d7c2/3a291d?text=Admin+Kittens+Header+Image" alt="Admin Kittens Header Image" />
+				<img src="https://placehold.co/1600x900/e2d7c2/3a291d?text=Queens+Admin+Header" alt="Queens Admin Header" />
 
 				<div class="header-content">
-					<h1 class="header-title">Admin<br />Kittens</h1>
+					<h1 class="header-title">Queens<br>Admin</h1>
 					<p class="header-subtitle">
-						Manage kitten records, litter placement, availability details, and public listing content.
+						Manage queen profiles and related content from this section.
 					</p>
 				</div>
 			</section>
@@ -223,8 +286,8 @@
 				<p class="admin-subnav-label">Admin Sections</p>
 				<nav class="admin-subnav">
 					<a href="/Admin" class="admin-subnav-link">Overview</a>
-					<a href="/Admin/Kittens" class="admin-subnav-link current-admin-page">Kittens</a>
-					<a href="/Admin/Queens" class="admin-subnav-link">Queens</a>
+					<a href="/Admin/Kittens" class="admin-subnav-link">Kittens</a>
+					<a href="/Admin/Queens" class="admin-subnav-link current-admin-page">Queens</a>
 					<a href="/Admin/Kings" class="admin-subnav-link">Kings</a>
 					<a href="/Admin/News" class="admin-subnav-link">News</a>
 				</nav>
@@ -232,6 +295,8 @@
 
 			<section class="section">
 			</section>
+
+			<div class="footer-space"></div>
 
 		</main>
 	</div>
