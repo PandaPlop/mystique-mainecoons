@@ -1,67 +1,304 @@
-<div data-cms-bind="Data/litters.json">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Admin | Kittens | Mystique Mainecoons</title>
 
-	<div data-cms-repeat="litters">
+	<style>
+		:root {
+			--design-width: 1200;
+			--phone-width: 375px;
+			--desktop-width: 1200px;
 
-		<div class="litter-card">
+			--t: clamp(
+				0,
+				calc((100vw - var(--phone-width)) / (var(--desktop-width) - var(--phone-width))),
+				1
+			);
 
-			<input class="input" type="text" data-cms-field="id" placeholder="Litter ID" />
+			--bias: calc(1.7 - (1.1 * var(--t)));
+			--textbias: calc(1.1 - (0.4 * var(--t)));
+			--imagebias: calc(1.2 - (0.3 * var(--t)));
 
-			<input class="input" type="text" data-cms-field="title" placeholder="Title" />
+			--bg: rgb(248, 236, 229);
+			--bg-soft: rgb(240, 229, 220);
+			--panel: rgb(248, 236, 229);
+			--text: rgb(39, 23, 18);
+			--text-soft: rgb(66, 49, 41);
+			--accent: rgb(109, 31, 33);
+			--accent-dark: rgb(86, 22, 23);
+			--line: rgb(221, 211, 194);
 
-			<input class="input" type="text" data-cms-field="sire" placeholder="Sire" />
+			--shadow: 0 min(10px, calc(10 / var(--design-width) * 100vw))
+				min(30px, calc(30 / var(--design-width) * 100vw))
+				rgba(36, 23, 18, 0.08);
 
-			<input class="input" type="text" data-cms-field="dame" placeholder="Dame" />
+			--serif: Georgia, "Times New Roman", serif;
+			--sans: Arial, Helvetica, sans-serif;
+		}
 
-			<input class="input" type="text" data-cms-field="birth_date" placeholder="Birth Date" />
+		* {
+			box-sizing: border-box;
+		}
 
-			<select class="select" data-cms-field="status">
-				<option>Available</option>
-				<option>Reserved</option>
-				<option>On Hold</option>
-				<option>Under Review</option>
-				<option>Sold</option>
-				<option>Retained</option>
-			</select>
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			background: var(--panel);
+			overflow-x: hidden;
+			font-family: var(--sans);
+			color: var(--text);
+		}
 
-			<textarea class="textarea" data-cms-field="description"></textarea>
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
 
-			<!-- KITTENS -->
-			<div data-cms-repeat="kittens">
+		img {
+			display: block;
+			max-width: 100%;
+		}
 
-				<div class="kitten-card">
+		.viewport {
+			width: 100%;
+			min-height: 100vh;
+			background: var(--panel);
+		}
 
-					<input class="input" type="text" data-cms-field="id" placeholder="Kitten ID" />
+		.page {
+			width: min(100vw, 1200px);
+			margin: 0 auto;
+			background: var(--panel);
+			box-shadow: var(--shadow);
+			overflow: hidden;
+			position: relative;
+			min-height: 100vh;
+		}
 
-					<input class="input" type="text" data-cms-field="name" placeholder="Name" />
+		/* HEADER NAV */
+		.topbar {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 0;
+			z-index: 10;
+			pointer-events: none;
+		}
 
-					<select class="select" data-cms-field="sex">
-						<option>Male</option>
-						<option>Female</option>
-					</select>
+		.nav {
+			position: absolute;
+			top: calc(min(32px, calc(32 / var(--design-width) * 100vw)) * var(--bias));
+			left: min(64px, calc(64 / var(--design-width) * 100vw));
+			display: flex;
+			gap: min(54px, calc(54 / var(--design-width) * 100vw));
+			font-size: calc(min(23px, calc(23 / var(--design-width) * 100vw)) * var(--bias));
+			font-weight: 600;
+			pointer-events: auto;
+			flex-wrap: wrap;
+			max-width: calc(100% - min(128px, calc(128 / var(--design-width) * 100vw)));
+		}
 
-					<input class="input" type="text" data-cms-field="color" placeholder="Color" />
+		.nav a {
+			position: relative;
+			padding-bottom: calc(min(6px, calc(6 / var(--design-width) * 100vw)) * var(--bias));
+		}
 
-					<select class="select" data-cms-field="status">
-						<option>Available</option>
-						<option>Reserved</option>
-						<option>On Hold</option>
-						<option>Under Review</option>
-						<option>Sold</option>
-						<option>Retained</option>
-					</select>
+		.nav a:hover {
+			color: var(--accent);
+		}
 
-					<input class="input" type="number" data-cms-field="price" />
+		.nav a.current-page {
+			color: var(--accent);
+		}
 
-					<input class="input" type="text" data-cms-field="image" />
+		.nav a.current-page::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: calc(min(3px, calc(3 / var(--design-width) * 100vw)) * var(--bias));
+			background: var(--accent);
+			border-radius: 999px;
+		}
 
-					<textarea class="textarea" data-cms-field="notes"></textarea>
+		/* HEADER IMAGE */
+		.header-image {
+			position: relative;
+			height: calc(min(500px, calc(500 / var(--design-width) * 100vw)) * var(--imagebias));
+			overflow: hidden;
+		}
 
+		.header-image img {
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: 100%;
+			width: auto;
+			max-width: none;
+			z-index: 1;
+		}
+
+		.header-image::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: 2;
+			pointer-events: none;
+
+			--left-fade: calc(55% * var(--imagebias));
+			--top-fade: calc(12% * var(--imagebias));
+
+			background:
+				linear-gradient(to right, var(--bg) 0%, rgba(248,236,229,0) var(--left-fade)),
+				linear-gradient(to bottom, var(--bg) 0%, rgba(248,236,229,0) var(--top-fade));
+		}
+
+		/* TITLE OVER IMAGE */
+		.header-content {
+			position: absolute;
+			z-index: 3;
+			top: 0;
+			left: 0;
+			width: min(580px, calc(580 / var(--design-width) * 100vw));
+			padding:
+				calc(min(88px, calc(88 / var(--design-width) * 100vw)) * var(--imagebias))
+				0
+				0
+				min(80px, calc(80 / var(--design-width) * 100vw));
+		}
+
+		.header-title {
+			margin: 0;
+			font-family: var(--serif);
+			font-size: calc(min(90px, calc(90 / var(--design-width) * 100vw)) * var(--imagebias));
+			line-height: 1.05;
+			font-weight: 700;
+			color: rgb(37, 24, 19);
+		}
+
+		.header-subtitle {
+			margin:
+				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias))
+				0
+				0;
+			max-width: min(440px, calc(440 / var(--design-width) * 100vw));
+			font-size: calc(min(19px, calc(19 / var(--design-width) * 100vw)) * var(--textbias));
+			line-height: 1.6;
+			color: var(--text-soft);
+		}
+
+		/* ADMIN SUB NAV */
+		.admin-subnav-wrap {
+			padding:
+				calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias))
+				min(80px, calc(80 / var(--design-width) * 100vw))
+				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
+			background: var(--panel);
+			border-bottom: 1px solid var(--line);
+		}
+
+		.admin-subnav-label {
+			margin: 0 0 calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
+			font-size: calc(min(13px, calc(13 / var(--design-width) * 100vw)) * var(--textbias));
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: var(--text-soft);
+		}
+
+		.admin-subnav {
+			display: flex;
+			flex-wrap: wrap;
+			gap: calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
+		}
+
+		.admin-subnav-link {
+			padding:
+				calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias))
+				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
+			border: 1px solid var(--line);
+			border-radius: 999px;
+			background: var(--bg-soft);
+			font-size: calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--textbias));
+			font-weight: 600;
+			color: var(--text-soft);
+			transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+		}
+
+		.admin-subnav-link:hover {
+			background: rgb(236, 221, 212);
+			color: var(--accent);
+			border-color: rgb(195, 164, 150);
+		}
+
+		.admin-subnav-link.current-admin-page {
+			background: var(--accent);
+			color: rgb(255, 245, 240);
+			border-color: var(--accent);
+		}
+
+		/* BLANK CONTENT AREA */
+		.section {
+			padding:
+				calc(min(80px, calc(80 / var(--design-width) * 100vw)) * var(--bias))
+				min(80px, calc(80 / var(--design-width) * 100vw));
+			min-height: calc(min(500px, calc(500 / var(--design-width) * 100vw)) * var(--bias));
+		}
+
+		.footer-space {
+			height: calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--bias));
+		}
+	</style>
+</head>
+
+<body>
+	<div class="viewport">
+		<main class="page">
+
+			<header class="topbar">
+				<nav class="nav">
+					<a href="/">Home</a>
+					<a href="/Available-Kittens">Available Kittens</a>
+					<a href="/Queens">Queens</a>
+					<a href="/Kings">Kings</a>
+					<a href="/News">News</a>
+					<a href="/Admin" class="current-page">Admin</a>
+				</nav>
+			</header>
+
+			<section class="header-image">
+				<img src="https://placehold.co/1600x900/e2d7c2/3a291d?text=Kittens+Admin+Header" alt="Kittens Admin Header" />
+
+				<div class="header-content">
+					<h1 class="header-title">Kittens<br>Admin</h1>
+					<p class="header-subtitle">
+						Manage kitten and litter content from this section.
+					</p>
 				</div>
+			</section>
 
-			</div>
+			<section class="admin-subnav-wrap">
+				<p class="admin-subnav-label">Admin Sections</p>
+				<nav class="admin-subnav">
+					<a href="/Admin" class="admin-subnav-link">Overview</a>
+					<a href="/Admin/Kittens" class="admin-subnav-link current-admin-page">Kittens</a>
+					<a href="/Admin/Queens" class="admin-subnav-link">Queens</a>
+					<a href="/Admin/Kings" class="admin-subnav-link">Kings</a>
+					<a href="/Admin/News" class="admin-subnav-link">News</a>
+				</nav>
+			</section>
 
-		</div>
+			<section class="section">
+			</section>
 
+			<div class="footer-space"></div>
+
+		</main>
 	</div>
-
-</div>
+</body>
+</html>
