@@ -544,7 +544,7 @@
 							<h2 class="litter-admin-title">Edit Litters</h2>
 							<p class="litter-admin-copy">
 								Load, edit, add, remove, and save all litter and kitten data from
-								<code>Data/litters.json</code>.
+								<code>api/litters.json</code>.
 							</p>
 						</div>
 
@@ -919,7 +919,7 @@
 					throw new Error(message || "Save failed.");
 				}
 
-				setStatus("Changes saved to Data/litters.json.");
+				setStatus("Changes saved to api/litters.json.");
 			} catch (error) {
 				console.error(error);
 				setStatus("Save failed. Use Download JSON if the save script is not running.", true);
