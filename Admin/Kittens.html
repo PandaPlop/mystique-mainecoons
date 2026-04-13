@@ -1,1047 +1,441 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Admin | Kittens | Mystique Mainecoons</title>
-
-	<style>
-		:root {
-			--design-width: 1200;
-			--phone-width: 375px;
-			--desktop-width: 1200px;
-
-			--t: clamp(
-				0,
-				calc((100vw - var(--phone-width)) / (var(--desktop-width) - var(--phone-width))),
-				1
-			);
-
-			--bias: calc(1.7 - (1.1 * var(--t)));
-			--textbias: calc(1.1 - (0.4 * var(--t)));
-			--imagebias: calc(1.2 - (0.3 * var(--t)));
-
-			--bg: rgb(248, 236, 229);
-			--bg-soft: rgb(240, 229, 220);
-			--panel: rgb(248, 236, 229);
-			--text: rgb(39, 23, 18);
-			--text-soft: rgb(66, 49, 41);
-			--accent: rgb(109, 31, 33);
-			--accent-dark: rgb(86, 22, 23);
-			--line: rgb(221, 211, 194);
-
-			--shadow: 0 min(10px, calc(10 / var(--design-width) * 100vw))
-				min(30px, calc(30 / var(--design-width) * 100vw))
-				rgba(36, 23, 18, 0.08);
-
-			--serif: Georgia, "Times New Roman", serif;
-			--sans: Arial, Helvetica, sans-serif;
-		}
-
-		* {
-			box-sizing: border-box;
-		}
-
-		html,
-		body {
-			margin: 0;
-			padding: 0;
-			background: var(--panel);
-			overflow-x: hidden;
-			font-family: var(--sans);
-			color: var(--text);
-		}
-
-		a {
-			text-decoration: none;
-			color: inherit;
-		}
-
-		img {
-			display: block;
-			max-width: 100%;
-		}
-
-		button,
-		input,
-		select,
-		textarea {
-			font: inherit;
-		}
-
-		.viewport {
-			width: 100%;
-			min-height: 100vh;
-			background: var(--panel);
-		}
-
-		.page {
-			width: min(100vw, 1200px);
-			margin: 0 auto;
-			background: var(--panel);
-			box-shadow: var(--shadow);
-			overflow: hidden;
-			position: relative;
-			min-height: 100vh;
-		}
-
-		/* HEADER NAV */
-		.topbar {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 0;
-			z-index: 10;
-			pointer-events: none;
-		}
-
-		.nav {
-			position: absolute;
-			top: calc(min(32px, calc(32 / var(--design-width) * 100vw)) * var(--bias));
-			left: min(64px, calc(64 / var(--design-width) * 100vw));
-			display: flex;
-			gap: min(54px, calc(54 / var(--design-width) * 100vw));
-			font-size: calc(min(23px, calc(23 / var(--design-width) * 100vw)) * var(--bias));
-			font-weight: 600;
-			pointer-events: auto;
-			flex-wrap: wrap;
-			max-width: calc(100% - min(128px, calc(128 / var(--design-width) * 100vw)));
-		}
-
-		.nav a {
-			position: relative;
-			padding-bottom: calc(min(6px, calc(6 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.nav a:hover {
-			color: var(--accent);
-		}
-
-		.nav a.current-page {
-			color: var(--accent);
-		}
-
-		.nav a.current-page::after {
-			content: "";
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			width: 100%;
-			height: calc(min(3px, calc(3 / var(--design-width) * 100vw)) * var(--bias));
-			background: var(--accent);
-			border-radius: 999px;
-		}
-
-		/* HEADER IMAGE */
-		.header-image {
-			position: relative;
-			height: calc(min(500px, calc(500 / var(--design-width) * 100vw)) * var(--imagebias));
-			overflow: hidden;
-		}
-
-		.header-image img {
-			position: absolute;
-			top: 0;
-			right: 0;
-			height: 100%;
-			width: auto;
-			max-width: none;
-			z-index: 1;
-		}
-
-		.header-image::after {
-			content: "";
-			position: absolute;
-			inset: 0;
-			z-index: 2;
-			pointer-events: none;
-
-			--left-fade: calc(55% * var(--imagebias));
-			--top-fade: calc(12% * var(--imagebias));
-
-			background:
-				linear-gradient(to right, var(--bg) 0%, rgba(248,236,229,0) var(--left-fade)),
-				linear-gradient(to bottom, var(--bg) 0%, rgba(248,236,229,0) var(--top-fade));
-		}
-
-		/* TITLE OVER IMAGE */
-		.header-content {
-			position: absolute;
-			z-index: 3;
-			top: 0;
-			left: 0;
-			width: min(580px, calc(580 / var(--design-width) * 100vw));
-			padding:
-				calc(min(88px, calc(88 / var(--design-width) * 100vw)) * var(--imagebias))
-				0
-				0
-				min(80px, calc(80 / var(--design-width) * 100vw));
-		}
-
-		.header-title {
-			margin: 0;
-			font-family: var(--serif);
-			font-size: calc(min(90px, calc(90 / var(--design-width) * 100vw)) * var(--imagebias));
-			line-height: 1.05;
-			font-weight: 700;
-			color: rgb(37, 24, 19);
-		}
-
-		.header-subtitle {
-			margin:
-				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias))
-				0
-				0;
-			max-width: min(440px, calc(440 / var(--design-width) * 100vw));
-			font-size: calc(min(19px, calc(19 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 1.6;
-			color: var(--text-soft);
-		}
-
-		/* ADMIN SUB NAV */
-		.admin-subnav-wrap {
-			padding:
-				calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias))
-				min(80px, calc(80 / var(--design-width) * 100vw))
-				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
-			background: var(--panel);
-			border-bottom: 1px solid var(--line);
-		}
-
-		.admin-subnav-label {
-			margin: 0 0 calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
-			font-size: calc(min(13px, calc(13 / var(--design-width) * 100vw)) * var(--textbias));
-			font-weight: 700;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-			color: var(--text-soft);
-		}
-
-		.admin-subnav {
-			display: flex;
-			flex-wrap: wrap;
-			gap: calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.admin-subnav-link {
-			padding:
-				calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias))
-				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
-			border: 1px solid var(--line);
-			border-radius: 999px;
-			background: var(--bg-soft);
-			font-size: calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--textbias));
-			font-weight: 600;
-			color: var(--text-soft);
-			transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-		}
-
-		.admin-subnav-link:hover {
-			background: rgb(236, 221, 212);
-			color: var(--accent);
-			border-color: rgb(195, 164, 150);
-		}
-
-		.admin-subnav-link.current-admin-page {
-			background: var(--accent);
-			color: rgb(255, 245, 240);
-			border-color: var(--accent);
-		}
-
-		/* CONTENT AREA */
-		.section {
-			padding:
-				calc(min(80px, calc(80 / var(--design-width) * 100vw)) * var(--bias))
-				min(80px, calc(80 / var(--design-width) * 100vw));
-			min-height: calc(min(500px, calc(500 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.footer-space {
-			height: calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		/* LITTER ADMIN */
-		.litter-admin {
-			display: grid;
-			gap: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.litter-admin-top {
-			display: grid;
-			grid-template-columns: minmax(0, 1fr) auto;
-			gap: calc(min(22px, calc(22 / var(--design-width) * 100vw)) * var(--bias));
-			align-items: end;
-		}
-
-		.litter-admin-title {
-			margin: 0;
-			font-family: var(--serif);
-			font-size: calc(min(42px, calc(42 / var(--design-width) * 100vw)) * var(--bias));
-			line-height: 1.1;
-			color: var(--text);
-		}
-
-		.litter-admin-copy {
-			margin: calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias)) 0 0;
-			font-size: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 1.6;
-			color: var(--text-soft);
-		}
-
-		.litter-admin-copy code {
-			background: rgba(255, 255, 255, 0.45);
-			border: 1px solid var(--line);
-			padding: 0.15em 0.45em;
-			border-radius: 0.5em;
-			font-size: 0.95em;
-		}
-
-		.litter-admin-actions {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: flex-end;
-			gap: calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.admin-btn {
-			border: 1px solid var(--line);
-			background: var(--bg-soft);
-			color: var(--text);
-			border-radius: 999px;
-			cursor: pointer;
-			font-family: var(--sans);
-			font-weight: 700;
-			font-size: calc(min(15px, calc(15 / var(--design-width) * 100vw)) * var(--textbias));
-			padding:
-				calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias))
-				calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
-			transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-		}
-
-		.admin-btn:hover {
-			border-color: rgb(195, 164, 150);
-			color: var(--accent);
-		}
-
-		.admin-btn-primary {
-			background: var(--accent);
-			border-color: var(--accent);
-			color: rgb(255, 245, 240);
-		}
-
-		.admin-btn-primary:hover {
-			background: var(--accent-dark);
-			border-color: var(--accent-dark);
-			color: rgb(255, 245, 240);
-		}
-
-		.danger-btn {
-			background: rgb(248, 228, 224);
-			border-color: rgb(220, 176, 168);
-			color: rgb(125, 34, 33);
-		}
-
-		.danger-btn:hover {
-			background: rgb(241, 214, 208);
-			border-color: rgb(206, 152, 141);
-			color: rgb(109, 31, 33);
-		}
-
-		.litters-status {
-			min-height: calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--bias));
-			font-size: calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--textbias));
-			font-weight: 600;
-			color: var(--text-soft);
-		}
-
-		.litters-editor {
-			display: grid;
-			gap: calc(min(26px, calc(26 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.litter-card,
-		.kitten-card {
-			background: var(--bg-soft);
-			border: 1px solid var(--line);
-			border-radius: calc(min(24px, calc(24 / var(--design-width) * 100vw)) * var(--bias));
-			padding:
-				calc(min(24px, calc(24 / var(--design-width) * 100vw)) * var(--bias))
-				calc(min(24px, calc(24 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.litter-card {
-			display: grid;
-			gap: calc(min(20px, calc(20 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.litter-card-top,
-		.kitten-card-top {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			gap: calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
-			flex-wrap: wrap;
-		}
-
-		.litter-card-title,
-		.kitten-card-title,
-		.kittens-block-title {
-			margin: 0;
-			font-family: var(--serif);
-			font-weight: 700;
-			color: var(--text);
-		}
-
-		.litter-card-title {
-			font-size: calc(min(30px, calc(30 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.kitten-card-title,
-		.kittens-block-title {
-			font-size: calc(min(22px, calc(22 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.form-grid {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.form-row-full {
-			grid-column: 1 / -1;
-		}
-
-		.field {
-			display: grid;
-			gap: calc(min(8px, calc(8 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.field label {
-			font-size: calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--textbias));
-			font-weight: 700;
-			letter-spacing: 0.03em;
-			color: var(--text-soft);
-			text-transform: uppercase;
-		}
-
-		.field input,
-		.field select,
-		.field textarea {
-			width: 100%;
-			border: 1px solid var(--line);
-			background: var(--panel);
-			color: var(--text);
-			border-radius: calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
-			font-family: var(--sans);
-			font-size: calc(min(16px, calc(16 / var(--design-width) * 100vw)) * var(--textbias));
-			padding:
-				calc(min(12px, calc(12 / var(--design-width) * 100vw)) * var(--bias))
-				calc(min(14px, calc(14 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.field textarea {
-			min-height: calc(min(120px, calc(120 / var(--design-width) * 100vw)) * var(--bias));
-			resize: vertical;
-		}
-
-		.sub-actions {
-			display: flex;
-			flex-wrap: wrap;
-			gap: calc(min(10px, calc(10 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.kittens-block {
-			display: grid;
-			gap: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
-			padding-top: calc(min(4px, calc(4 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.kittens-list {
-			display: grid;
-			gap: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.empty-card {
-			background: var(--bg-soft);
-			border: 1px solid var(--line);
-			border-radius: calc(min(24px, calc(24 / var(--design-width) * 100vw)) * var(--bias));
-			padding:
-				calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias))
-				calc(min(24px, calc(24 / var(--design-width) * 100vw)) * var(--bias));
-			display: grid;
-			gap: calc(min(18px, calc(18 / var(--design-width) * 100vw)) * var(--bias));
-		}
-
-		.empty-card-title {
-			margin: 0;
-			font-family: var(--serif);
-			font-size: calc(min(28px, calc(28 / var(--design-width) * 100vw)) * var(--bias));
-			color: var(--text);
-		}
-
-		.empty-card-copy {
-			margin: 0;
-			font-size: calc(min(17px, calc(17 / var(--design-width) * 100vw)) * var(--textbias));
-			line-height: 1.6;
-			color: var(--text-soft);
-		}
-
-		@media (max-width: 820px) {
-			.litter-admin-top,
-			.form-grid {
-				grid-template-columns: 1fr;
-			}
-
-			.litter-admin-actions {
-				justify-content: flex-start;
-			}
-		}
-	</style>
-</head>
-
-<body>
-	<div class="viewport">
-		<main class="page">
-
-			<header class="topbar">
-				<nav class="nav">
-					<a href="/">Home</a>
-					<a href="/Available-Kittens">Available Kittens</a>
-					<a href="/Queens">Queens</a>
-					<a href="/Kings">Kings</a>
-					<a href="/News">News</a>
-					<a href="/Admin" class="current-page">Admin</a>
-				</nav>
-			</header>
-
-			<section class="header-image">
-				<img src="https://placehold.co/1600x900/e2d7c2/3a291d?text=Kittens+Admin+Header" alt="Kittens Admin Header" />
-
-				<div class="header-content">
-					<h1 class="header-title">Kittens<br>Admin</h1>
-					<p class="header-subtitle">
-						Manage kitten and litter content from this section.
-					</p>
+<script>
+	const API_BASE = "https://api.mystique-mainecoons.com";
+	const LITTERS_JSON_URL = `${API_BASE}/api/litters`;
+	const LITTERS_SAVE_URL = `${API_BASE}/api/litters`;
+
+	const editorEl = document.getElementById("litters-editor");
+	const statusEl = document.getElementById("litters-status");
+	const loadBtn = document.getElementById("load-litters-btn");
+	const addLitterBtn = document.getElementById("add-litter-btn");
+	const downloadBtn = document.getElementById("download-litters-btn");
+	const saveBtn = document.getElementById("save-litters-btn");
+
+	let littersState = { litters: [] };
+
+	function setStatus(message, isError = false) {
+		statusEl.textContent = message;
+		statusEl.style.color = isError ? "rgb(125, 34, 33)" : "";
+	}
+
+	function safeString(value) {
+		return value == null ? "" : String(value);
+	}
+
+	function safeNumber(value) {
+		const n = Number(value);
+		return Number.isFinite(n) ? n : 0;
+	}
+
+	function createEmptyKitten() {
+		return {
+			id: "",
+			name: "",
+			sex: "",
+			color: "",
+			status: "",
+			price: 0,
+			image: "",
+			notes: ""
+		};
+	}
+
+	function createEmptyLitter() {
+		return {
+			id: "",
+			title: "",
+			sire: "",
+			dame: "",
+			birth_date: "",
+			status: "",
+			description: "",
+			kittens: [createEmptyKitten()]
+		};
+	}
+
+	function escapeHtml(value) {
+		return safeString(value)
+			.replaceAll("&", "&amp;")
+			.replaceAll("<", "&lt;")
+			.replaceAll(">", "&gt;")
+			.replaceAll('"', "&quot;")
+			.replaceAll("'", "&#39;");
+	}
+
+	function toDatetimeLocalValue(isoString) {
+		if (!isoString) return "";
+		const date = new Date(isoString);
+		if (Number.isNaN(date.getTime())) return "";
+
+		const year = date.getFullYear();
+		const month = String(date.getMonth() + 1).padStart(2, "0");
+		const day = String(date.getDate()).padStart(2, "0");
+		const hours = String(date.getHours()).padStart(2, "0");
+		const minutes = String(date.getMinutes()).padStart(2, "0");
+
+		return `${year}-${month}-${day}T${hours}:${minutes}`;
+	}
+
+	function fromDatetimeLocalValue(value) {
+		if (!value) return "";
+		const date = new Date(value);
+		if (Number.isNaN(date.getTime())) return "";
+		return date.toISOString();
+	}
+
+	function normalizeState(data) {
+		return {
+			litters: Array.isArray(data?.litters)
+				? data.litters.map((litter) => ({
+					id: safeString(litter.id),
+					title: safeString(litter.title),
+					sire: safeString(litter.sire),
+					dame: safeString(litter.dame),
+					birth_date: safeString(litter.birth_date),
+					status: safeString(litter.status),
+					description: safeString(litter.description),
+					kittens: Array.isArray(litter.kittens)
+						? litter.kittens.map((kitten) => ({
+							id: safeString(kitten.id),
+							name: safeString(kitten.name),
+							sex: safeString(kitten.sex),
+							color: safeString(kitten.color),
+							status: safeString(kitten.status),
+							price: safeNumber(kitten.price),
+							image: safeString(kitten.image),
+							notes: safeString(kitten.notes)
+						}))
+						: []
+				}))
+				: []
+		};
+	}
+
+	function renderEmptyState() {
+		editorEl.innerHTML = `
+			<div class="empty-card">
+				<h3 class="empty-card-title">No litters yet</h3>
+				<p class="empty-card-copy">
+					Add your first litter to begin building the page data.
+				</p>
+				<div class="sub-actions">
+					<button type="button" class="admin-btn" id="inline-add-first-litter">Add First Litter</button>
 				</div>
-			</section>
+			</div>
+		`;
 
-			<section class="admin-subnav-wrap">
-				<p class="admin-subnav-label">Admin Sections</p>
-				<nav class="admin-subnav">
-					<a href="/Admin" class="admin-subnav-link">Overview</a>
-					<a href="/Admin/Kittens" class="admin-subnav-link current-admin-page">Kittens</a>
-					<a href="/Admin/Queens" class="admin-subnav-link">Queens</a>
-					<a href="/Admin/Kings" class="admin-subnav-link">Kings</a>
-					<a href="/Admin/News" class="admin-subnav-link">News</a>
-				</nav>
-			</section>
+		document.getElementById("inline-add-first-litter").addEventListener("click", () => {
+			littersState.litters.push(createEmptyLitter());
+			renderEditor();
+			setStatus("Added a new litter.");
+		});
+	}
 
-			<section class="section">
-				<div class="litter-admin">
-					<div class="litter-admin-top">
-						<div>
-							<h2 class="litter-admin-title">Edit Litters</h2>
-							<p class="litter-admin-copy">
-								Load, edit, add, remove, and save all litter and kitten data from
-								<code>api/litters.json</code>.
-							</p>
-						</div>
-
-						<div class="litter-admin-actions">
-							<button type="button" class="admin-btn" id="load-litters-btn">Reload</button>
-							<button type="button" class="admin-btn" id="add-litter-btn">Add Litter</button>
-							<button type="button" class="admin-btn" id="download-litters-btn">Download JSON</button>
-							<button type="button" class="admin-btn admin-btn-primary" id="save-litters-btn">Save Changes</button>
-						</div>
-					</div>
-
-					<div id="litters-status" class="litters-status"></div>
-					<div id="litters-editor" class="litters-editor"></div>
-				</div>
-			</section>
-
-			<div class="footer-space"></div>
-
-		</main>
-	</div>
-
-	<script>
-		const LITTERS_JSON_URL = "/api/litters";
-		const LITTERS_SAVE_URL = "/api/litters";
-
-		const editorEl = document.getElementById("litters-editor");
-		const statusEl = document.getElementById("litters-status");
-		const loadBtn = document.getElementById("load-litters-btn");
-		const addLitterBtn = document.getElementById("add-litter-btn");
-		const downloadBtn = document.getElementById("download-litters-btn");
-		const saveBtn = document.getElementById("save-litters-btn");
-
-		let littersState = { litters: [] };
-
-		function setStatus(message, isError = false) {
-			statusEl.textContent = message;
-			statusEl.style.color = isError ? "rgb(125, 34, 33)" : "";
+	function renderEditor() {
+		if (!littersState.litters.length) {
+			renderEmptyState();
+			return;
 		}
 
-		function safeString(value) {
-			return value == null ? "" : String(value);
-		}
-
-		function safeNumber(value) {
-			const n = Number(value);
-			return Number.isFinite(n) ? n : 0;
-		}
-
-		function createEmptyKitten() {
-			return {
-				id: "",
-				name: "",
-				sex: "",
-				color: "",
-				status: "",
-				price: 0,
-				image: "",
-				notes: ""
-			};
-		}
-
-		function createEmptyLitter() {
-			return {
-				id: "",
-				title: "",
-				sire: "",
-				dame: "",
-				birth_date: "",
-				status: "",
-				description: "",
-				kittens: [createEmptyKitten()]
-			};
-		}
-
-		function escapeHtml(value) {
-			return safeString(value)
-				.replaceAll("&", "&amp;")
-				.replaceAll("<", "&lt;")
-				.replaceAll(">", "&gt;")
-				.replaceAll('"', "&quot;")
-				.replaceAll("'", "&#39;");
-		}
-
-		function toDatetimeLocalValue(isoString) {
-			if (!isoString) return "";
-			const date = new Date(isoString);
-			if (Number.isNaN(date.getTime())) return "";
-
-			const year = date.getFullYear();
-			const month = String(date.getMonth() + 1).padStart(2, "0");
-			const day = String(date.getDate()).padStart(2, "0");
-			const hours = String(date.getHours()).padStart(2, "0");
-			const minutes = String(date.getMinutes()).padStart(2, "0");
-
-			return `${year}-${month}-${day}T${hours}:${minutes}`;
-		}
-
-		function fromDatetimeLocalValue(value) {
-			if (!value) return "";
-			const date = new Date(value);
-			if (Number.isNaN(date.getTime())) return "";
-			return date.toISOString();
-		}
-
-		function normalizeState(data) {
-			return {
-				litters: Array.isArray(data?.litters)
-					? data.litters.map((litter) => ({
-						id: safeString(litter.id),
-						title: safeString(litter.title),
-						sire: safeString(litter.sire),
-						dame: safeString(litter.dame),
-						birth_date: safeString(litter.birth_date),
-						status: safeString(litter.status),
-						description: safeString(litter.description),
-						kittens: Array.isArray(litter.kittens)
-							? litter.kittens.map((kitten) => ({
-								id: safeString(kitten.id),
-								name: safeString(kitten.name),
-								sex: safeString(kitten.sex),
-								color: safeString(kitten.color),
-								status: safeString(kitten.status),
-								price: safeNumber(kitten.price),
-								image: safeString(kitten.image),
-								notes: safeString(kitten.notes)
-							}))
-							: []
-					}))
-					: []
-			};
-		}
-
-		function renderEmptyState() {
-			editorEl.innerHTML = `
-				<div class="empty-card">
-					<h3 class="empty-card-title">No litters yet</h3>
-					<p class="empty-card-copy">
-						Add your first litter to begin building the page data.
-					</p>
+		editorEl.innerHTML = littersState.litters.map((litter, litterIndex) => `
+			<div class="litter-card" data-litter-index="${litterIndex}">
+				<div class="litter-card-top">
+					<h3 class="litter-card-title">Litter ${litterIndex + 1}</h3>
 					<div class="sub-actions">
-						<button type="button" class="admin-btn" id="inline-add-first-litter">Add First Litter</button>
+						<button type="button" class="admin-btn add-kitten-btn" data-litter-index="${litterIndex}">Add Kitten</button>
+						<button type="button" class="admin-btn danger-btn delete-litter-btn" data-litter-index="${litterIndex}">Delete Litter</button>
 					</div>
 				</div>
-			`;
 
-			document.getElementById("inline-add-first-litter").addEventListener("click", () => {
-				littersState.litters.push(createEmptyLitter());
-				renderEditor();
-				setStatus("Added a new litter.");
-			});
-		}
-
-		function renderEditor() {
-			if (!littersState.litters.length) {
-				renderEmptyState();
-				return;
-			}
-
-			editorEl.innerHTML = littersState.litters.map((litter, litterIndex) => `
-				<div class="litter-card" data-litter-index="${litterIndex}">
-					<div class="litter-card-top">
-						<h3 class="litter-card-title">Litter ${litterIndex + 1}</h3>
-						<div class="sub-actions">
-							<button type="button" class="admin-btn add-kitten-btn" data-litter-index="${litterIndex}">Add Kitten</button>
-							<button type="button" class="admin-btn danger-btn delete-litter-btn" data-litter-index="${litterIndex}">Delete Litter</button>
-						</div>
+				<div class="form-grid">
+					<div class="field">
+						<label>Litter ID</label>
+						<input type="text" data-field="id" data-litter-index="${litterIndex}" value="${escapeHtml(litter.id)}">
 					</div>
 
-					<div class="form-grid">
-						<div class="field">
-							<label>Litter ID</label>
-							<input type="text" data-field="id" data-litter-index="${litterIndex}" value="${escapeHtml(litter.id)}">
-						</div>
-
-						<div class="field">
-							<label>Title</label>
-							<input type="text" data-field="title" data-litter-index="${litterIndex}" value="${escapeHtml(litter.title)}">
-						</div>
-
-						<div class="field">
-							<label>Sire</label>
-							<input type="text" data-field="sire" data-litter-index="${litterIndex}" value="${escapeHtml(litter.sire)}">
-						</div>
-
-						<div class="field">
-							<label>Dame</label>
-							<input type="text" data-field="dame" data-litter-index="${litterIndex}" value="${escapeHtml(litter.dame)}">
-						</div>
-
-						<div class="field">
-							<label>Birth Date</label>
-							<input type="datetime-local" data-field="birth_date" data-litter-index="${litterIndex}" value="${escapeHtml(toDatetimeLocalValue(litter.birth_date))}">
-						</div>
-
-						<div class="field">
-							<label>Status</label>
-							<input type="text" data-field="status" data-litter-index="${litterIndex}" value="${escapeHtml(litter.status)}">
-						</div>
-
-						<div class="field form-row-full">
-							<label>Description</label>
-							<textarea data-field="description" data-litter-index="${litterIndex}">${escapeHtml(litter.description)}</textarea>
-						</div>
+					<div class="field">
+						<label>Title</label>
+						<input type="text" data-field="title" data-litter-index="${litterIndex}" value="${escapeHtml(litter.title)}">
 					</div>
 
-					<div class="kittens-block">
-						<div class="kitten-card-top">
-							<h4 class="kittens-block-title">Kittens</h4>
-						</div>
+					<div class="field">
+						<label>Sire</label>
+						<input type="text" data-field="sire" data-litter-index="${litterIndex}" value="${escapeHtml(litter.sire)}">
+					</div>
 
-						<div class="kittens-list">
-							${(Array.isArray(litter.kittens) ? litter.kittens : []).map((kitten, kittenIndex) => `
-								<div class="kitten-card" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}">
-									<div class="kitten-card-top">
-										<h4 class="kitten-card-title">Kitten ${kittenIndex + 1}</h4>
-										<div class="sub-actions">
-											<button type="button" class="admin-btn danger-btn delete-kitten-btn" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}">Delete Kitten</button>
-										</div>
-									</div>
+					<div class="field">
+						<label>Dame</label>
+						<input type="text" data-field="dame" data-litter-index="${litterIndex}" value="${escapeHtml(litter.dame)}">
+					</div>
 
-									<div class="form-grid">
-										<div class="field">
-											<label>Kitten ID</label>
-											<input type="text" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="id" value="${escapeHtml(kitten.id)}">
-										</div>
+					<div class="field">
+						<label>Birth Date</label>
+						<input type="datetime-local" data-field="birth_date" data-litter-index="${litterIndex}" value="${escapeHtml(toDatetimeLocalValue(litter.birth_date))}">
+					</div>
 
-										<div class="field">
-											<label>Name</label>
-											<input type="text" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="name" value="${escapeHtml(kitten.name)}">
-										</div>
+					<div class="field">
+						<label>Status</label>
+						<input type="text" data-field="status" data-litter-index="${litterIndex}" value="${escapeHtml(litter.status)}">
+					</div>
 
-										<div class="field">
-											<label>Sex</label>
-											<input type="text" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="sex" value="${escapeHtml(kitten.sex)}">
-										</div>
+					<div class="field form-row-full">
+						<label>Description</label>
+						<textarea data-field="description" data-litter-index="${litterIndex}">${escapeHtml(litter.description)}</textarea>
+					</div>
+				</div>
 
-										<div class="field">
-											<label>Color</label>
-											<input type="text" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="color" value="${escapeHtml(kitten.color)}">
-										</div>
+				<div class="kittens-block">
+					<div class="kitten-card-top">
+						<h4 class="kittens-block-title">Kittens</h4>
+					</div>
 
-										<div class="field">
-											<label>Status</label>
-											<input type="text" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="status" value="${escapeHtml(kitten.status)}">
-										</div>
-
-										<div class="field">
-											<label>Price</label>
-											<input type="number" step="1" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="price" value="${escapeHtml(kitten.price)}">
-										</div>
-
-										<div class="field form-row-full">
-											<label>Image</label>
-											<input type="text" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="image" value="${escapeHtml(kitten.image)}">
-										</div>
-
-										<div class="field form-row-full">
-											<label>Notes</label>
-											<textarea data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="notes">${escapeHtml(kitten.notes)}</textarea>
-										</div>
+					<div class="kittens-list">
+						${(Array.isArray(litter.kittens) ? litter.kittens : []).map((kitten, kittenIndex) => `
+							<div class="kitten-card" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}">
+								<div class="kitten-card-top">
+									<h4 class="kitten-card-title">Kitten ${kittenIndex + 1}</h4>
+									<div class="sub-actions">
+										<button type="button" class="admin-btn danger-btn delete-kitten-btn" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}">Delete Kitten</button>
 									</div>
 								</div>
-							`).join("")}
-						</div>
+
+								<div class="form-grid">
+									<div class="field">
+										<label>Kitten ID</label>
+										<input type="text" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="id" value="${escapeHtml(kitten.id)}">
+									</div>
+
+									<div class="field">
+										<label>Name</label>
+										<input type="text" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="name" value="${escapeHtml(kitten.name)}">
+									</div>
+
+									<div class="field">
+										<label>Sex</label>
+										<input type="text" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="sex" value="${escapeHtml(kitten.sex)}">
+									</div>
+
+									<div class="field">
+										<label>Color</label>
+										<input type="text" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="color" value="${escapeHtml(kitten.color)}">
+									</div>
+
+									<div class="field">
+										<label>Status</label>
+										<input type="text" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="status" value="${escapeHtml(kitten.status)}">
+									</div>
+
+									<div class="field">
+										<label>Price</label>
+										<input type="number" step="1" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="price" value="${escapeHtml(kitten.price)}">
+									</div>
+
+									<div class="field form-row-full">
+										<label>Image</label>
+										<input type="text" data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="image" value="${escapeHtml(kitten.image)}">
+									</div>
+
+									<div class="field form-row-full">
+										<label>Notes</label>
+										<textarea data-litter-index="${litterIndex}" data-kitten-index="${kittenIndex}" data-kitten-field="notes">${escapeHtml(kitten.notes)}</textarea>
+									</div>
+								</div>
+							</div>
+						`).join("")}
 					</div>
 				</div>
-			`).join("");
+			</div>
+		`).join("");
 
-			bindEditorEvents();
-		}
-
-		function bindEditorEvents() {
-			editorEl.querySelectorAll("[data-field]").forEach((input) => {
-				input.addEventListener("input", (event) => {
-					const litterIndex = Number(event.target.dataset.litterIndex);
-					const field = event.target.dataset.field;
-					let value = event.target.value;
-
-					if (field === "birth_date") {
-						value = fromDatetimeLocalValue(value);
-					}
-
-					littersState.litters[litterIndex][field] = value;
-				});
-			});
-
-			editorEl.querySelectorAll("[data-kitten-field]").forEach((input) => {
-				input.addEventListener("input", (event) => {
-					const litterIndex = Number(event.target.dataset.litterIndex);
-					const kittenIndex = Number(event.target.dataset.kittenIndex);
-					const field = event.target.dataset.kittenField;
-					let value = event.target.value;
-
-					if (field === "price") {
-						value = safeNumber(value);
-					}
-
-					littersState.litters[litterIndex].kittens[kittenIndex][field] = value;
-				});
-			});
-
-			editorEl.querySelectorAll(".add-kitten-btn").forEach((button) => {
-				button.addEventListener("click", () => {
-					const litterIndex = Number(button.dataset.litterIndex);
-
-					if (!Array.isArray(littersState.litters[litterIndex].kittens)) {
-						littersState.litters[litterIndex].kittens = [];
-					}
-
-					littersState.litters[litterIndex].kittens.push(createEmptyKitten());
-					renderEditor();
-					setStatus("Added a new kitten.");
-				});
-			});
-
-			editorEl.querySelectorAll(".delete-litter-btn").forEach((button) => {
-				button.addEventListener("click", () => {
-					const litterIndex = Number(button.dataset.litterIndex);
-					littersState.litters.splice(litterIndex, 1);
-					renderEditor();
-					setStatus("Litter deleted.");
-				});
-			});
-
-			editorEl.querySelectorAll(".delete-kitten-btn").forEach((button) => {
-				button.addEventListener("click", () => {
-					const litterIndex = Number(button.dataset.litterIndex);
-					const kittenIndex = Number(button.dataset.kittenIndex);
-					littersState.litters[litterIndex].kittens.splice(kittenIndex, 1);
-					renderEditor();
-					setStatus("Kitten deleted.");
-				});
-			});
-		}
-
-		async function loadLitters() {
-	setStatus("Loading litters...");
-
-	try {
-		console.log("Loading from:", LITTERS_JSON_URL);
-
-		const response = await fetch(LITTERS_JSON_URL, { cache: "no-store" });
-
-		console.log("Status:", response.status, response.statusText);
-		console.log("URL:", response.url);
-		console.log("Content-Type:", response.headers.get("content-type"));
-
-		const rawText = await response.text();
-		console.log("Raw response:", rawText);
-
-		if (!response.ok) {
-			throw new Error(`Failed to load ${LITTERS_JSON_URL} | ${response.status} ${response.statusText} | ${rawText}`);
-		}
-
-		let data;
-		try {
-			data = JSON.parse(rawText);
-		} catch (jsonError) {
-			throw new Error(`API did not return valid JSON. Response was: ${rawText}`);
-		}
-
-		littersState = normalizeState(data);
-		renderEditor();
-		setStatus("Litters loaded.");
-	} catch (error) {
-		console.error("loadLitters() failed:", error);
-		setStatus(`Could not load litters.json. ${error.message}`, true);
-		littersState = { litters: [] };
-		renderEditor();
+		bindEditorEvents();
 	}
-}
+
+	function bindEditorEvents() {
+		editorEl.querySelectorAll("[data-field]").forEach((input) => {
+			input.addEventListener("input", (event) => {
+				const litterIndex = Number(event.target.dataset.litterIndex);
+				const field = event.target.dataset.field;
+				let value = event.target.value;
+
+				if (field === "birth_date") {
+					value = fromDatetimeLocalValue(value);
+				}
+
+				littersState.litters[litterIndex][field] = value;
+			});
+		});
+
+		editorEl.querySelectorAll("[data-kitten-field]").forEach((input) => {
+			input.addEventListener("input", (event) => {
+				const litterIndex = Number(event.target.dataset.litterIndex);
+				const kittenIndex = Number(event.target.dataset.kittenIndex);
+				const field = event.target.dataset.kittenField;
+				let value = event.target.value;
+
+				if (field === "price") {
+					value = safeNumber(value);
+				}
+
+				littersState.litters[litterIndex].kittens[kittenIndex][field] = value;
+			});
+		});
+
+		editorEl.querySelectorAll(".add-kitten-btn").forEach((button) => {
+			button.addEventListener("click", () => {
+				const litterIndex = Number(button.dataset.litterIndex);
+
+				if (!Array.isArray(littersState.litters[litterIndex].kittens)) {
+					littersState.litters[litterIndex].kittens = [];
+				}
+
+				littersState.litters[litterIndex].kittens.push(createEmptyKitten());
+				renderEditor();
+				setStatus("Added a new kitten.");
+			});
+		});
+
+		editorEl.querySelectorAll(".delete-litter-btn").forEach((button) => {
+			button.addEventListener("click", () => {
+				const litterIndex = Number(button.dataset.litterIndex);
+				littersState.litters.splice(litterIndex, 1);
+				renderEditor();
+				setStatus("Litter deleted.");
+			});
+		});
+
+		editorEl.querySelectorAll(".delete-kitten-btn").forEach((button) => {
+			button.addEventListener("click", () => {
+				const litterIndex = Number(button.dataset.litterIndex);
+				const kittenIndex = Number(button.dataset.kittenIndex);
+				littersState.litters[litterIndex].kittens.splice(kittenIndex, 1);
+				renderEditor();
+				setStatus("Kitten deleted.");
+			});
+		});
+	}
+
+	async function loadLitters() {
+		setStatus("Loading litters...");
+
+		try {
+			console.log("Loading from:", LITTERS_JSON_URL);
+
+			const response = await fetch(LITTERS_JSON_URL, {
+				method: "GET",
+				cache: "no-store"
+			});
+
+			const rawText = await response.text();
+
+			console.log("Load status:", response.status, response.statusText);
+			console.log("Load response:", rawText);
+
+			if (!response.ok) {
+				throw new Error(`Failed to load | ${response.status} ${response.statusText} | ${rawText}`);
+			}
+
+			let data;
+			try {
+				data = JSON.parse(rawText);
+			} catch (jsonError) {
+				throw new Error(`Load response was not valid JSON. ${jsonError.message}`);
+			}
+
+			if (data && data.data && Array.isArray(data.data.litters)) {
+				data = data.data;
+			}
+
+			littersState = normalizeState(data);
+			renderEditor();
+			setStatus("Litters loaded.");
+		} catch (error) {
+			console.error("loadLitters() failed:", error);
+			setStatus(`Could not load litters. ${error.message}`, true);
+			littersState = { litters: [] };
+			renderEditor();
+		}
+	}
 
 	async function saveLitters() {
 		setStatus("Saving changes...");
 
 		const payload = JSON.stringify(littersState, null, 2);
-		const debugInfo = {
-			saveUrl: LITTERS_SAVE_URL,
-			method: "POST",
-			payloadLength: payload.length,
-			locationHref: window.location.href,
-			origin: window.location.origin,
-			timestamp: new Date().toISOString()
-		};
-
-		console.group("saveLitters() debug");
-		console.log("Debug info:", debugInfo);
-		console.log("Payload preview:", payload.slice(0, 1000));
 
 		try {
-			if (!LITTERS_SAVE_URL || typeof LITTERS_SAVE_URL !== "string") {
-				throw new Error("LITTERS_SAVE_URL is missing or invalid.");
-			}
+			console.log("Saving to:", LITTERS_SAVE_URL);
+			console.log("Payload:", payload);
 
 			const response = await fetch(LITTERS_SAVE_URL, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					"Accept": "application/json, text/plain, */*"
+					"Accept": "application/json"
 				},
 				body: payload
 			});
 
-			const responseContentType = response.headers.get("content-type") || "";
-			let responseBodyText = "";
-			let responseBodyJson = null;
+			const rawText = await response.text();
 
-			try {
-				responseBodyText = await response.text();
-			} catch (readError) {
-				console.error("Could not read response body:", readError);
-				responseBodyText = "[Could not read response body]";
-			}
-
-			try {
-				responseBodyJson = responseBodyText ? JSON.parse(responseBodyText) : null;
-			} catch {
-				responseBodyJson = null;
-			}
-
-			console.log("Response status:", response.status, response.statusText);
-			console.log("Response ok:", response.ok);
-			console.log("Response content-type:", responseContentType);
-			console.log("Response body text:", responseBodyText);
-			console.log("Response body json:", responseBodyJson);
+			console.log("Save status:", response.status, response.statusText);
+			console.log("Save response:", rawText);
 
 			if (!response.ok) {
-				throw new Error(
-					[
-						`Save request failed.`,
-						`Status: ${response.status} ${response.statusText}`,
-						`URL: ${LITTERS_SAVE_URL}`,
-						responseBodyText ? `Server response: ${responseBodyText}` : "Server response was empty."
-					].join(" ")
-				);
+				throw new Error(`Failed to save | ${response.status} ${response.statusText} | ${rawText}`);
+			}
+
+			let data = null;
+			try {
+				data = JSON.parse(rawText);
+			} catch {
+				data = null;
 			}
 
 			setStatus(
-				`Changes saved successfully. Status ${response.status}${responseBodyText ? ` | ${responseBodyText}` : ""}`
+				data?.message
+					? `${data.message}`
+					: "Changes saved successfully."
 			);
 		} catch (error) {
 			console.error("saveLitters() failed:", error);
-
-			let extraHints = [];
-
-			if (error instanceof TypeError) {
-				extraHints.push("This usually means the request never reached a working save endpoint.");
-				extraHints.push("Possible causes: wrong URL, missing server script, CORS issue, or trying to POST to a static file path.");
-			}
-
-			if (String(LITTERS_SAVE_URL).includes(".json")) {
-				extraHints.push("A browser cannot directly write to a .json file path with fetch unless a server script is handling that request.");
-			}
-
-			const fullMessage = [
-				"Save failed.",
-				error && error.message ? error.message : String(error),
-				...extraHints
-			].join(" ");
-
-			setStatus(fullMessage, true);
-
-			alert(fullMessage);
-		} finally {
-			console.groupEnd();
+			setStatus(`Save failed. ${error.message}`, true);
+			alert(`Save failed.\n\n${error.message}`);
 		}
 	}
 
-		function downloadLitters() {
-			const blob = new Blob([JSON.stringify(littersState, null, 2)], {
-				type: "application/json"
-			});
-
-			const url = URL.createObjectURL(blob);
-			const a = document.createElement("a");
-			a.href = url;
-			a.download = "litters.json";
-			document.body.appendChild(a);
-			a.click();
-			a.remove();
-			URL.revokeObjectURL(url);
-
-			setStatus("Downloaded litters.json.");
-		}
-
-		loadBtn.addEventListener("click", loadLitters);
-
-		addLitterBtn.addEventListener("click", () => {
-			littersState.litters.push(createEmptyLitter());
-			renderEditor();
-			setStatus("Added a new litter.");
+	function downloadLittersJson() {
+		const blob = new Blob([JSON.stringify(littersState, null, 2)], {
+			type: "application/json"
 		});
 
-		saveBtn.addEventListener("click", saveLitters);
-		downloadBtn.addEventListener("click", downloadLitters);
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement("a");
+		a.href = url;
+		a.download = "litters.json";
+		document.body.appendChild(a);
+		a.click();
+		a.remove();
+		URL.revokeObjectURL(url);
 
-		loadLitters();
-	</script>
-</body>
-</html>
+		setStatus("Downloaded litters.json.");
+	}
+
+	loadBtn.addEventListener("click", loadLitters);
+
+	addLitterBtn.addEventListener("click", () => {
+		littersState.litters.push(createEmptyLitter());
+		renderEditor();
+		setStatus("Added a new litter.");
+	});
+
+	downloadBtn.addEventListener("click", downloadLittersJson);
+	saveBtn.addEventListener("click", saveLitters);
+
+	window.addEventListener("error", (event) => {
+		console.error("Global error:", event.error || event.message);
+	});
+
+	window.addEventListener("unhandledrejection", (event) => {
+		console.error("Unhandled promise rejection:", event.reason);
+	});
+
+	loadLitters();
+</script>
