@@ -110,7 +110,7 @@ collections_config:
         label: Body
         cascade: true
       $.litters[*].sire:
-        type: multiselect
+        type: select
         options:
           allow_create:
           allow_empty: false
