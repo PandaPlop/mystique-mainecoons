@@ -902,29 +902,101 @@
 			}
 		}
 
-		async function saveLitters() {
-			setStatus("Saving changes...");
+	async function saveLitters() {
+		setStatus("Saving changes...");
+
+		const payload = JSON.stringify(littersState, null, 2);
+		const debugInfo = {
+			saveUrl: LITTERS_SAVE_URL,
+			method: "POST",
+			payloadLength: payload.length,
+			locationHref: window.location.href,
+			origin: window.location.origin,
+			timestamp: new Date().toISOString()
+		};
+
+		console.group("saveLitters() debug");
+		console.log("Debug info:", debugInfo);
+		console.log("Payload preview:", payload.slice(0, 1000));
+
+		try {
+			if (!LITTERS_SAVE_URL || typeof LITTERS_SAVE_URL !== "string") {
+				throw new Error("LITTERS_SAVE_URL is missing or invalid.");
+			}
+
+			const response = await fetch(LITTERS_SAVE_URL, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Accept": "application/json, text/plain, */*"
+				},
+				body: payload
+			});
+
+			const responseContentType = response.headers.get("content-type") || "";
+			let responseBodyText = "";
+			let responseBodyJson = null;
 
 			try {
-				const response = await fetch(LITTERS_SAVE_URL, {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify(littersState, null, 2)
-				});
-
-				if (!response.ok) {
-					const message = await response.text();
-					throw new Error(message || "Save failed.");
-				}
-
-				setStatus("Changes saved to api/litters.json.");
-			} catch (error) {
-				console.error(error);
-				setStatus("Save failed. Use Download JSON if the save script is not running.", true);
+				responseBodyText = await response.text();
+			} catch (readError) {
+				console.error("Could not read response body:", readError);
+				responseBodyText = "[Could not read response body]";
 			}
+
+			try {
+				responseBodyJson = responseBodyText ? JSON.parse(responseBodyText) : null;
+			} catch {
+				responseBodyJson = null;
+			}
+
+			console.log("Response status:", response.status, response.statusText);
+			console.log("Response ok:", response.ok);
+			console.log("Response content-type:", responseContentType);
+			console.log("Response body text:", responseBodyText);
+			console.log("Response body json:", responseBodyJson);
+
+			if (!response.ok) {
+				throw new Error(
+					[
+						`Save request failed.`,
+						`Status: ${response.status} ${response.statusText}`,
+						`URL: ${LITTERS_SAVE_URL}`,
+						responseBodyText ? `Server response: ${responseBodyText}` : "Server response was empty."
+					].join(" ")
+				);
+			}
+
+			setStatus(
+				`Changes saved successfully. Status ${response.status}${responseBodyText ? ` | ${responseBodyText}` : ""}`
+			);
+		} catch (error) {
+			console.error("saveLitters() failed:", error);
+
+			let extraHints = [];
+
+			if (error instanceof TypeError) {
+				extraHints.push("This usually means the request never reached a working save endpoint.");
+				extraHints.push("Possible causes: wrong URL, missing server script, CORS issue, or trying to POST to a static file path.");
+			}
+
+			if (String(LITTERS_SAVE_URL).includes(".json")) {
+				extraHints.push("A browser cannot directly write to a .json file path with fetch unless a server script is handling that request.");
+			}
+
+			const fullMessage = [
+				"Save failed.",
+				error && error.message ? error.message : String(error),
+				...extraHints
+			].join(" ");
+
+			setStatus(fullMessage, true);
+
+			alert(fullMessage);
+		} finally {
+			console.groupEnd();
 		}
+	}
 
 		function downloadLitters() {
 			const blob = new Blob([JSON.stringify(littersState, null, 2)], {
