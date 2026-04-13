@@ -881,26 +881,41 @@
 		}
 
 		async function loadLitters() {
-			setStatus("Loading litters...");
+	setStatus("Loading litters...");
 
-			try {
-				const response = await fetch(LITTERS_JSON_URL, { cache: "no-store" });
+	try {
+		console.log("Loading from:", LITTERS_JSON_URL);
 
-				if (!response.ok) {
-					throw new Error(`Failed to load ${LITTERS_JSON_URL}`);
-				}
+		const response = await fetch(LITTERS_JSON_URL, { cache: "no-store" });
 
-				const data = await response.json();
-				littersState = normalizeState(data);
-				renderEditor();
-				setStatus("Litters loaded.");
-			} catch (error) {
-				console.error(error);
-				setStatus("Could not load litters.json.", true);
-				littersState = { litters: [] };
-				renderEditor();
-			}
+		console.log("Status:", response.status, response.statusText);
+		console.log("URL:", response.url);
+		console.log("Content-Type:", response.headers.get("content-type"));
+
+		const rawText = await response.text();
+		console.log("Raw response:", rawText);
+
+		if (!response.ok) {
+			throw new Error(`Failed to load ${LITTERS_JSON_URL} | ${response.status} ${response.statusText} | ${rawText}`);
 		}
+
+		let data;
+		try {
+			data = JSON.parse(rawText);
+		} catch (jsonError) {
+			throw new Error(`API did not return valid JSON. Response was: ${rawText}`);
+		}
+
+		littersState = normalizeState(data);
+		renderEditor();
+		setStatus("Litters loaded.");
+	} catch (error) {
+		console.error("loadLitters() failed:", error);
+		setStatus(`Could not load litters.json. ${error.message}`, true);
+		littersState = { litters: [] };
+		renderEditor();
+	}
+}
 
 	async function saveLitters() {
 		setStatus("Saving changes...");
