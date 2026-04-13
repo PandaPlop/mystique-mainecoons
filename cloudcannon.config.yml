@@ -115,7 +115,7 @@ collections_config:
           allow_create:
           allow_empty: true
           values:
-          value_key:
+          value_key: kings[*].name
           preview:
           picker_preview:
           view:
